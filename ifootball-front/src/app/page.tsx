@@ -1,14 +1,18 @@
 'use client';
 import { FormEvent } from 'react';
 import styles from '../../styles/page.module.scss';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+
+  const router = useRouter();
 
   const login = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     console.log("Usuário: " + formData.get('user-input') + " | Senha: " + formData.get('password-input'));
-    return false;
+    router.push('/homepage')
+    return true;
   }
   return (
     <main className={styles.main}>

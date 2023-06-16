@@ -1,0 +1,74 @@
+@import './globals.scss';
+$logoSize: 100px;
+$maxWidth: 1200px;
+$corTextosMenus: black;
+$minSize1: 850px;
+$sidebarWidth: 260px;
+$backgroundHeaderTransparent: #28543017;
+.globalHeader {
+    // background-image: linear-gradient(180deg, $terciaryGreen, $backgroundHeaderTransparent);
+    background-color: $terciaryGreen;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-width: $minSize;
+    position: fixed;
+    top: 0;
+    transition: all ease .2s;
+
+    .fixedGlobalHeader {
+        background-color: $terciaryGreen;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.534);
+        height: 55px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        min-width: $minSize;
+        position: fixed;
+        top: 0;
+    }
+    .mainHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $corTextosMenus;
+        font-size: $textXM;
+        height: 55px;
+        font-family: $defaultFont;
+        width: 100%;
+        max-width: $maxSize;
+
+        @media (max-width: $mediumSize) {
+           flex-direction: row-reverse; 
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            transition: all ease .2s;
+            @media (min-width: $mediumSize) {
+                margin-left: 0;
+            }
+            @media (max-width: $mediumSize) {
+                left: 0;
+                width: $sidebarWidth;
+                height: 100%;
+                background-color: $terciaryGreen;
+                text-align: center;
+                transition: all ease .8s;
+                margin-left: 0;
+            }
+
+            .activeSidebar {
+                margin-left: 0;
+                left: 0;
+
+                @media (max-width: $mediumSize) {
+                    margin-left: -$sidebarWidth;
+                    display: block;
+                }
+            }
+
+        }
+    }
+}
