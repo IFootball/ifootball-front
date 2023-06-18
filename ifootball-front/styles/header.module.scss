@@ -5,6 +5,7 @@ $corTextosMenus: black;
 $minSize1: 850px;
 $sidebarWidth: 260px;
 $backgroundHeaderTransparent: #28543017;
+
 .globalHeader {
     // background-image: linear-gradient(180deg, $terciaryGreen, $backgroundHeaderTransparent);
     background-color: $terciaryGreen;
@@ -14,6 +15,7 @@ $backgroundHeaderTransparent: #28543017;
     min-width: $minSize;
     position: fixed;
     top: 0;
+    z-index: 10;
     transition: all ease .2s;
 
     .fixedGlobalHeader {
@@ -25,8 +27,10 @@ $backgroundHeaderTransparent: #28543017;
         justify-content: center;
         min-width: $minSize;
         position: fixed;
+        z-index: 10;
         top: 0;
     }
+
     .mainHeader {
         display: flex;
         align-items: center;
@@ -38,17 +42,23 @@ $backgroundHeaderTransparent: #28543017;
         width: 100%;
         max-width: $maxSize;
 
-        @media (max-width: $mediumSize) {
-           flex-direction: row-reverse; 
+        // @media (max-width: $mediumSize) {
+        //     flex-direction: row-reverse;
+        // }
+
+        @media (max-width: $minSize) {
+            width: 100%;
         }
 
         .navbar {
             display: flex;
             align-items: center;
             transition: all ease .2s;
+
             @media (min-width: $mediumSize) {
                 margin-left: 0;
             }
+
             @media (max-width: $mediumSize) {
                 left: 0;
                 width: $sidebarWidth;
@@ -69,6 +79,138 @@ $backgroundHeaderTransparent: #28543017;
                 }
             }
 
+            .toggleCollapse {
+                display: none;
+                float: right;
+
+                @media (max-width: $mediumSize) {
+                    display: block;
+                    margin-right: -26px;
+                    margin-top: 16px;
+                    content: '';
+                    outline: inherit;
+                    border: 0;
+                    background: transparent;
+                }
+
+                .icon {
+                    display: none;
+
+                    @media (max-width: $mediumSize) {
+                        display: block;
+                        position: absolute;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        transition: all ease .5s;
+                    }
+                }
+
+                .active {
+                    z-index: 1;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    .top {
+                        transform: rotate(45deg);
+                        d: path("M 0 0 L40 0");
+                        top: 10px;
+                    }
+
+                    .middle {
+                        display: none;
+                    }
+
+                    .bottom {
+                        transform: rotate(320deg);
+                        d: path("M -40 18.25 L16 12.75");
+                    }
+                }
+            }
+
+            .sideNav {
+                top: 0;
+                display: flex;
+                align-items: center;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+
+                @media (max-width: $mediumSize) {
+                    height: 100vh;
+                    width: $sidebarWidth;
+                    position: fixed;
+                    background-color: $terciaryGreen;
+                    flex-direction: column;
+                    top: 0;
+                    display: flex;
+                    align-items: center;
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    width: $sidebarWidth;
+                }
+
+                .logoSB {
+                    width: 70px;
+                    display: block;
+
+                    @media (min-width: $mediumSize) {
+                        display: none;
+                    }
+
+                    img {
+                        width: 70px;
+                        display: block;
+                        margin-top: 20px;
+                        transition: all ease .2s;
+
+                        @media (min-width: $mediumSize) {
+                            display: none;
+                        }
+                    }
+                }
+
+                .navItem {
+                    display: flex;
+                    padding: 15px 10px;
+                    align-items: center;
+                    transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+
+                    a {
+                        padding: 0;
+                        margin: 0;
+                        font-size: white;
+                    }
+
+                    p {
+                        margin: 0;
+                        font-size: white;
+                    }
+
+                    &:hover {
+                        transform: scale(1.05);
+                        cursor: pointer;
+                    }
+            
+                }
+                .ocupadorEspaco {
+                    height: 100vh;
+                    width: calc(1000vw - $sidebarWidth);
+                    margin-left: $sidebarWidth;
+                    transition: all ease .2s;
+                    backdrop-filter: blur(3px);
+                    .opacity {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
         }
+        
     }
 }
