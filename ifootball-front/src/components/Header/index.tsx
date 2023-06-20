@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <header className={styles.globalHeader}>
             <div className={styles.mainHeader}>
-                <nav className={unactive ? `${styles.activeSidebar} ${styles.navbar}` : `${styles.mainHeader}`}>
+                <nav className={unactive ? `${styles.activeSidebar} ${styles.navbar}` : `${styles.mainHeader}`} style={unactive ? {marginLeft: '-260px', display: 'block'} : {left: '0', marginLeft: '0'}}>
                     <button type="button" className={(!unactive ? `${styles.toggleCollapse} ${styles.show}` : `${styles.toggleCollapse}`)} id='toggle-button' onClick={(() => {
                         setUnactive(!unactive);
                     })}>
@@ -35,7 +35,7 @@ const Header = () => {
                         </div>
                     </ul>
                     {
-                        !unactive &&
+                        unactive &&
                         <div className={styles.ocupadorEspaco} onClick={(() => {
                             setUnactive(!unactive);
                         })}>
