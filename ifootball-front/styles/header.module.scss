@@ -42,9 +42,9 @@ $backgroundHeaderTransparent: #28543017;
         width: 100%;
         max-width: $maxSize;
 
-        // @media (max-width: $mediumSize) {
-        //     flex-direction: row-reverse;
-        // }
+        @media (min-width: $mediumSize) {
+            flex-direction: row-reverse;
+        }
 
         @media (max-width: $minSize) {
             width: 100%;
@@ -82,15 +82,16 @@ $backgroundHeaderTransparent: #28543017;
             .toggleCollapse {
                 display: none;
                 float: right;
+                background: transparent;
+                margin-right: -26px;
+                margin-top: 16px;
+                content: '';
+                outline: inherit;
+                border: 0;
+
 
                 @media (max-width: $mediumSize) {
                     display: block;
-                    margin-right: -26px;
-                    margin-top: 16px;
-                    content: '';
-                    outline: inherit;
-                    border: 0;
-                    background: transparent;
                 }
 
                 .icon {
@@ -196,21 +197,29 @@ $backgroundHeaderTransparent: #28543017;
                         transform: scale(1.05);
                         cursor: pointer;
                     }
-            
-                }
-                .ocupadorEspaco {
-                    height: 100vh;
-                    width: calc(1000vw - $sidebarWidth);
-                    margin-left: $sidebarWidth;
-                    transition: all ease .2s;
-                    backdrop-filter: blur(3px);
-                    .opacity {
-                        height: 100%;
-                        width: 100%;
-                    }
+
                 }
             }
+
+            .ocupadorEspaco {
+                height: 100vh;
+                // width: calc(1000vw - $sidebarWidth);
+                width: 100vw;
+                margin-left: $sidebarWidth;
+                transition: all ease 0.2s;
+                -webkit-backdrop-filter: blur(3px);
+                backdrop-filter: blur(3px);
+                top: 53vh;
+                left: 3vw;
+                position: relative;
+            }
+
+            .opacity {
+                height: 100vh;
+                width: 100vw;
+                box-sizing: border-box;
+            }
         }
-        
     }
+
 }
