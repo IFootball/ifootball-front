@@ -41,15 +41,11 @@ $backgroundHeaderTransparent: #28543017;
         font-family: $defaultFont;
         width: 100%;
         max-width: $maxSize;
-
-        @media (min-width: $mediumSize) {
-            flex-direction: row-reverse;
-        }
-
+        
         @media (max-width: $minSize) {
             width: 100%;
         }
-
+        
         .navbar {
             display: flex;
             align-items: center;
