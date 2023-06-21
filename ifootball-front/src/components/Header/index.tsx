@@ -4,6 +4,7 @@ import styles from '../../../styles/header.module.scss';
 import { getIcon } from '../SVGHelper/tools';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import globals from '../../../styles/globals.module.scss';
 const Header = () => {
     const [unactive, setUnactive] = useState<boolean>(true);
     const icon = getIcon();
@@ -11,7 +12,7 @@ const Header = () => {
     return (
         <header className={styles.globalHeader}>
             <div className={styles.mainHeader}>
-                <nav className={unactive ? `${styles.activeSidebar} ${styles.navbar}` : `${styles.mainHeader}`} style={unactive ? {marginLeft: '-260px', display: 'block'} : {left: '0', marginLeft: '0'}}>
+                <nav className={unactive ? `${styles.activeSidebar} ${styles.navbar}` : `${styles.mainHeader}`} style={unactive ? {marginLeft: '-260px', display: 'block'} : {left: '0', marginLeft: '0', flexDirection: 'column', width: globals.headerWidth, height: '100vh', backgroundColor: globals.terciaryGreen}}>
                     <button type="button" className={(!unactive ? `${styles.toggleCollapse} ${styles.show}` : `${styles.toggleCollapse}`)} id='toggle-button' onClick={(() => {
                         setUnactive(!unactive);
                     })}>
