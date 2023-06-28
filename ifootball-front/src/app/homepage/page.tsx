@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 export default function Home() {
   return (
     <div className={styles.HomePage}>
-      <Header />
+      {/* <Header /> */}
       <div>
         <p>.</p>
         <div className={styles.relogio}>
