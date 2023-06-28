@@ -1,5 +1,6 @@
+'use client';
 import { FormEvent } from 'react';
-import styles from '../../styles/page.module.scss';
+import styles from '../../../styles/register.module.scss';
 import Header from '@/components/Header';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -19,23 +20,38 @@ export default function Register() {
     <div className={styles.Register}>
         <Header />
 
+        
 
         <main className={styles.main}>
-      <div className={styles.loginUtilArea}>
-        <h1 className={styles.loginTitle}>IFootball</h1>
-        <form onSubmit={register}  className={styles.loginForm}>
-          <div className={styles.loginField}>
-            <label htmlFor="user-input" className={styles.loginLabel}>Usuário</label>
-            <input className={styles.loginInput} type="text" name="user-input" id="user-input" />
+
+        <div>
+        <Link className={styles.backLoginLink} href={'../'}>Entrar</Link>
           </div>
-          <div className={styles.loginField}>
-            <label htmlFor="password-input" className={styles.loginLabel}>Senha</label>
-            <input className={styles.loginInput} type="password" name="password-input" id="password-input" />
-          </div>
+          
+          
+      <div className={styles.registerUtilArea}>
+
+        <h1 className={styles.registerTitle}>IFootball</h1>
+
+        <form onSubmit={register}  className={styles.registerForm}>
+
           <div className={styles.registerField}>
-            <p className={styles.registerP}>Não tem conta? <Link className={styles.registerLink} href={'/register'}>Clique aqui</Link></p>
+            <label htmlFor="user-input" className={styles.registerLabel}>Usuário</label>
+            <input className={styles.registerInput} type="text" name="user-input" id="user-input" />
           </div>
-          <button type='submit' className={styles.loginButton}>Logar</button>
+
+          <div className={styles.registerField}>
+            <label htmlFor="email-input" className={styles.registerLabel}>Email</label>
+            <input className={styles.registerInput} type="email" name="email-input" id="email-input" />
+          </div>
+
+          <div className={styles.registerField}>
+            <label htmlFor="password-input" className={styles.registerLabel}>Senha</label>
+            <input className={styles.registerInput} type="password" name="password-input" id="password-input" />
+          </div>
+
+          <button type='submit' className={styles.registerButton}>Cadasrar</button>
+
         </form>
       </div>
     </main>
