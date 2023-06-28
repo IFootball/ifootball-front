@@ -11,23 +11,23 @@ export default function Home() {
         <div className={styles.relogio}>
           <h3>criação de times fecha em</h3>
         </div>
-        <div className={styles.homePageUtil}>
+        <div className={styles.loginUtilArea}>
           <div className={styles.time}>
             <h1 className={styles.titulo}>Nome do Time</h1>
-            <h3 className={styles.subtitulo}>Pontução</h3>
+            <h5 className={styles.subtitulo}>Pontução</h5>
 
             <div className={styles.buttons}>
-              <a href="">Escalar Time M</a>
-              <a href="">Escalar Time F</a>
+              <a href="" className={styles.timeMasc}>Escalar Time M</a>
+              <a href="" className={styles.timeFem}>Escalar Time F</a>
             </div>
           </div>
 
           <div className={styles.pontuacao}>
             <h1 className={styles.titulo}>Pontuação</h1>
-            <h3 className={styles.subtitulo}>Top 3 Times</h3>
+            <h5 className={styles.subtitulo}>Top 3 Times</h5>
 
             <div className={styles.buttons}>
-              <a href="">Ver Mais</a>
+              <a href="" className={styles.verMais}>Ver Mais</a>
             </div>
           </div>
 
