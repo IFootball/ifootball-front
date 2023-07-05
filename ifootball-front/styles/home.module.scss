@@ -12,8 +12,13 @@
     .homeUtil {
         max-width: $maxSize;
         min-width: $minSize;
+        width: 100%;
 
-        .relogio {}
+        .relogio {
+            height: 70px;
+            width: 100%;
+            background-color: $terciaryGreen;
+        }
 
         .homeCardsArea {
             display: flex;
@@ -22,7 +27,7 @@
             justify-content: center;
             gap: 10px;
 
-            .time {
+            .time, .pontuacao {
                 height: 100%;
                 width: 100%;
                 display: flex;
@@ -30,6 +35,7 @@
                 align-items: center;
                 justify-content: space-around;
                 font-family: $defaultFont;
+
                 .titulo {
                     font-size: 35px;
                     text-align: center;
@@ -49,36 +55,11 @@
 
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    gap: 10px;
+                    justify-content: space-around;
+                    width: 100%;
 
                     a {
                         text-decoration: none;
-                    }
-
-                    .timeMasc,
-                    .timeFem,
-                    .verMais {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 170px;
-                        height: 40px;
-                        border-radius: 5px;
-                        background-color: #006414;
-                        color: #000;
-                        cursor: pointer;
-                        transition: all 0.2s ease-in-out;
-                        margin-top: 20px;
-                        text-decoration: none;
-                        margin: 10px auto;
-                    }
-
-                    .timeMasc:hover,
-                    .timeFem:hover,
-                    .verMais:hover {
-                        background-color: #222222;
-                        color: #ffff;
                     }
                 }
             }

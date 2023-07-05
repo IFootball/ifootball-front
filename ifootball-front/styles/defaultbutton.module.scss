@@ -11,4 +11,8 @@
     border-radius: 5px;
     transition: all ease .2s;
     cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }
