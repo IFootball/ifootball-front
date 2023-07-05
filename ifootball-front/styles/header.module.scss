@@ -14,6 +14,7 @@
   z-index:1;
   float:left;
   font-family: Open Sans, sans serif;
+  margin-bottom: 2em;
 }
 
 .header ul {
@@ -29,7 +30,7 @@
   padding: 0.7em 0.5em;
   text-decoration: none;
   transition:.3s;
-  border-bottom: 1px #ffffff46 solid;
+  border-bottom: 1px #ffffff00 solid;
   color:#ffffff;  
 }
 
@@ -41,7 +42,7 @@
 
 .header .logo{
   display: block;
-  float: left;
+  float: right;
 }
 
 .logo{
@@ -64,11 +65,12 @@
 /*ICONE DO MENU*/
 .ops{
   font-size: 0.88em;
+  margin: 0em 1em;
 }
 .header .mobile_icon {
   cursor: pointer;
   display: inline-block;
-  float: right;
+  float: left;
   padding: 28px 20px;
   position: relative;
   user-select: none;
@@ -109,7 +111,7 @@
 }
 
 .header .mobile_btn:checked ~ .nav {
-  max-height: 240px;
+  max-height: 540px;
 }
 
 .header .mobile_btn:checked ~ .mobile_icon .hamburguer {
@@ -147,34 +149,44 @@
   .header li { float:left; }
   
   .header li a {
-    
     padding: 15px 30px;
-    
     border-radius: 0px;
   }
+
   .header .nav {
     clear: none;
-    float: right;
+    float: left;
     max-height: none;
   }
   
   .header .mobile_icon { display:none; }
   .header li a {
-  
     transition:.3s;
-    border-bottom:0; 
-  
+    border-bottom:0;
+  }
+  .nav .titleOps h3{
+    display: none !important;
   }
 }
 
 @media (max-width: 48em) {
 
   .logoImg {
-    
     margin-top: 9px;
   }
 
   .header .mobile_btn:checked ~ .nav{
     margin-bottom: 2em;
   }
+
+  
 }
+
+.nav .titleOps h3{
+  width: 20%;
+  margin: 0;
+  color: white;
+  font-weight: normal;
+  margin-top: 0.5em;
+  font-family: 'Roboto';
+} 
