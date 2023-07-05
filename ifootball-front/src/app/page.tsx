@@ -29,7 +29,7 @@ export default function Home() {
             <input className={styles.loginInput} type="password" name="password-input" id="password-input" />
           </div>
           <div className={styles.registerField}>
-            <p className={styles.registerP}>Não tem conta? <Link className={styles.registerLink} href={'/register'}>Clique aqui</Link></p>
+            <p className={styles.registerP}><Link className={styles.registerLink} href={'/register'}>Criar Usuário</Link></p>
           </div>
           <button type='submit' className={styles.loginButton}>Logar</button>
         </form>
