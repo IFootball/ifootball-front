@@ -1,7 +1,8 @@
-export default function DefaultButton() {
+import styles from '../../../styles/defaultbutton.module.scss';
+export default function DefaultButton({text}: {text: string}) {
     return (
-        <div>
-            
+        <div className={styles.defaultButton}>
+            {text}
         </div>
     )
 }
