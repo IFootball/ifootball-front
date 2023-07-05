@@ -18,6 +18,15 @@
         margin: 10px;
     }
 
+    .relogio{
+        font-size: 15px;
+        text-align: center;
+        text-shadow: 2px 2px var #0000;
+        margin: 10px;
+        text-transform: uppercase;
+        background-color: #66A571;
+    }
+
     .timeMasc,
     .timeFem,
     .verMais {
@@ -35,6 +44,12 @@
         text-decoration: none;
         margin: 10px auto;
     }
+
+    .linkMasc,
+    .linkFem,
+    .linkVerMais{
+        text-decoration: none;
+    }
     
     .timeMasc:hover,
     .timeFem:hover,
@@ -42,5 +57,13 @@
         background-color: #222222;
         color: #ffff;
     }
+
+    .buttons{
+        align-items: center;
+        display: grid;
+        height: auto;
+        width: 100%;
+    }
+        
     
     

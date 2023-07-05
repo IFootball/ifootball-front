@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "../../../styles/home.module.scss";
 import Header from "@/components/Header";
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <div className={styles.HomePage}>
-      <Header />
+      
       <div>
         <p>.</p>
         <div className={styles.relogio}>
@@ -17,8 +18,17 @@ export default function Home() {
             <h5 className={styles.subtitulo}>Pontução</h5>
 
             <div className={styles.buttons}>
-              <a href="" className={styles.timeMasc}>Escalar Time M</a>
-              <a href="" className={styles.timeFem}>Escalar Time F</a>
+              <Link href={'/squad/masc'} className={styles.linkMasc}>
+                <div className={styles.timeMasc}>
+                  Escalar Time M
+                </div>
+              </Link>
+
+              <Link href={'/squad/fem'} className={styles.linkFem}>
+                <div className={styles.timeFem}>
+                  Escalar Time F
+                </div>
+              </Link>
             </div>
           </div>
 
@@ -27,7 +37,11 @@ export default function Home() {
             <h5 className={styles.subtitulo}>Top 3 Times</h5>
 
             <div className={styles.buttons}>
-              <a href="" className={styles.verMais}>Ver Mais</a>
+              <Link href={'/pontuacao'} className={styles.linkVerMais}>
+                <div className={styles.verMais}>
+                  Ver Mais
+                </div>
+              </Link>
             </div>
           </div>
 
