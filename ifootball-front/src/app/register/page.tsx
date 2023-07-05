@@ -17,10 +17,10 @@ export default function Register() {
         return true;
     }
     return (
+        
+      
     <div className={styles.Register}>
         <Header />
-
-        
 
         <main className={styles.main}>
 
@@ -30,8 +30,6 @@ export default function Register() {
           
           
       <div className={styles.registerUtilArea}>
-
-        <h1 className={styles.registerTitle}>IFootball</h1>
 
         <form onSubmit={register}  className={styles.registerForm}>
 
@@ -55,8 +53,10 @@ export default function Register() {
         </form>
       </div>
     </main>
-
+    
         
     </div>
+
+
     )
 }
