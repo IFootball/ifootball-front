@@ -13,7 +13,11 @@
         max-width: $maxSize;
         min-width: $minSize;
 
-        .relogio {}
+        .relogio {
+            background-color: #66A571;
+            text-align: center;
+            text-transform: uppercase;
+        }
 
         .homeCardsArea {
             display: flex;
