@@ -3,6 +3,7 @@ import styles from "../../../styles/home.module.scss";
 import Header from "@/components/Header";
 import GlobalCard from "@/components/globalCard";
 import Link from "next/link";
+import DefaultButton from "@/components/DefaultButton";
 
 
 export default function Home() {
@@ -21,10 +22,10 @@ export default function Home() {
 
                 <div className={styles.buttons}>
                   <Link href={'/squad/male'}>
-                    Time Masculino
+                    <DefaultButton text="Time Masculino" />
                   </Link> 
                   <Link href={'/squad/female'}>
-                    Time Feminino
+                    <DefaultButton text="Time Feminino" />
                   </Link>
                 </div>
               </div>
