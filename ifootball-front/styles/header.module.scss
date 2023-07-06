@@ -3,25 +3,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap");
 //FONTES DE TESTE!!)
 
-
-.header {
-  background-color: #285430;
-  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
-  position: sticky;
-  top:0;
-  left:0;  
+.header{
+  position: fixed;
   width: 100%;
-  z-index:1;
   float:left;
   font-family: Open Sans, sans serif;
-  margin-bottom: 2em;
 }
 
 .header ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  overflow: hidden;
   background-color: #ffffff00;
 }
 
@@ -34,39 +26,44 @@
   color:#ffffff;  
 }
 
-.header li a:hover,
-.header .btn_mobile:hover {
-  color:#ffffff;
-  background-color: rgba(0, 0, 0, 0.151);
+.background{
+  background-color: #285430;
 }
 
-.header .logo{
-  display: block;
-  float: right;
+.backgroundMenu{
+  background-color: gray;
+  width: 20vh;
+  padding: 1em 2em;
 }
 
-.logo{
-  align-items: center;
-  justify-content: center;
-}
+
+
+
+
+
+
+
+
+
 
 .logoImg {
   width: 5em;
   margin-top: 5px;
 }
 
-.header .nav {
-  clear: both;
-  max-height: 0;
-  transition: max-height .2s ease-out;
-}
 
 
-/*ICONE DO MENU*/
-.ops{
-  font-size: 0.88em;
-  margin: 0em 1em;
-}
+
+.nav .titleOps h3{
+  width: 20%;
+  margin: 0;
+  color: white;
+  font-weight: normal;
+  font-family: 'Roboto';
+} 
+
+
+
 .header .mobile_icon {
   cursor: pointer;
   display: inline-block;
@@ -105,7 +102,7 @@
 }
 
 
-/* menu btn */
+
 .header .mobile_btn {
   display: none;
 }
@@ -131,6 +128,41 @@
   top: 0;
 }
 
+/*
+
+
+.header li a:hover,
+.header .btn_mobile:hover {
+  color:#ffffff;
+  background-color: rgba(0, 0, 0, 0.151);
+}
+
+.header .logo{
+  display: block;
+  float: right;
+}
+
+.logo{
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.header .nav {
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+
+
+.ops{
+  font-size: 0.88em;
+  margin: 0em 1em;
+}
+
+
 .container {
   width:100%;
   float:left;
@@ -143,7 +175,7 @@
   margin:0 4%;
 }
 
-/* 48em = 768px */
+
 @media (min-width: 48em) {
   
   .header li { float:left; }
@@ -164,9 +196,7 @@
     transition:.3s;
     border-bottom:0;
   }
-  .nav .titleOps h3{
-    display: none !important;
-  }
+  
 }
 
 @media (max-width: 48em) {
@@ -182,11 +212,5 @@
   
 }
 
-.nav .titleOps h3{
-  width: 20%;
-  margin: 0;
-  color: white;
-  font-weight: normal;
-  margin-top: 0.5em;
-  font-family: 'Roboto';
-} 
+
+*/
