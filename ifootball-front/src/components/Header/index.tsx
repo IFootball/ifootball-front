@@ -9,6 +9,8 @@ export default function Navbar() {
 
   const [openSideBar, setOpenSideBar] = useState<boolean>(false)
 
+  const [openMenuBar, setOpenMenuBar] = useState<boolean>(false)
+
   return (
 
     <header className={styles.header}>
@@ -36,7 +38,22 @@ export default function Navbar() {
                 <li className={styles.titleOps}><h3>TÍTULO</h3></li>
                 <li><Link className={styles.ops} href={'homepage'}>Opção1</Link></li>
                 <li><Link className={styles.ops} href={'homepage'}>Opção2</Link></li>
-                <li className={styles.titleOps}><h3>PONTUAÇÃO</h3></li>
+                <li className={styles.titleOps}><input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops" onClick={(() => {
+                    setOpenMenuBar(!openMenuBar);
+          })} />PONTUAÇÃO</li>
+                <li className={styles.titleOps}>
+                  <div className={styles.subMenu}>
+          {
+            !openMenuBar ?
+              <div className={styles.none}></div>
+            :
+              <div>
+                  <img src="images/logoFoot.png" alt="" />
+              </div>
+        }
+      </div></li>
+
+
                 <li><Link className={styles.ops} href={'homepage'}>Time</Link></li>
                 <li><Link className={styles.ops} href={'homepage'}>Jogador</Link></li>
                 <li><Link className={styles.ops} href={'homepage'}>Gols</Link></li>
@@ -46,7 +63,8 @@ export default function Navbar() {
               </ul>
 
               <div className={styles.outDiv}>
-                <a className={styles.outA} href=""><div className={styles.outDivA}><img className={styles.outImg} src="images/out.png" title="outLogo" /><h4 className={styles.outH4}>SAIR</h4></div></a> 
+                <a className={styles.outA} href="
+                "><div className={styles.outDivA}><img className={styles.outImg} src="images/out.png" title="outLogo" /><h4 className={styles.outH4}>SAIR</h4></div></a> 
               </div>
 
               
@@ -56,6 +74,8 @@ export default function Navbar() {
 
         }
       </div>
+
+      
 
 
     </header>
