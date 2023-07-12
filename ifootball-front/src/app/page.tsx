@@ -18,10 +18,10 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.loginUtilArea}>
-        <h1 className={styles.loginTitle}>IFootball</h1>
+        <img className={styles.loginLogo} src="imagens/logo.png" alt="Logo" />
         <form onSubmit={login}  className={styles.loginForm}>
           <div className={styles.loginField}>
-            <label htmlFor="user-input" className={styles.loginLabel}>Usuário</label>
+            <label htmlFor="user-input" className={styles.loginLabel}>E-mail</label>
             <input className={styles.loginInput} type="text" name="user-input" id="user-input" />
           </div>
           <div className={styles.loginField}>
@@ -31,7 +31,10 @@ export default function Home() {
           <div className={styles.registerField}>
             <p className={styles.registerP}><Link className={styles.registerLink} href={'/register'}>Criar Usuário</Link></p>
           </div>
-          <button type='submit' className={styles.loginButton}>Logar</button>
+          <button type='submit' className={styles.loginButton}>Entrar</button>
+          <div className={styles.loginAdmField}>
+            <p className={styles.loginAdmin}><Link className={styles.registerLink} href={'/login-adm'}>Login Adm</Link></p>
+          </div>
         </form>
       </div>
     </main>
