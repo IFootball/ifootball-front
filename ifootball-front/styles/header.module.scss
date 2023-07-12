@@ -1,11 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap");
-//FONTES DE TESTE!!)
+//FONTES DE TESTE!!
 
+
+
+//HEADER!!
 .header{
   position: fixed;
   width: 100%;
+  height: 5em;
   float:left;
   font-family: Open Sans, sans serif;
 }
@@ -23,52 +27,14 @@
   text-decoration: none;
   transition:.3s;
   border-bottom: 1px #ffffff00 solid;
-  color:#ffffff;  
+  color: black;  
 }
-
-.background{
-  background-color: #285430;
-}
-
-.backgroundMenu{
-  background-color: gray;
-  width: 20vh;
-  padding: 1em 2em;
-}
-
-
-
-
-
-
-
-
-
-
-
-.logoImg {
-  width: 5em;
-  margin-top: 5px;
-}
-
-
-
-
-.nav .titleOps h3{
-  width: 20%;
-  margin: 0;
-  color: white;
-  font-weight: normal;
-  font-family: 'Roboto';
-} 
-
-
 
 .header .mobile_icon {
   cursor: pointer;
   display: inline-block;
   float: left;
-  padding: 28px 20px;
+  padding: 32px 22px;
   position: relative;
   user-select: none;
 }
@@ -101,8 +67,6 @@
   top: -5px;
 }
 
-
-
 .header .mobile_btn {
   display: none;
 }
@@ -127,90 +91,58 @@
 .header .mobile_btn:checked ~ .mobile_icon:not(.steps) .hamburguer:after {
   top: 0;
 }
-
-/*
-
-
-.header li a:hover,
-.header .btn_mobile:hover {
-  color:#ffffff;
-  background-color: rgba(0, 0, 0, 0.151);
+.imgDiv{
+  text-align: center;
+  width: 100%;
 }
 
-.header .logo{
-  display: block;
-  float: right;
-}
-
-.logo{
-  align-items: center;
-  justify-content: center;
+.logoImg{
+  margin-right: 3em;  
 }
 
 
-
-.header .nav {
-  clear: both;
-  max-height: 0;
-  transition: max-height .2s ease-out;
+//MENU!!
+.background{
+  display: flex;
+  background-color: #285430;
+  height: 4.2em;
+  flex-direction: row-reverse;
 }
 
-
-
-.ops{
-  font-size: 0.88em;
-  margin: 0em 1em;
+.backgroundMenu{
+  border-right: solid 1px black;
+  border-bottom: solid 1px black;
+  background-color: rgb(250, 250, 250);
+  width: 23vh;
+  padding: 1em 1em;
+  text-align: center;
 }
 
+.nav .titleOps h3{
+  font-size: 1.3em;
+  color: black;
+  font-weight: bold;
+  font-family: 'Roboto';
+} 
 
-.container {
-  width:100%;
-  float:left;
-  margin-top:100px;    
+.outDiv{
+  margin-top: 2em;  
+  text-align: center;
+  width: 100%;
 }
 
-.container { 
-  float:left; 
-  width:92%; 
-  margin:0 4%;
+.outA{
+  font-family: 'Roboto';
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
 
-
-@media (min-width: 48em) {
-  
-  .header li { float:left; }
-  
-  .header li a {
-    padding: 15px 30px;
-    border-radius: 0px;
-  }
-
-  .header .nav {
-    clear: none;
-    float: left;
-    max-height: none;
-  }
-  
-  .header .mobile_icon { display:none; }
-  .header li a {
-    transition:.3s;
-    border-bottom:0;
-  }
-  
+.outA img{
+  width: 2em;
 }
 
-@media (max-width: 48em) {
-
-  .logoImg {
-    margin-top: 9px;
-  }
-
-  .header .mobile_btn:checked ~ .nav{
-    margin-bottom: 2em;
-  }
-
-  
+.outDiv h4{
+  margin: 0;
 }
 
-
-*/
