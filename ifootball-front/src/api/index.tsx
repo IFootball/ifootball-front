@@ -118,16 +118,13 @@ export default {
         Password: data.password,
       };
 
-      await api
+      return await api
         .post("/users", createUserRequest)
-        .then(function (response) {
-          console.log("res1-------", response);
-
+        .then((response) => {
           return response.data;
         })
-        .then(function (data) {
-          console.log("res2-------", data);
-          // console.log(data);
+        .catch((error) => {
+          return error.response;
         });
     },
   },

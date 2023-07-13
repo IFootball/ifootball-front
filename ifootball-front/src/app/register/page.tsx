@@ -20,8 +20,8 @@ export default function Register() {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-
-    const response = await api.authentication.createAccount(data);
+    
+    let response = await api.authentication.createAccount(data);
 
     console.log(response);
     // router.push('/register')
