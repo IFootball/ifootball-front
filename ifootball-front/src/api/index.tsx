@@ -8,13 +8,13 @@ let axiosConfig = {
 };
 
 const api = axios.create({
-  baseURL: "https://localhost:7063/api/",
+  baseURL: "https://localhost:8888/api/",
   headers: axiosConfig,
 });
 
 export default {
   authentication: {
-    createAccount: async (data: any): Promise<any> => {
+    createAccount: async (data: any): Promise<user_type> => {
       // return await basicFetch('POST', 'users/', data)
 
       let createUserRequest = {
@@ -25,17 +25,21 @@ export default {
       };
 
       return await api
-        .post("/users", JSON.stringify(createUserRequest))
+        .post("/users", createUserRequest)
         .then((response) => {
           return response.data;
         })
         .catch((error) => {
-          return error.response;
+          return error;
         });
     },
 
-    login: async (data: any): Promise<any> => {
-      
+    login: async (email: string, password: string): Promise<{error: {message: string, statusCode: number}, user: {id: number, role: number}, token: string}> => {
+      return await api.post('/users/login', {email, password}).then((response) => {
+        return response.data;
+      }).catch((error) => {
+        return error;
+      })
     }
   },
 };

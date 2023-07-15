@@ -1,13 +1,10 @@
 "use client";
 import { FormEvent } from "react";
 import styles from "../../../styles/register.module.scss";
-import Header from "@/components/Header";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import api from "@/api";
 
 export default function Register() {
-  const router = useRouter();
 
   const register = async (
     event: FormEvent<HTMLFormElement>

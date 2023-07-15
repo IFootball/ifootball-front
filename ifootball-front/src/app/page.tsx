@@ -3,6 +3,7 @@ import { FormEvent } from 'react';
 import styles from '../../styles/page.module.scss';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import api from '@/api';
 
 export default function Home() {
 
@@ -11,7 +12,8 @@ export default function Home() {
   const login = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log("Usuário: " + formData.get('user-input') + " | Senha: " + formData.get('password-input'));
+    const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')))
+    console.log(response);
     return true;
   }
   return (
