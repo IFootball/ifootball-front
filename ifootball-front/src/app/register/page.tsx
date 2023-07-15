@@ -22,10 +22,13 @@ export default function Register() {
     });
     
     let response = await api.authentication.createAccount(data);
+    if (response) {
+      console.log(response);
+      return true;
+    } else {
+      return false;
+    }
 
-    console.log(response);
-    // router.push('/register')
-    return false;
   };
   return (
     <div>

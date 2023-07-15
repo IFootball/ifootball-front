@@ -12,7 +12,6 @@ export default function Home() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     console.log("Usuário: " + formData.get('user-input') + " | Senha: " + formData.get('password-input'));
-    router.push('/homepage')
     return true;
   }
   return (
