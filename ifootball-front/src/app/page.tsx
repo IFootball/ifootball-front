@@ -3,6 +3,8 @@ import { FormEvent } from 'react';
 import styles from '../../styles/page.module.scss';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
+import logo from './imagens/logo.png';
 
 export default function Home() {
 
@@ -18,8 +20,8 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.loginUtilArea}>
-        <img className={styles.loginLogo} src="imagens/logo.png" alt="Logo" />
-        <form onSubmit={login}  className={styles.loginForm}>
+        <Image src={logo} alt='Logo IFootball' />
+        <form onSubmit={login} className={styles.loginForm}>
           <div className={styles.loginField}>
             <label htmlFor="user-input" className={styles.loginLabel}>E-mail</label>
             <input className={styles.loginInput} type="text" name="user-input" id="user-input" />
