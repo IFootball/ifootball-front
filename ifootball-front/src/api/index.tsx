@@ -1,5 +1,6 @@
 import axios from "axios";
 import { error_type, user_type } from "./types";
+import { setUser } from "./functions";
 
 
 let axiosConfig = {
@@ -36,7 +37,11 @@ export default {
 
     login: async (email: string, password: string): Promise<{error: {message: string, statusCode: number}, user: {id: number, role: number}, token: string}> => {
       return await api.post('/users/login', {email, password}).then((response) => {
-        return response.data;
+        if (response) {
+          // if (setUser(response.data.token, 60 * 60 * 8)) {
+          //   return response.data;
+          // }
+        }
       }).catch((error) => {
         return error;
       })

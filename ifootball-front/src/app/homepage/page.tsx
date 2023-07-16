@@ -6,7 +6,7 @@ import Link from "next/link";
 import DefaultButton from "@/components/DefaultButton";
 
 
-export default function Home() {
+export default function Home() { 
   return (
     <div className={styles.HomePage}>
       {/* <Header /> */}

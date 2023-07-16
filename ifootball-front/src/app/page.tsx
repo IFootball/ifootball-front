@@ -4,7 +4,6 @@ import styles from '../../styles/page.module.scss';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import api from '@/api';
-// import { cookies } from 'next/headers';
 export default function Home() {
 
   const router = useRouter();
@@ -14,18 +13,15 @@ export default function Home() {
     const formData = new FormData(event.currentTarget);
     const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
     if (response) {
-      const token = response.token;
-      const cookieExpiressInSeconds = 60 * 60 * 8;
-      // cookies().set('user', token, { expires: cookieExpiressInSeconds })
+      router.push(`/homepage`);
     }
-    console.log(response);
     return true;
   }
   return (
     <main className={styles.main}>
       <div className={styles.loginUtilArea}>
         <h1 className={styles.loginTitle}>IFootball</h1>
-        <form onSubmit={login}  className={styles.loginForm}>
+        <form className={styles.loginForm} onSubmit={login}>
           <div className={styles.loginField}>
             <label htmlFor="user-input" className={styles.loginLabel}>Usuário</label>
             <input className={styles.loginInput} type="text" name="user-input" id="user-input" />
