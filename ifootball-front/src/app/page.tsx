@@ -4,7 +4,7 @@ import styles from '../../styles/page.module.scss';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import api from '@/api';
-
+// import { cookies } from 'next/headers';
 export default function Home() {
 
   const router = useRouter();
@@ -12,7 +12,12 @@ export default function Home() {
   const login = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')))
+    const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
+    if (response) {
+      const token = response.token;
+      const cookieExpiressInSeconds = 60 * 60 * 8;
+      // cookies().set('user', token, { expires: cookieExpiressInSeconds })
+    }
     console.log(response);
     return true;
   }

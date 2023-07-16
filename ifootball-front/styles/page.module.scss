@@ -15,26 +15,20 @@
   .loginUtilArea {
     max-width: $maxSize;
     min-width: $minSize;
-    width: 80%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     
-    .loginTitle {
-      font-size: $textXL;
-      transition: all ease .2s;
-      color: $mainFontColor;
-      @media (max-width: $mediumSize) {
-        font-size: $textSL;
-      }
-    }
     .loginForm {
       height: fit-content;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 10px;
+      width: auto;
+      height: 500px;
       .loginField {
         display: flex;
         flex-direction: column;
@@ -55,25 +49,56 @@
             color: $mainFontColor;
           }
         }
-        
       }
+      
+    }
+
+    .registerLink{
+      color: #000;
+      text-decoration: none;
+      font-size: $textM;
+      margin: 0;
+    }
+
+    .registerP{
+      text-align: right;
+    }
+
+    .registerP:hover {
+      transform: translateY(-5px);
     }
 
     .loginButton {
-      background-color: $secondaryGreen;
-      color: white;
+      background-color: #50883B;
+      color: #000;
       border: none;
-      padding: 6px 15px;
-      border-radius: 25px;
+      padding: 15px 15px;
       cursor: pointer;
       transition: all ease .2s;
-      font-size: $textM;
+      font-size: 18px;
+      margin: 0px 20px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
       &:hover {
         transform: translateY(-5px);
         // box-shadow: 0 5px 15px 5px $mainFontColor;
       }
     }
+
+    .loginAdmField{
+      margin-top: 100%;
+      transition: all ease .2s;
+    }
+
+    .loginAdmField:hover {
+      transform: translateY(-5px);
+    }
   }
 }
 
+@media(min-width:$mediumSize){
+  .loginUtilArea{
+    margin-left: 500px;
+  }
+}

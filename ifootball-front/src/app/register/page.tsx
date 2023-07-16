@@ -17,7 +17,7 @@ export default function Register() {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-    
+
     let response = await api.authentication.createAccount(data);
     if (response) {
       console.log(response);
