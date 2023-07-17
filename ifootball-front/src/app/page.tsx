@@ -12,7 +12,7 @@ export default function Home() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
-    if (response) {
+    if (!response.error || (response.error.statusCode === 200 || response.error.statusCode === 201)) {
       router.push(`/homepage`);
     }
     return true;

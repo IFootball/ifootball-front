@@ -16,8 +16,6 @@ const api = axios.create({
 export default {
   authentication: {
     createAccount: async (data: any): Promise<user_type> => {
-      // return await basicFetch('POST', 'users/', data)
-
       let createUserRequest = {
         IdClass: Number(data.idClass),
         Name: data.name,
@@ -35,16 +33,8 @@ export default {
         });
     },
 
-    login: async (email: string, password: string): Promise<{error: {message: string, statusCode: number}, user: {id: number, role: number}, token: string}> => {
-      return await api.post('/users/login', {email, password}).then((response) => {
-        if (response) {
-          // if (setUser(response.data.token, 60 * 60 * 8)) {
-          //   return response.data;
-          // }
-        }
-      }).catch((error) => {
-        return error;
-      })
+    login: async (email: string, password: string): Promise<{error?: {message: string, statusCode: number}, user: {id: number, role: number}, token: string}> => {
+      return await api.post('/users/login', {email, password});
     }
   },
 };
