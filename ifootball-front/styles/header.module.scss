@@ -6,143 +6,146 @@
 
 
 //HEADER!!
-.header{
+.header {
   position: fixed;
   width: 100%;
   height: 5em;
-  float:left;
-  font-family: Open Sans, sans serif;
-}
-
-.header ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background-color: #ffffff00;
-}
-
-.header li a {
-  display: block;
-  padding: 0.7em 0.5em;
-  text-decoration: none;
-  transition:.3s;
-  border-bottom: 1px #ffffff00 solid;
-  color: black;  
-}
-
-.header .mobile_icon {
-  cursor: pointer;
-  display: inline-block;
   float: left;
-  padding: 32px 22px;
-  position: relative;
-  user-select: none;
+  font-family: Open Sans, sans serif;
+
+  .background {
+    display: flex;
+    background-color: #285430;
+    height: 4.2em;
+    flex-direction: row-reverse;
+
+    .imgDiv {
+      text-align: center;
+      width: 100%;
+
+      .logoImg {
+        margin-right: 3em;
+      } 
+    }
+
+    .mobile_btn {
+      display: none;
+    }
+
+    .mobile_icon {
+      cursor: pointer;
+      display: inline-block;
+      float: left;
+      padding: 32px 22px;
+      position: relative;
+      user-select: none;
+
+      .hamburguer {
+        background: #d1d1d1;
+        display: block;
+        height: 2px;
+        position: relative;
+        transition: background .2s ease-out;
+        width: 18px;
+
+        &:before,
+        &:after {
+          background: #d1d1d1;
+          content: '';
+          display: block;
+          height: 100%;
+          position: absolute;
+          transition: all .2s ease-out;
+          width: 100%;
+        }
+
+        &:before {
+          top: 5px;
+        }
+
+        &:after {
+          top: -5px;
+        }
+      }
+    }
+  }
+
+  .backgroundMenu {
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    background-color: rgb(250, 250, 250);
+    width: 23vh;
+    padding: 1em 1em;
+    text-align: center;
+
+    .nav {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: #ffffff00;
+
+      li {
+        a {
+          display: block;
+          padding: 0.7em 0.5em;
+          text-decoration: none;
+          transition: .3s;
+          border-bottom: 1px #ffffff00 solid;
+          color: black;
+        }
+      }
+
+      .titleOps {
+        font-size: 1.3em;
+        color: black;
+        font-weight: bold;
+        font-family: 'Roboto';
+      }
+    }
+
+    .outDiv {
+      margin-top: 2em;
+      text-align: center;
+      width: 100%;
+
+      h4 {
+        margin: 0;
+      }
+
+      .outA {
+        font-family: 'Roboto';
+        font-weight: bold;
+        text-decoration: none;
+        color: black;
+
+        img {
+          width: 2em;
+        }
+
+      }
+
+    }
+  }
+
 }
 
-.header .mobile_icon .hamburguer {
-  background: #d1d1d1;
-  display: block;
-  height: 2px;
-  position: relative;
-  transition: background .2s ease-out;
-  width: 18px;
-}
-
-.header .mobile_icon .hamburguer:before,
-.header .mobile_icon .hamburguer:after {
-  background: #d1d1d1;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  transition: all .2s ease-out;
-  width: 100%;
-}
-
-.header .mobile_icon .hamburguer:before {
-  top: 5px;
-}
-
-.header .mobile_icon .hamburguer:after {
-  top: -5px;
-}
-
-.header .mobile_btn {
-  display: none;
-}
-
-.header .mobile_btn:checked ~ .nav {
+.header .mobile_btn:checked~.nav {
   max-height: 540px;
 }
 
-.header .mobile_btn:checked ~ .mobile_icon .hamburguer {
+.header .mobile_btn:checked~.mobile_icon .hamburguer {
   background: transparent;
 }
 
-.header .mobile_btn:checked ~ .mobile_icon .hamburguer:before {
+.header .mobile_btn:checked~.mobile_icon .hamburguer:before {
   transform: rotate(-45deg);
 }
 
-.header .mobile_btn:checked ~ .mobile_icon .hamburguer:after {
+.header .mobile_btn:checked~.mobile_icon .hamburguer:after {
   transform: rotate(45deg);
 }
 
-.header .mobile_btn:checked ~ .mobile_icon:not(.steps) .hamburguer:before,
-.header .mobile_btn:checked ~ .mobile_icon:not(.steps) .hamburguer:after {
+.header .mobile_btn:checked~.mobile_icon:not(.steps) .hamburguer:before,
+.header .mobile_btn:checked~.mobile_icon:not(.steps) .hamburguer:after {
   top: 0;
 }
-.imgDiv{
-  text-align: center;
-  width: 100%;
-}
-
-.logoImg{
-  margin-right: 3em;  
-}
-
-
-//MENU!!
-.background{
-  display: flex;
-  background-color: #285430;
-  height: 4.2em;
-  flex-direction: row-reverse;
-}
-
-.backgroundMenu{
-  border-right: solid 1px black;
-  border-bottom: solid 1px black;
-  background-color: rgb(250, 250, 250);
-  width: 23vh;
-  padding: 1em 1em;
-  text-align: center;
-}
-
-.nav .titleOps h3{
-  font-size: 1.3em;
-  color: black;
-  font-weight: bold;
-  font-family: 'Roboto';
-} 
-
-.outDiv{
-  margin-top: 2em;  
-  text-align: center;
-  width: 100%;
-}
-
-.outA{
-  font-family: 'Roboto';
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-}
-
-.outA img{
-  width: 2em;
-}
-
-.outDiv h4{
-  margin: 0;
-}
-

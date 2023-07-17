@@ -1,9 +1,7 @@
 'use client'
 import Link from 'next/link'
 import styles from '../../../styles/header.module.scss'
-import Home from '@/app/page'
 import { useState } from 'react'
-import { link } from 'fs'
 
 export default function Navbar() {
 
@@ -14,11 +12,10 @@ export default function Navbar() {
   return (
 
     <header className={styles.header}>
-      <div className={styles.container}>
-
+      <div>
         <div className={styles.background}>
           <div className={styles.imgDiv}>
-            <Link className={styles.logo} href={'homepage'}><img className={styles.logoImg} src="images/logoFoot.png" title="ifootballLogo" /></Link>
+            <Link href={'homepage'}><img className={styles.logoImg} src="images/logoFoot.png" title="ifootballLogo" /></Link>
           </div>
 
           <input className={styles.mobile_btn} type="checkbox" id="mobile_btn" onClick={(() => {
@@ -29,7 +26,7 @@ export default function Navbar() {
 
         {
           !openSideBar ?
-            <div className={styles.none}></div>
+            <div></div>
 
             :
 
@@ -39,19 +36,19 @@ export default function Navbar() {
                 <li><Link className={styles.ops} href={'homepage'}>Opção1</Link></li>
                 <li><Link className={styles.ops} href={'homepage'}>Opção2</Link></li>
                 <li className={styles.titleOps}><input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops" onClick={(() => {
-                    setOpenMenuBar(!openMenuBar);
-          })} />PONTUAÇÃO</li>
+                  setOpenMenuBar(!openMenuBar);
+                })} />PONTUAÇÃO</li>
                 <li className={styles.titleOps}>
-                  <div className={styles.subMenu}>
-          {
-            !openMenuBar ?
-              <div className={styles.none}></div>
-            :
-              <div>
-                  <img src="images/logoFoot.png" alt="" />
-              </div>
-        }
-      </div></li>
+                  <div>
+                    {
+                      !openMenuBar ?
+                        <div></div>
+                        :
+                        <div>
+                          <img src="images/logoFoot.png" alt="" />
+                        </div>
+                    }
+                  </div></li>
 
 
                 <li><Link className={styles.ops} href={'homepage'}>Time</Link></li>
@@ -63,22 +60,11 @@ export default function Navbar() {
               </ul>
 
               <div className={styles.outDiv}>
-                <a className={styles.outA} href="
-                "><div className={styles.outDivA}><img className={styles.outImg} src="images/out.png" title="outLogo" /><h4 className={styles.outH4}>SAIR</h4></div></a> 
+                <Link className={styles.outA} href=""><img className={styles.outImg} src="images/out.png" title="outLogo" /><h4 className={styles.outH4}>SAIR</h4></Link>
               </div>
-
-              
-
             </div>
-
-
         }
       </div>
-
-      
-
-
     </header>
-
   )
 }
