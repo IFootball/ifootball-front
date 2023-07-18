@@ -6,7 +6,6 @@ import { useState } from 'react'
 export default function Navbar() {
 
   const [openSideBar, setOpenSideBar] = useState<boolean>(false)
-
   const [openMenuBar, setOpenMenuBar] = useState<boolean>(false)
 
   return (
@@ -27,40 +26,42 @@ export default function Navbar() {
         {
           !openSideBar ?
             <div></div>
-
             :
-
             <div className={styles.backgroundMenu}>
               <ul className={styles.nav}>
-                <li className={styles.titleOps}><h3>TÍTULO</h3></li>
-                <li><Link className={styles.ops} href={'homepage'}>Opção1</Link></li>
-                <li><Link className={styles.ops} href={'homepage'}>Opção2</Link></li>
-                <li className={styles.titleOps}><input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops" onClick={(() => {
-                  setOpenMenuBar(!openMenuBar);
-                })} />PONTUAÇÃO</li>
                 <li className={styles.titleOps}>
-                  <div>
-                    {
-                      !openMenuBar ?
-                        <div></div>
-                        :
-                        <div>
-                          <img src="images/logoFoot.png" alt="" />
-                        </div>
-                    }
-                  </div></li>
+                  <div className={styles.menu_in_menu}>
+                    <Link className={styles.ops} href={'homepage'}>TIME M</Link>
+                    <Link className={styles.ops} href={'homepage'}>TIME F</Link>
+                  </div>
+                </li>
 
+                <li className={styles.titleOps}>
+                  <div className={styles.menu_in_menu}>
+                    <input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops" onClick={(() => {
+                      setOpenMenuBar(!openMenuBar);
+                    })}></input><label className={styles.mobile_icon_ops} htmlFor="mobile_btn_ops" >PONTUAÇÃO<p className={styles.hamburguer_ops}>▼</p></label>
 
-                <li><Link className={styles.ops} href={'homepage'}>Time</Link></li>
-                <li><Link className={styles.ops} href={'homepage'}>Jogador</Link></li>
-                <li><Link className={styles.ops} href={'homepage'}>Gols</Link></li>
-                <li><Link className={styles.ops} href={'homepage'}>Assistência</Link></li>
-                <li><Link className={styles.ops} href={'homepage'}>Defesas</Link></li>
-
+                    <div>
+                      {
+                        !openMenuBar ?
+                          <div></div>
+                          :
+                          <div className={styles.menu_in_menu_ops}>
+                            <Link className={styles.ops} href={'homepage'}>Time</Link>
+                            <Link className={styles.ops} href={'homepage'}>Jogador</Link>
+                            <Link className={styles.ops} href={'homepage'}>Gols</Link>
+                            <Link className={styles.ops} href={'homepage'}>Assistência</Link>
+                            <Link className={styles.ops} href={'homepage'}>Defesas</Link>
+                          </div>
+                      }
+                    </div>
+                  </div>
+                </li>
               </ul>
 
               <div className={styles.outDiv}>
-                <Link className={styles.outA} href=""><img className={styles.outImg} src="images/out.png" title="outLogo" /><h4 className={styles.outH4}>SAIR</h4></Link>
+                <Link className={styles.outA} href="../"><img className={styles.outImg} src="images/out.png" title="outLogo" /><h4 className={styles.outH4}>SAIR</h4></Link>
               </div>
             </div>
         }
