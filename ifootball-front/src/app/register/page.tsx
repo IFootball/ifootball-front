@@ -17,10 +17,10 @@ export default function Register() {
         return true;
     }
     return (
+        
+      
     <div className={styles.Register}>
         <Header />
-
-        
 
         <main className={styles.main}>
 
@@ -30,8 +30,6 @@ export default function Register() {
           
           
       <div className={styles.registerUtilArea}>
-
-        <h1 className={styles.registerTitle}>IFootball</h1>
 
         <form onSubmit={register}  className={styles.registerForm}>
 
@@ -50,13 +48,16 @@ export default function Register() {
             <input className={styles.registerInput} type="password" name="password-input" id="password-input" />
           </div>
 
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           <button type='submit' className={styles.registerButton}>Cadasrar</button>
 
         </form>
       </div>
     </main>
-
+    
         
     </div>
+
+
     )
 }

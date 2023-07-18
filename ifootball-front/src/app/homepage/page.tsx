@@ -9,7 +9,7 @@ import DefaultButton from "@/components/DefaultButton";
 export default function Home() {
   return (
     <div className={styles.HomePage}>
-      {/* <Header /> */}
+      <Header />
       <div className={styles.homeUtil}>
         <div className={styles.relogio}>
           <h3>criação de times fecha em</h3>
