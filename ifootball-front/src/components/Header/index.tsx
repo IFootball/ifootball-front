@@ -26,8 +26,8 @@ export default function Navbar() {
               <ul className={styles.nav}>
                 <li className={styles.titleOps}>
                   <div className={styles.menu_in_menu}>
-                    <Link className={styles.ops} href={'homepage'}>TIME M</Link>
-                    <Link className={styles.ops} href={'homepage'}>TIME F</Link>
+                    <Link className={styles.ops} href={'homepage/squad/male'}>TIME M</Link>
+                    <Link className={styles.ops} href={'homepage/squad/female'}>TIME F</Link>
                   </div>
                 </li>
 

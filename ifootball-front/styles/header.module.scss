@@ -4,15 +4,19 @@
 //FONTES DE TESTE!!
 @import './globals.scss';
 
-
+$mediumSize: 1550px;
 
 //HEADER!!
 .header {
   position: fixed;
   width: 100%;
-  height: 5em;
+  // height: 5em;
   float: left;
   font-family: Open Sans, sans serif;
+  // position: absolute;
+  top: 0;
+  z-index: 99;
+
 
   .background {
     display: flex;
@@ -23,7 +27,7 @@
       background-color: $backgroundColor;
       justify-content: left;
       padding: 1em 1em;
-      width: 23vh;
+      width: 225px;
     }
   }
 
@@ -86,6 +90,7 @@
   .backgroundMenu {
     transition: transform 0.5s ease-in-out;
 
+    position: absolute;
     display: flex;
     flex-direction: column;
 

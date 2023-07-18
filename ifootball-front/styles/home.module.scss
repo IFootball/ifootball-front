@@ -5,29 +5,79 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     background-color: $backgroundColor;
+    font-family: $defaultFont;
+    // position: relative;
+
 
     .homeUtil {
         max-width: $maxSize;
         min-width: $minSize;
         width: 100%;
-
-        .relogio {
-            height: 70px;
-            width: 100%;
-            background-color: $terciaryGreen;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 100px;
+        
+        @media (max-width: $mediumSize) {
+            margin-top: unset;
+            top: 67.2px;
+            position: absolute;
+            left: 0;
         }
+
+        .relogioUtil {
+            width: 100%;
+            height: fit-content;
+            width: calc(100% - 2px);
+            background-color: $secondaryGreen;
+            position: fixed;
+            @media (min-width: $mediumSize) {
+                width: 50%;
+            }
+            .relogio {
+                // position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 8px;
+                height: 70px;
+                font-weight: bold;
+                left: 0;
+                border: 1px solid black;
+                box-shadow: (0 5px 15px 0 black);
+    
+    
+    
+                h3 {
+                    margin: 0;
+                    font-size: $textSM;
+                }
+    
+    
+                span {
+                    font-size: $textG;
+                }
+            }
+        }
+
 
         .homeCardsArea {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
-
-            .time, .pontuacao {
+            // height: 100%;
+            width: 100%;
+            margin-top: 110px;
+            
+            .time,
+            .pontuacao {
                 height: 100%;
                 width: 100%;
                 display: flex;
@@ -49,6 +99,32 @@
                     text-align: center;
                     text-shadow: 2px 2px var #0000;
                     margin: 10px;
+                }
+                .pontuacaoUsuario {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: fit-content;
+                    flex-direction: column;
+                }
+                .points {
+                    font-size: $textG;
+                }
+
+                table {
+                    background-color: white;
+                    width: 50%;
+                    height: 25%;
+                    border-spacing: 0;
+
+                    tbody {
+                        tr {
+                            td {
+                                border: 1px solid black;
+
+                            }
+                        }
+                    }
                 }
 
                 .buttons {
