@@ -33,7 +33,7 @@ export default function Home() {
         <Image src={logo} alt='Logo IFootball' />
         <form onSubmit={login} className={styles.loginForm}>
           <div className={styles.loginField}>
-            <label htmlFor="user-input" className={styles.loginLabel}>E-mail</label>
+            <label htmlFor="user-input" className={styles.loginLabel}>Email</label>
             <input className={styles.loginInput} type="text" name="user-input" id="user-input" />
           </div>
           <div className={styles.loginField}>

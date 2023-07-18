@@ -4,6 +4,8 @@ import styles from '../../../styles/register.module.scss';
 import Header from '@/components/Header';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
+import logo from './imagens/logo.png';
 
 export default function Register() {
     const router = useRouter();
@@ -32,7 +34,7 @@ export default function Register() {
         <form onSubmit={register}  className={styles.registerForm}>
 
           <div className={styles.registerField}>
-            <label htmlFor="user-input" className={styles.registerLabel}>Usuário</label>
+            <label htmlFor="user-input" className={styles.registerLabel}>Nome</label>
             <input className={styles.registerInput} type="text" name="user-input" id="user-input" />
           </div>
 
@@ -49,6 +51,10 @@ export default function Register() {
           <div className={styles.registerField}>
             <label htmlFor="turma-input" className={styles.registerLabel}>Turma</label>
             <input className={styles.registerInput} type="text" name="turma-input" id="turma-input" />
+          </div>
+
+          <div className={styles.registerField}>
+            <p className={styles.messageAlert}>Favor, usar o e-mail institucional</p>
           </div>
 
           <button type='submit' className={styles.registerButton}>Criar Usuário</button>

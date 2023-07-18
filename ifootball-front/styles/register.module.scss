@@ -76,6 +76,14 @@
   }
 }
 
+.messageAlert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+
 .registerButton {
   background-color: #50883B;
   color: #000;
