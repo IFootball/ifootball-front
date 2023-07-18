@@ -44,9 +44,6 @@ export default function Home() {
             <p className={styles.registerP}><Link className={styles.registerLink} href={'/register'}>Criar Usuário</Link></p>
           </div>
           <button type='submit' className={styles.loginButton}>Entrar</button>
-          <div className={styles.adminField}>
-            <p className={styles.adminP}><Link className={styles.adminLink} href={'/admin'}>Login Adm</Link></p>
-          </div>
         </form>
       </div>
     </main>

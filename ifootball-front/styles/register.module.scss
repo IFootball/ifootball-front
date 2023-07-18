@@ -5,115 +5,95 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.main {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: $defaultFont;
 
   @media (min-width: $mediumSize) {
-    background-image: url('../src/app/imagens/quadra.png');
     background-size: cover;
     background-position: center;
     width: 100%;
     height: 100%;
   }
-}
 
-.registerUtilArea {
-  min-width: $minSize;
-  width: 100%;
-  height: 100%;
-  padding-top: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(245, 245, 245, 1) 55%);
+  .main {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  @media (max-width: $mediumSize) {
-    background-color: $backgroundColor;
-  }
-}
+    .registerUtilArea {
+      min-width: $minSize;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      justify-content: center;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(245, 245, 245, 1) 55%);
 
-.registerTitle {
-  font-size: $textXL;
-  color: $mainFontColor;
-}
+      @media (max-width: $mediumSize) {
+        background-color: $backgroundColor;
+      }
 
-.registerForm {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+      @media (min-width: $mediumSize) {
+        margin-left: 500px;
+      }
 
-.registerField {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+      .registerForm {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-.registerLabel {
-  font-size: $textM;
-  font-weight: bold;
-  color: $mainFontColor;
-}
+        .registerField {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
 
-.registerInput {
-  border-radius: 5px;
-  height: 20px;
-  border: 1px solid black;
+          .registerLabel {
+            font-size: $textM;
+            font-weight: bold;
+            color: $mainFontColor;
+          }
 
-  @media (min-width: $mediumSize) {
-    width: 250px;
-  }
-}
+          .registerInput {
+            border-radius: 5px;
+            height: 20px;
+            border: 1px solid black;
 
-.messageAlert {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-}
+            @media (min-width: $mediumSize) {
+              width: 250px;
+            }
+          }
 
+          .messageAlert {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+          }
+        }
 
-.registerButton {
-  background-color: #50883B;
-  color: #000;
-  border: none;
-  padding: 15px 15px;
-  cursor: pointer;
-  transition: all ease .2s;
-  font-size: 18px;
-  margin: 0px 20px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        .registerButton {
+          background-color: #50883B;
+          color: #000;
+          border: none;
+          padding: 15px 15px;
+          cursor: pointer;
+          transition: all ease .2s;
+          font-size: 18px;
+          margin: 0px 20px;
+          text-transform: uppercase;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
-  &:hover {
-    transform: translateY(-5px);
-  }
-}
-
-.backLoginLink {
-  color: #000;
-  text-decoration: none;
-  font-size: $textM;
-  margin: 0;
-}
-
-.backLoginLink:hover {
-  transform: translateY(-5px);
-}
-
-@media (min-width: $mediumSize) {
-  .registerUtilArea {
-    margin-left: 500px;
+          &:hover {
+            transform: translateY(-5px);
+          }
+        }
+      }
+    }
   }
 }
