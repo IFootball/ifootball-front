@@ -23,6 +23,7 @@
     min-width: $minSize;
     width: 100%;
     height: 100%;
+    padding-top: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,18 +72,25 @@
 
     }
 
-    .registerLink {
+    .registerLink,
+    .adminLink {
       color: #000;
       text-decoration: none;
       font-size: $textM;
       margin: 0;
     }
 
-    .registerP {
+    .registerP,
+    .adminP {
       text-align: right;
     }
 
-    .registerP:hover {
+    .adminP{
+      margin-top: 100px;
+    }
+
+    .registerP:hover,
+    .adminP:hover {
       transform: translateY(-5px);
     }
 
