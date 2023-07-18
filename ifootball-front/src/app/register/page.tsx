@@ -23,10 +23,6 @@ export default function Register() {
         
 
         <main className={styles.main}>
-
-        <div>
-        <Link className={styles.backLoginLink} href={'../'}>Entrar</Link>
-          </div>
           
           
       <div className={styles.registerUtilArea}>
@@ -50,7 +46,12 @@ export default function Register() {
             <input className={styles.registerInput} type="password" name="password-input" id="password-input" />
           </div>
 
-          <button type='submit' className={styles.registerButton}>Cadasrar</button>
+          <div className={styles.registerField}>
+            <label htmlFor="turma-input" className={styles.registerLabel}>Turma</label>
+            <input className={styles.registerInput} type="text" name="turma-input" id="turma-input" />
+          </div>
+
+          <button type='submit' className={styles.registerButton}>Criar Usuário</button>
 
         </form>
       </div>
