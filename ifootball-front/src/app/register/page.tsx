@@ -8,11 +8,11 @@ import Image from "next/image";
 import theme from '../../../styles/globals.module.scss';
 import logo from '../imagens/logo.png';
 import quadra from '../imagens/quadra.png';
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
 
-  // const router = useRouter();
+  const router = useRouter();
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const [classes, setClasses] = useState<classes_type[] | undefined>(undefined)
@@ -30,7 +30,7 @@ export default function Register() {
     let response = await api.authentication.createAccount(data);
     if (response) {
       // console.log(response);
-      window.history.back();
+      router.push('/')
       return true;
     } else {
       return false;

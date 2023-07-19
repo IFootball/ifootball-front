@@ -7,7 +7,7 @@ import DefaultButton from "@/components/DefaultButton";
 
 export default function Home() {
   const now = new Date();
-  const marketEnds = new Date('October 09, 2023 23:59:59') //December 17, 1995 03:24:00
+  const marketEnds = new Date('October 09, 2023 23:59:59')
   return (
     <div className={styles.HomePage}>
       <Header />
