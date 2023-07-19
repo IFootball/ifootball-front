@@ -1,14 +1,15 @@
 "use client";
-import { FormEvent } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import styles from "../../../styles/register.module.scss";
 import Link from "next/link";
 import api from "@/api";
+import { classes_type } from "@/api/types";
 
 export default function Register() {
 
-  const register = async (
-    event: FormEvent<HTMLFormElement>
-  ): Promise<boolean> => {
+  const [classes, setClasses] = useState<classes_type[] | undefined>(undefined)
+
+  const register = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
     let data: { [key: string]: string } = {};
 
     event.preventDefault();
@@ -26,11 +27,23 @@ export default function Register() {
       return false;
     }
 
+    
   };
+  const listClasses = async (): Promise<boolean> => {
+    const classes = await api.classes.list();
+    if (classes) {
+      setClasses(classes);
+      return true;
+    } else {
+      return false;
+    }
+  }
+  useEffect(() => {
+    listClasses();
+    console.log(classes)
+  }, [])
   return (
     <div>
-      {/* <Header /> */}
-
       <main>
         <div>
           <Link href={"../"}>Entrar</Link>
@@ -64,22 +77,14 @@ export default function Register() {
             <div>
               <label htmlFor="idClass">Turma</label>
               <select name="idClass" id="idClass">
-                <option value={1}>Técnico em Informática I</option>
-                <option value={2}>Técnico em Informática II</option>
-                <option value={3}>Técnico em Informática III</option>
-                <option value={4}>Técnico em Informática IV</option>
-                <option value={5}>Técnico em Química I</option>
-                <option value={6}>Técnico em Química II</option>
-                <option value={7}>Técnico em Química III</option>
-                <option value={8}>Técnico em Química IV</option>
-                <option value={9}>Técnico em Meio Ambiente I</option>
-                <option value={10}>Técnico em Meio Ambiente II</option>
-                <option value={11}>Técnico em Meio Ambiente III</option>
-                <option value={12}>Técnico em Meio Ambiente IV</option>
-                <option value={13}>Técnico em Administração I</option>
-                <option value={14}>Técnico em Administração II</option>
-                <option value={15}>Técnico em Administração III</option>
-                <option value={16}>Técnico em Administração IV</option>
+                {
+                  classes && classes.map((turma) => {
+                    return (
+                      <option key={turma.id} value={turma.id}>{turma.name}</option>
+                    )
+                  })
+                  
+                }
               </select>
             </div>
 

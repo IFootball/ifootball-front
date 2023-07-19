@@ -1,5 +1,5 @@
 import axios from "axios";
-import { error_type, user_type } from "./types";
+import { classes_type, error_type, user_type } from "./types";
 import { setUser } from "./functions";
 
 
@@ -9,7 +9,7 @@ let axiosConfig = {
 };
 
 const api = axios.create({
-  baseURL: "https://localhost:8888/api/",
+  baseURL: "https://localhost:7063/api/",
   headers: axiosConfig,
 });
 
@@ -37,4 +37,9 @@ export default {
       return await api.post('/users/login', {email, password});
     }
   },
+  classes: {
+    list: async (): Promise<classes_type[]> => {
+      return (await api.get('/classes')).data;
+    }
+  }
 };

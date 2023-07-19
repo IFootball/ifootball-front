@@ -7,3 +7,8 @@ export type error_type = {
     message: string,
     statusCode: number
 }
+
+export type classes_type = {
+    id: number,
+    name: string
+}
