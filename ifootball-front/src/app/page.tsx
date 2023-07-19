@@ -16,9 +16,14 @@ export default function Home() {
   const login = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log("Usuário: " + formData.get('user-input') + " | Senha: " + formData.get('password-input'));
-    router.push('/homepage')
-    return true;
+    const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
+    if (!response.error || response.error.statusCode === 200 ||response.error.statusCode === 201) {
+
+      router.push('/homepage')
+      return true;
+    } else {
+      return false
+    }
   }
   useEffect(() => {
     if (window.screen.width < 700) {

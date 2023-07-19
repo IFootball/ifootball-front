@@ -28,10 +28,10 @@ export default function Home() {
                 </div>
 
                 <div className={styles.buttons}>
-                  <Link href={'/squad/male'}>
+                  <Link href={'homepage/squad/male'}>
                     <DefaultButton text="Time Masculino" />
                   </Link> 
-                  <Link href={'/squad/female'}>
+                  <Link href={'homepage/squad/female'}>
                     <DefaultButton text="Time Feminino" />
                   </Link>
                 </div>
