@@ -23,7 +23,7 @@ export default function Home() {
     return true;
   }
   return (
-    <main className={styles.main}>
+    <div className={styles.Register} style={isMobile ? {backgroundColor: theme.backgroundColor, height: '100%', width: '100%'} : {backgroundImage: `url(${quadra.src})`, height: '100%', width: '100%'}}>
       <div className={styles.loginUtilArea}>
         <h1 className={styles.loginTitle}>IFootball</h1>
         <form className={styles.loginForm} onSubmit={login}>
