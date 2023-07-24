@@ -1,47 +1,96 @@
-'use client';
-import { FormEvent } from 'react';
-import styles from '../../../styles/register.module.scss';
-import Header from '@/components/Header';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+"use client";
+import { FormEvent, useEffect, useState } from "react";
+import styles from "../../../styles/page.module.scss";
+import Link from "next/link";
+import api from "@/api";
+import { classes_type } from "@/api/types";
+import Image from "next/image";
+import theme from '../../../styles/globals.module.scss';
+import logo from '../imagens/logo.png';
+import quadra from '../imagens/quadra.png';
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+
   const router = useRouter();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  const [classes, setClasses] = useState<classes_type[] | undefined>(undefined)
 
   const register = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
+    let data: { [key: string]: string } = {};
 
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log("Nome: " + formData.get('user-input') + " | Email: " + formData.get('email-input') + " | Senha: " + formData.get('password-input'))
-    router.push('/register')
-    return true;
+
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    let response = await api.authentication.createAccount(data);
+    if (response) {
+      // console.log(response);
+      router.push('/')
+      return true;
+    } else {
+      return false;
+    }
+
+
+  };
+  const listClasses = async (): Promise<boolean> => {
+    const classes = await api.classes.list();
+    if (classes) {
+      setClasses(classes);
+      return true;
+    } else {
+      return false;
+    }
   }
+  useEffect(() => {
+    listClasses();
+    console.log(classes)
+  }, [])
   return (
-    <div className={styles.Register}>
-      {/* <Header /> */}
-      <main className={styles.main}>
-        <div className={styles.registerUtilArea}>
-          <h1 className={styles.registerTitle}>IFootball</h1>
-          <form onSubmit={register} className={styles.registerForm}>
-            <div className={styles.registerField}>
-              <label htmlFor="user-input" className={styles.registerLabel}>Usuário</label>
-              <input className={styles.registerInput} type="text" name="user-input" id="user-input" />
-            </div>
-            <div className={styles.registerField}>
-              <label htmlFor="email-input" className={styles.registerLabel}>Email</label>
-              <input className={styles.registerInput} type="email" name="email-input" id="email-input" />
-            </div>
-            <div className={styles.registerField}>
-              <label htmlFor="password-input" className={styles.registerLabel}>Senha</label>
-              <input className={styles.registerInput} type="password" name="password-input" id="password-input" />
-            </div>
-            <button type='submit' className={styles.registerButton}>Cadasrar</button>
-            <div>
-              <Link className={styles.backLoginLink} href={'../'}>Entrar</Link>
-            </div>
-          </form>
-        </div>
-      </main>
-    </div>
+    <main className={styles.main} style={isMobile ? { backgroundColor: theme.backgroundColor, height: '100%', width: '100%' } : { backgroundImage: `url(${quadra.src})`, height: '100%', width: '100%' }}>
+      <div className={styles.loginUtilArea}>
+        <Image src={logo} alt='Logo IFootball' />
+        <form onSubmit={register} className={styles.loginForm}>
+          <div className={styles.loginField}>
+            <label htmlFor="name">Usuário</label>
+            <input
+              minLength={6}
+              maxLength={30}
+              type="text"
+              name="name"
+              id="name"
+              className={styles.loginInput}
+            />
+          </div>
+          <div className={styles.loginField}>
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" id="email" className={styles.loginInput} />
+          </div>
+          <div className={styles.loginField}>
+            <label htmlFor="password">Senha</label>
+            <input type="password" name="password" className={styles.loginInput} id="password" />
+          </div>
+          <div className={styles.loginField}>
+            <label htmlFor="idClass">Turma</label>
+            <select className={styles.loginInput} name="idClass" id="idClass">
+              {
+                classes && classes.map((turma) => {
+                  return (
+                    <option key={turma.id} value={turma.id}>{turma.name}</option>
+                  )
+                })
+
+              }
+            </select>
+          </div>
+          <button type="submit" className={`${styles.loginButton} ${styles.registerPage}`}>Cadastrar</button>
+        </form>
+      </div>
+    </main>
   )
 }

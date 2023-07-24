@@ -1,221 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap");
+//FONTES DE TESTE!!
 @import './globals.scss';
-$logoSize: 100px;
-$maxWidth: 1200px;
-$corTextosMenus: black;
-$minSize1: 850px;
-$sidebarWidth: 260px;
-$backgroundHeaderTransparent: #28543017;
 
-.globalHeader {
-    // background-image: linear-gradient(180deg, $terciaryGreen, $backgroundHeaderTransparent);
-    background-color: $terciaryGreen;
-    width: 100%;
+$mediumSize: 1550px;
+
+//HEADER!!
+.header {
+  position: fixed;
+  width: 100%;
+  // height: 5em;
+  float: left;
+  font-family: Open Sans, sans serif;
+  // position: absolute;
+  top: 0;
+  z-index: 99;
+
+
+  .background {
     display: flex;
     justify-content: center;
-    min-width: $minSize;
+    background-color: #285430;
+    height: 4.2em;
+    @media (min-width: $mediumSize){
+      background-color: $backgroundColor;
+      justify-content: left;
+      padding: 1em 1em;
+      width: 225px;
+    }
+  }
+
+  .mobile_btn {
+    display: none;
+  }
+  .mobile_icon {
+    cursor: pointer;
     position: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 4.2em;
+    width: 4.2em;
     top: 0;
-    z-index: 10;
-    transition: all ease .2s;
+    left: 0;
+    @media (min-width: $mediumSize){
+      display: none;
+    }
+    
+    .hamburguer {
+      background: #d1d1d1;
+      display: block;
+      height: 2px;
+      position: relative;
+      transition: background .2s ease-out;
+      width: 18px;
 
-    .fixedGlobalHeader {
-        background-color: $terciaryGreen;
-        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.534);
-        height: 55px;
+      &:before,
+      &:after {
+        background: #d1d1d1;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
         width: 100%;
-        display: flex;
-        justify-content: center;
-        min-width: $minSize;
-        position: fixed;
-        z-index: 10;
-        top: 0;
+      }
+
+      &:before {
+        top: 5px;
+      }
+
+      &:after {
+        top: -5px;
+      }
+    }
+  }
+
+
+  .backgroundMenuClose{
+    transform: translateX(-20em);
+    @media (min-width: $mediumSize){
+      transform: translateX(0);
+    }
+  }
+
+  .backgroundMenu {
+    transition: transform 0.5s ease-in-out;
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+    
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    background-color: rgb(250, 250, 250);
+    width: 23vh;
+    height: 90vh;
+    padding: 1em 1em;
+    @media (min-width: $mediumSize){
+      background-color: $quaternaryGreen;
     }
 
-    .mainHeader {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: $corTextosMenus;
-        font-size: $textXM;
-        height: 55px;
-        font-family: $defaultFont;
-        width: 100%;
-        max-width: $maxSize;
-        
-        @media (max-width: $minSize) {
-            width: 100%;
+    .nav {
+      height: 80%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: #ffffff00;
+      text-align: center;
+      @media (min-width: $mediumSize){
+        text-align: left;
+        height: 75%;
+      }
+
+      li {
+        a {
+          display: block;
+          padding: 0.7em 0.5em;
+          text-decoration: none;
+          transition: .3s;
+          border-bottom: 1px #ffffff00 solid;
+          color: black;
         }
-        
-        .navbar {
-            display: flex;
-            align-items: center;
-            transition: all ease .2s;
+      }
 
-            @media (min-width: $mediumSize) {
-                margin-left: 0;
-            }
+      .titleOps {
+        font-size: 1.3em;
+        color: black;
+        font-weight: bold;
+        font-family: 'Roboto';
+      }
 
-            @media (max-width: $mediumSize) {
-                left: 0;
-                width: $sidebarWidth;
-                height: 100%;
-                background-color: $terciaryGreen;
-                text-align: center;
-                transition: all ease .8s;
-                margin-left: 0;
-            }
-
-            .activeSidebar {
-                margin-left: 0;
-                left: 0;
-
-                @media (max-width: $mediumSize) {
-                    margin-left: -$sidebarWidth;
-                    display: block;
-                }
-            }
-
-            .toggleCollapse {
-                display: none;
-                float: right;
-                background: transparent;
-                margin-right: -26px;
-                margin-top: 16px;
-                content: '';
-                outline: inherit;
-                border: 0;
-
-
-                @media (max-width: $mediumSize) {
-                    display: block;
-                }
-
-                .icon {
-                    display: none;
-
-                    @media (max-width: $mediumSize) {
-                        display: block;
-                        position: absolute;
-
-                        &:hover {
-                            cursor: pointer;
-                        }
-
-                        transition: all ease .5s;
-                    }
-                }
-
-                .active {
-                    z-index: 1;
-
-                    &:hover {
-                        cursor: pointer;
-                    }
-
-                    .top {
-                        transform: rotate(45deg);
-                        d: path("M 0 0 L40 0");
-                        top: 10px;
-                    }
-
-                    .middle {
-                        display: none;
-                    }
-
-                    .bottom {
-                        transform: rotate(320deg);
-                        d: path("M -40 18.25 L16 12.75");
-                    }
-                }
-            }
-
-            .sideNav {
-                top: 0;
-                display: flex;
-                align-items: center;
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-
-                @media (max-width: $mediumSize) {
-                    height: 100vh;
-                    width: $sidebarWidth;
-                    position: fixed;
-                    background-color: $terciaryGreen;
-                    flex-direction: column;
-                    top: 0;
-                    display: flex;
-                    align-items: center;
-                    list-style-type: none;
-                    padding: 0;
-                    margin: 0;
-                    width: $sidebarWidth;
-                }
-
-                .logoSB {
-                    width: 70px;
-                    display: block;
-
-                    @media (min-width: $mediumSize) {
-                        display: none;
-                    }
-
-                    img {
-                        width: 70px;
-                        display: block;
-                        margin-top: 20px;
-                        transition: all ease .2s;
-
-                        @media (min-width: $mediumSize) {
-                            display: none;
-                        }
-                    }
-                }
-
-                .navItem {
-                    display: flex;
-                    padding: 15px 10px;
-                    align-items: center;
-                    transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
-
-                    a {
-                        padding: 0;
-                        margin: 0;
-                        font-size: white;
-                    }
-
-                    p {
-                        margin: 0;
-                        font-size: white;
-                    }
-
-                    &:hover {
-                        transform: scale(1.05);
-                        cursor: pointer;
-                    }
-
-                }
-            }
-
-            .ocupadorEspaco {
-                height: 100vh;
-                // width: calc(1000vw - $sidebarWidth);
-                width: 100vw;
-                margin-left: $sidebarWidth;
-                transition: all ease 0.2s;
-                -webkit-backdrop-filter: blur(3px);
-                backdrop-filter: blur(3px);
-                top: 53vh;
-                left: 3vw;
-                position: relative;
-            }
-
-            .opacity {
-                height: 100vh;
-                width: 100vw;
-                box-sizing: border-box;
-            }
-        }
+      .titleOps h3{
+        margin: 0;
+      }
     }
+
+    .outDiv {
+      float: inline-end;
+      text-align: center;
+      width: 100%;
+
+      h4 {
+        margin: 0;
+      }
+
+      .outA {
+        font-family: 'Roboto';
+        font-weight: bold;
+        text-decoration: none;
+        color: black;
+
+        img {
+          width: 2em;
+        }
+
+      }
+
+    }
+  }
 
 }
+
+.menu_in_menu .ops{
+  font-size: 0.8em;
+  font-weight: normal;
+}
+
+.menu_in_menu .ops:hover{
+  background-color: rgb(228, 228, 228);
+}
+
+.menu_in_menu{
+  margin-bottom: 1em;
+}
+
+.header .mobile_btn:checked~.nav {
+  max-height: 540px;
+}
+
+.header .mobile_btn:checked~.mobile_icon .hamburguer {
+  background: transparent;
+}
+
+.header .mobile_btn:checked~.mobile_icon .hamburguer:before {
+  transform: rotate(-45deg);
+}
+
+.header .mobile_btn:checked~.mobile_icon .hamburguer:after {
+  transform: rotate(45deg);
+}
+
+.header .mobile_btn:checked~.mobile_icon:not(.steps) .hamburguer:before,
+.header .mobile_btn:checked~.mobile_icon:not(.steps) .hamburguer:after {
+  top: 0;
+}
+
+
+.nav .ops{
+  font-size: 1em;
+}
+
+.mobile_icon_ops {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  
+
+  .hamburguer_ops {
+    font-size: 0.7em;
+    margin: 0 0 0 5px;
+
+    transition: all 0.3s ease-in-out;
+  }
+  .menu_bar_open{
+    transform: rotateZ(90deg)
+  }  
+}
+
+.mobile_btn_ops{
+  display: none;
+} 
+
+
+.menu_in_menu_ops{
+  text-align: left;
+  font-weight: normal;
+}
+
+.menu_in_menu_ops .ops{
+  font-size: 0.8em;
+  margin: 0 1em 0 2em;
+}
+
+.menu_in_menu_ops .ops:hover{
+  background-color: rgb(230, 230, 230);
+
+}
+
+
