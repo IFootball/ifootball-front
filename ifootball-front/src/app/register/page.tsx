@@ -88,10 +88,7 @@ export default function Register() {
               }
             </select>
           </div>
-          <div className={styles.registerField}>
-            <p className={styles.registerP}>Não tem conta? <Link className={styles.registerLink} href={'/register'}>Clique aqui</Link></p>
-          </div>
-          <button type="submit" className={styles.loginButton}>Cadastrar</button>
+          <button type="submit" className={`${styles.loginButton} ${styles.registerPage}`}>Cadastrar</button>
         </form>
       </div>
     </main>

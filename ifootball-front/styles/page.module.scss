@@ -85,7 +85,7 @@
     margin-top: 100px;
   }
 
-  .registerP:hover,
+  // .registerP:hover,
   .adminP:hover {
     transform: translateY(-5px);
   }
@@ -101,6 +101,10 @@
     margin: 0px 20px;
     text-transform: uppercase;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &.registerPage {
+      margin-top: 20px;
+    }
 
     &:hover {
       transform: translateY(-5px);

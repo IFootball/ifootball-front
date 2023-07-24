@@ -9,7 +9,7 @@ let axiosConfig = {
 };
 
 const api = axios.create({
-  baseURL: "https://localhost:7063/api/",
+  baseURL: "https://localhost:7067/api/",
   headers: axiosConfig,
 });
 
