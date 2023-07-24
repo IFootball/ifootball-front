@@ -8,6 +8,7 @@ import logo from './imagens/logo.png';
 import theme from '../../styles/globals.module.scss';
 import quadra from './imagens/quadra.png';
 import api from '@/api';
+
 export default function Home() {
 
   const router = useRouter();
@@ -18,7 +19,8 @@ export default function Home() {
     const formData = new FormData(event.currentTarget);
     const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
     if (!response.error || response.error.statusCode === 200 ||response.error.statusCode === 201) {
-
+      
+      console.log(response);
       router.push('/homepage')
       return true;
     } else {
