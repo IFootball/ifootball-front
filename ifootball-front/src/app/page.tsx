@@ -7,7 +7,7 @@ import Image from 'next/image';
 import logo from './imagens/logo.png';
 import theme from '../../styles/globals.module.scss';
 import quadra from './imagens/quadra.png';
-
+import api from '@/api';
 export default function Home() {
 
   const router = useRouter();
@@ -16,9 +16,14 @@ export default function Home() {
   const login = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log("Usuário: " + formData.get('user-input') + " | Senha: " + formData.get('password-input'));
-    router.push('/homepage')
-    return true;
+    const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
+    if (!response.error || response.error.statusCode === 200 ||response.error.statusCode === 201) {
+
+      router.push('/homepage')
+      return true;
+    } else {
+      return false
+    }
   }
   useEffect(() => {
     if (window.screen.width < 700) {
@@ -41,9 +46,9 @@ export default function Home() {
             <input className={styles.loginInput} type="password" name="password-input" id="password-input" />
           </div>
           <div className={styles.registerField}>
-            <p className={styles.registerP}><Link className={styles.registerLink} href={'/register'}>Criar Usuário</Link></p>
+            <p className={styles.registerP}>Não tem conta? <Link className={styles.registerLink} href={'/register'}>Clique aqui</Link></p>
           </div>
-          <button type='submit' className={styles.loginButton}>Entrar</button>
+          <button type='submit' className={styles.loginButton}>Logar</button>
         </form>
       </div>
     </main>
