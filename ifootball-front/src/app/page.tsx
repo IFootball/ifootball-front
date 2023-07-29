@@ -20,9 +20,13 @@ export default function Home() {
     const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
     if (!response.error || response.error.statusCode === 200 ||response.error.statusCode === 201) {
       
-      salvarTokenNoCookie(response.token);
-      router.push('/homepage')
-      return true;
+      if (salvarTokenNoCookie(response.token)) {
+        console.log(salvarTokenNoCookie(response.token));
+        router.push('/homepage')
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false
     }
