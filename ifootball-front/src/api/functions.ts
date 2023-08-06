@@ -1,5 +1,5 @@
 import { CookieSerializeOptions, serialize } from 'cookie';
-import { user_type } from './types';
+import { JWTToken, user_type } from './types';
 import decode from 'jwt-decode';
 
 export function salvarTokenNoCookie(token: string): boolean {
@@ -13,7 +13,10 @@ export function salvarTokenNoCookie(token: string): boolean {
     // };
     // const cookieSerialized = serialize(cookieName, token, cookieOptions);
     // document.cookie = cookieSerialized;
-    document.cookie = `user_token=${token}; path=/; expires=${new Date(Date.now() + 3600000).toUTCString()};`;
+    const decodedToken: JWTToken = decode(token);
+    const expires = new Date(decodedToken.exp * 1000).toString();
+    console.log(expires);
+    document.cookie = `user_token=${token}; path=/; expires=${expires};`;
     return true;
   } catch (error) {
     console.error('Erro ao salvar o token no cookie:', error);
@@ -21,15 +24,15 @@ export function salvarTokenNoCookie(token: string): boolean {
   }
 }
 
-export function verifyToken(): {} | null {
+export function verifyToken(): JWTToken | null {
   const cookies = document.cookie.split(';');
   for (const cookie of cookies) {
     const [name, value] = cookie.trim().split('=');
     if (name === 'user_token') {
       try {
-        const decodedToken = decode(value);
+        const decodedToken: JWTToken = decode(value);
         if (decodedToken) {
-          return { decodedToken };
+          return decodedToken;
         }
       } catch (error) {
         console.error('Erro ao decodificar o token:', error);
