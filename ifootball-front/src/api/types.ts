@@ -12,3 +12,11 @@ export type classes_type = {
     id: number,
     name: string
 }
+
+export type JWTToken = {
+    Id: string,
+    exp: number,
+    iat: number,
+    nbf: number,
+    role: string
+}
