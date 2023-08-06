@@ -20,7 +20,7 @@ export default function Navbar() {
                 })} />
                 <label className={styles.mobile_icon} htmlFor="mobile_btn" ><span className={styles.hamburguer}></span></label>
 
-                <Link href={'homepage'} className={styles.navLink}><Image src={logo} width={128} height={45} quality={100} alt="ifootballLogo" placeholder='blur' /></Link>
+                <Link href={'/homepage'} className={styles.navLink}><Image src={logo} width={128} height={45} quality={100} alt="ifootballLogo" placeholder='blur' /></Link>
 
             </div>
 
@@ -29,8 +29,8 @@ export default function Navbar() {
                 <ul className={styles.nav}>
                     <li className={styles.titleOps}>
                         <div className={styles.menu_in_menu}>
-                            <Link className={styles.ops} href={'homepage/squad/male'}>TIME M</Link>
-                            <Link className={styles.ops} href={'homepage/squad/female'}>TIME F</Link>
+                            <Link className={styles.ops} href={'/squad/male'}>TIME M</Link>
+                            <Link className={styles.ops} href={'/squad/female'}>TIME F</Link>
                         </div>
                     </li>
 
@@ -47,11 +47,11 @@ export default function Navbar() {
                                 {
                                     openMenuBar &&
                                     <div className={styles.menu_in_menu_ops}>
-                                        <Link className={styles.ops} href={'homepage'}>Time</Link>
-                                        <Link className={styles.ops} href={'homepage'}>Jogador</Link>
-                                        <Link className={styles.ops} href={'homepage'}>Gols</Link>
-                                        <Link className={styles.ops} href={'homepage'}>Assistência</Link>
-                                        <Link className={styles.ops} href={'homepage'}>Defesas</Link>
+                                        <Link className={styles.ops} href={'/homepage'}>Time</Link>
+                                        <Link className={styles.ops} href={'/homepage'}>Jogador</Link>
+                                        <Link className={styles.ops} href={'/homepage'}>Gols</Link>
+                                        <Link className={styles.ops} href={'/homepage'}>Assistência</Link>
+                                        <Link className={styles.ops} href={'/homepage'}>Defesas</Link>
                                     </div>
                                 }
                             </div>
@@ -60,7 +60,7 @@ export default function Navbar() {
                 </ul>
 
                 <div className={styles.outDiv}>
-                    <Link className={styles.outA} href="../"><Image className={styles.outImg} src={out} alt="outLogo" width={32} height={32} /><h4 className={styles.outH4}>SAIR</h4></Link>
+                    <Link className={styles.outA} href="/"><Image className={styles.outImg} src={out} alt="outLogo" width={32} height={32} /><h4 className={styles.outH4}>SAIR</h4></Link>
                 </div>
             </div>
 

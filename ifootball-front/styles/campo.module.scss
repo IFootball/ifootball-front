@@ -1,0 +1,50 @@
+@import './globals.scss';
+
+.field {
+    background-color: #97BB87;
+    width: 670px;
+    height: 334px;
+    
+    .lateral {
+        margin: 10px;
+        width: 642px;
+        height: 306px;
+        // position: relative;
+        top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .linha {
+        border: solid 4px white;
+    }
+
+    .area {
+        width: 70px;
+        height: 140px;
+    }
+
+    .left {
+        border-left: 0;
+    }
+
+    .right {
+        border-right: 0;
+    }
+
+    .circulo {
+        width: 140px;
+        height: 140px;
+        border-radius: 100%;
+        position: relative;
+    }
+
+    .centro {
+        position: absolute;
+        height: calc(334px - 28px);
+        left: calc(50% - 2px);
+        border-left: none;
+
+    }
+}

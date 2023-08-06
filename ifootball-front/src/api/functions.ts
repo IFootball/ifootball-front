@@ -1,5 +1,5 @@
-import { CookieSerializeOptions, serialize } from 'cookie';
-import { JWTToken, user_type } from './types';
+import { useRouter } from 'next/router';
+import { JWTToken } from './types';
 import decode from 'jwt-decode';
 
 export function salvarTokenNoCookie(token: string): boolean {

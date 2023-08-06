@@ -17,7 +17,6 @@ export default function Home() {
     const token = verifyToken();
   
     if (token) {
-      console.log('Resposta: ', token)
       return true;
     } else {
       router.push('/');
