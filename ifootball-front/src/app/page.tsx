@@ -8,6 +8,7 @@ import logo from '../../public/images/logoFoot.png';
 import theme from '../../styles/globals.module.scss';
 import quadra from '../../public/images/quadra.png';
 import api from '@/api';
+import { salvarTokenNoCookie } from '@/api/functions';
 export default function Home() {
 
   const router = useRouter();
@@ -18,9 +19,14 @@ export default function Home() {
     const formData = new FormData(event.currentTarget);
     const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
     if (!response.error || response.error.statusCode === 200 ||response.error.statusCode === 201) {
-
-      router.push('/homepage')
-      return true;
+      
+      if (salvarTokenNoCookie(response.token)) {
+        console.log(salvarTokenNoCookie(response.token));
+        router.push('/homepage')
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false
     }
