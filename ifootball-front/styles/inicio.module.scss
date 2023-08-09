@@ -1,0 +1,25 @@
+.table_score{
+    border-collapse: collapse;
+}
+
+.table_score td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #000000;
+    padding: 8px 2em;
+}
+
+.table_score tr:nth-child(even){background-color: #f2f2f2}
+
+.div_container{
+   width: 100%;
+   flex-direction: column;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.table_score th{
+    width: 40%;
+}
