@@ -2,25 +2,17 @@ import axios from "axios";
 import { classes_type, error_type, playerType, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
-import { headers } from "next/dist/client/components/headers";
-
 
 let axiosConfig = {
     "Content-Type": "application/json;charset=UTF-8",
-    // "Access-Control-Allow-Origin": "*",
-    "Authorization": 'Bearer ' + getToken()?.toString()
+    "Access-Control-Allow-Origin": "*",
 };
 
 const api = axios.create({
     baseURL: Config.apiLink,
-    // headers: axiosConfig,
+    headers: axiosConfig,
 });
 
-const globalHeaders = {
-    headers: {
-        Authorization: 'Bearer ' + getToken()
-    }
-}
 
 export default {
     authentication: {
@@ -61,6 +53,7 @@ export default {
                         idGender: 1,
                         
                     }
+                    api.defaults.headers["Authorization"] =  'Bearer ' + getToken()?.toString();
                     return await api.get('/players', { data }).then((response) => { return response.data; });
                 }
             },
@@ -71,7 +64,8 @@ export default {
                         playerType: 0,
                         idGender: 1
                     }
-                    // api.defaults.headers["headers"] = "Authorization: Bearer " + `${getToken()}`;
+                                        
+                    api.defaults.headers["Authorization"] =  'Bearer ' + getToken()?.toString();
                     return await api.get('/players', {data}).then((response) => { return response.data })
                 }
             },
@@ -79,10 +73,8 @@ export default {
                 const data = {
                     Take: size,
                     idGender: 1,
-                    headers: {
-                        'Authorization': 'Bearer ' + getToken()
-                    }
                 }
+                api.defaults.headers["Authorization"] =  'Bearer ' + getToken()?.toString();
                 return await api.get('/players', { data }).then((response) => { return response.data })
             }
         },
