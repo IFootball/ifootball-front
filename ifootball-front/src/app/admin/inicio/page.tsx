@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link'
 import styles from "../../../../styles/inicio.module.scss";
 import Header from "@/components/Header";
 import React, { useState } from 'react';
@@ -31,7 +32,9 @@ const Scoreboard: React.FC = () => {
 
   return (
     <div className={styles.div_container}>
-      <h1>Pontuação dos Jogadores</h1>
+      <div className={styles.container_2}>
+      <Link href={'homepage'}><img src="images/logoFoot.png" title="ifootballLogo" /></Link>
+      
       <table className={styles.table_score}>
         <thead>
           <tr className={styles.tr_score}>
@@ -42,15 +45,15 @@ const Scoreboard: React.FC = () => {
         <tbody>
           {players.map((player, index) => (
             <tr key={index}>
-              <td>{player.name}</td>
+              <td className={styles.jogadores_name}>{player.name}</td>
               <td>{player.score}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div>
+      <div className={styles.botoes}>
         <div>
-          <button onClick={handleChooseTeam}>Escolher Time</button>
+          <button className={styles.escolher_time} onClick={handleChooseTeam}>Escolher Time</button>
         </div>
         <div>
           <button onClick={handleConfirm}>Confirmar</button>
@@ -58,6 +61,7 @@ const Scoreboard: React.FC = () => {
         <div>
           <button onClick={handleExit}>Sair</button>
         </div>
+      </div>
       </div>
     </div>
   );

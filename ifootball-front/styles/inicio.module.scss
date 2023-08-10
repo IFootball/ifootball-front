@@ -3,10 +3,10 @@
 }
 
 .table_score td {
+
     text-align: center;
-    padding: 8px;
     border: 1px solid #000000;
-    padding: 8px 2em;
+    padding: 8px 4em;
 }
 
 .table_score tr:nth-child(even){background-color: #f2f2f2}
@@ -20,6 +20,32 @@
    text-align: center;
 }
 
+.container_2{
+    max-width: 80vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .table_score th{
-    width: 40%;
+    width: 100%;
+}
+.botoes{
+    width: 100%;
+}
+
+.escolher_time{
+    max-width: 20vh;
+    width: 93%;
+    border: 0px solid black;
+    background-color: #285430;
+    color: white;
+    padding: 8px 1em;
+    margin: 1.5em 0em;
+}
+
+.jogadores_name{
+    color: #50883B;
 }
