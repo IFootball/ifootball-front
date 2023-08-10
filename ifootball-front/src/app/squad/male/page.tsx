@@ -49,8 +49,7 @@ export default function Male() {
         <div className={styles.maleSquadPage}>
             <Header />
             <h2>MONTE SEU TIME!</h2>
-            {/* <Image src={campo} width={100} height={500} alt='campo' /> */}
-            <Campo />
+            <Campo goalkeepers={goalkeepers} players={players} />
         </div>
     )
 }
