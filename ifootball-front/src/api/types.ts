@@ -20,3 +20,15 @@ export type JWTToken = {
     nbf: number,
     role: string
 }
+
+// 0 - Jogador normal | 1 - goleiro
+// 1 - machos | 2 - fêmeas
+
+export type playerType = {
+    id: number,
+    name: string,
+    image: string,
+    idTeamClass: number,
+    idGender: number,
+    playerType: number
+}

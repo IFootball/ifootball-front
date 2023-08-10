@@ -2,6 +2,7 @@
   "name": "ifootball-front",
   "version": "0.1.0",
   "private": true,
+  "apiLink": "https://localhost:7067/api/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
