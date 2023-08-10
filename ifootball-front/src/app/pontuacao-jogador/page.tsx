@@ -29,33 +29,33 @@ export default function PontuacaoJogador() {
                     <thead>
                         <tr>
                             <th>gol</th>
-                            <th>xx.xx</th>
+                            <th>00.00</th>
                             <th><button>+</button></th>
                             <th><button>-</button></th>
                         </tr>
                         <tr>
                             <th>assistência</th>
-                            <th>xx.xx</th>
+                            <th>00.00</th>
                             <th><button>+</button></th>
                             <th><button>-</button></th>
                         </tr>
                         <tr>
                             <th>falta</th>
-                            <th>xx.xx</th>
-                            <th><button>+</button></th>
+                            <th>00.00</th>
                             <th><button>-</button></th>
+                            <th><button>+</button></th>
                         </tr>
                         <tr>
                             <th>amarelo</th>
-                            <th>xx.xx</th>
-                            <th><button>+</button></th>
+                            <th>00.00</th>
                             <th><button>-</button></th>
+                            <th><button>+</button></th>
                         </tr>
                         <tr>
                             <th>vermelho</th>
-                            <th>xx.xx</th>
-                            <th><button>+</button></th>
+                            <th>00.00</th>
                             <th><button>-</button></th>
+                            <th><button>+</button></th>
                         </tr>
                     </thead>
                     
