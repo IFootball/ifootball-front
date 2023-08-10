@@ -2,6 +2,7 @@
 import { playerType } from '@/api/types';
 import style from '../../../styles/campo.module.scss';
 import { useState } from 'react';
+import PopUp from '../PopUp';
 type listPlayers = {
     list: boolean,
     type: 'player' | 'goalkeeper'
@@ -46,7 +47,16 @@ export default function Campo({ players, goalkeepers }: { players: playerType[],
             </div>
             {
                 listPlayers.list && listPlayers.type === 'goalkeeper' &&
-                <div></div>
+                <PopUp cancelcallback={() => {
+                    setListPlayers({
+                        ...listPlayers,
+                        list: false
+                    })
+                }}>
+                    <div>
+
+                    </div>
+                </PopUp>
             }
         </>
     )
