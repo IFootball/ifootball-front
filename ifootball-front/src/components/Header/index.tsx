@@ -17,7 +17,7 @@ export default function Navbar() {
           })} />
           <label className={styles.mobile_icon} htmlFor="mobile_btn" ><span className={styles.hamburguer}></span></label>
 
-            <Link href={'homepage'}><img src="images/logoFoot.png" title="ifootballLogo" /></Link>
+            <Link href={'homepage'}><img src="images/logoFoot.png" title="ifootballLogo" placeholder='blur' /></Link>
 
         </div>
 

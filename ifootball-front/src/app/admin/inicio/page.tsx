@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import styles from "../../../../styles/inicio.module.scss";
 import Header from "@/components/Header";
-import React, { useState } from 'react';
+import { useState } from 'react'
 
 interface Player {
   name: string;
@@ -31,10 +31,16 @@ const Scoreboard: React.FC = () => {
   };
 
   return (
-    <div className={styles.div_container}>
+    <main>
+
+    <div className={styles.divlogoadm}>
+      <div className={styles.logo}><Link href={''}><img src="/images/logoFootCurtoDireita.png" title="ifootballLogo" placeholder='blur' /></Link><h1>ADM</h1></div>
+    </div>
+
+    <div className={styles.div_container}>  
       <div className={styles.container_2}>
-      <Link href={'homepage'}><img src="images/logoFoot.png" title="ifootballLogo" /></Link>
       
+      <div className={styles.table}>
       <table className={styles.table_score}>
         <thead>
           <tr className={styles.tr_score}>
@@ -51,6 +57,7 @@ const Scoreboard: React.FC = () => {
           ))}
         </tbody>
       </table>
+      </div>
       <div className={styles.botoes}>
         <div>
           <button className={styles.escolher_time} onClick={handleChooseTeam}>Escolher Time</button>
@@ -64,6 +71,7 @@ const Scoreboard: React.FC = () => {
       </div>
       </div>
     </div>
+    </main>
   );
 };
 
