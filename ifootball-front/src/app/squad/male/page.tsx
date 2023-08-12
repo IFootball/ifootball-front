@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Campo from '@/components/Campo';
 import { playerType } from '@/api/types';
 import api from '@/api';
+import CONSTS from '../../../api/constants.json';
 export default function Male() {
     const [goalkeepers, setGoalkeepers] = useState<playerType[]>([]);
     const [players, setPlayers] = useState<playerType[]>([]);
@@ -23,7 +24,7 @@ export default function Male() {
     }
 
     const listGoalkeepers = async (): Promise<boolean> => {
-        const response = await api.players.male.goalkeeper.list(50);
+        const response = await api.players.list(50, CONSTS.genderIds.male, CONSTS.playerTypes.goalkeeper);
         if (response) {
             setGoalkeepers(response.data);
             return true;
@@ -32,7 +33,7 @@ export default function Male() {
     }
 
     const listLinePlayers = async (): Promise<boolean> => {
-        const response = await api.players.male.line.list(200);
+        const response = await api.players.list(200, CONSTS.genderIds.male, CONSTS.playerTypes.lineplayer);
         if (response) {
             setPlayers(response.data);
             return true;

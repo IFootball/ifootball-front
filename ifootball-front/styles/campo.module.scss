@@ -61,25 +61,46 @@
         color: white;
         font-family: $defaultFont;
     }
-    .b1, .b4, .b5 {
+
+    .b1,
+    .b4,
+    .b5 {
         top: 152px;
     }
+
     .b1 {
         left: 5%;
     }
-    .b2, .b3 {
+
+    .b2,
+    .b3 {
         left: 20%;
     }
+
     .b2 {
         top: 23%;
     }
+
     .b3 {
         top: 69%;
     }
+
     .b4 {
         left: 40%;
     }
+
     .b5 {
         left: 60%;
+    }
+
+    .squadPopUp {
+        background-color: white;
+        height: 100%;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
     }
 }
