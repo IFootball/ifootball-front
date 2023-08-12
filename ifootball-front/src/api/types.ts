@@ -28,7 +28,9 @@ export type playerType = {
     id: number,
     name: string,
     image: string,
+    className: string,
     idTeamClass: number,
     idGender: number,
-    playerType: number
+    playerType: number,
+    inSquad?: boolean
 }
