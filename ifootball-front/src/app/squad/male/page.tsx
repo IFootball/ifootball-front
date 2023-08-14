@@ -45,6 +45,7 @@ export default function Male() {
         listGoalkeepers();
         listLinePlayers();
         verifySession();
+        console.log("JOGADORES: " + JSON.stringify(players), "GOLEIROS: " + JSON.stringify(goalkeepers))
     }, [])
     return (
         <div className={styles.maleSquadPage}>
