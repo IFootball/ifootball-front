@@ -60,14 +60,16 @@ export default {
     players: {
         list: async (size: number, idGender: number, playerType: number): Promise<{ data: playerType[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
-            const data = {
-                Take: size,
-                idGender,
-                playerType,
-            };
-
             try {
-                const response = await api.get('/players', { data });
+                const response = await api.get('/players', {
+                    params: {
+                        Take: size,
+                        idGender: idGender,
+                        playerType: playerType,
+                    }
+                });
+        
+                console.log(response.data);
                 return response.data;
             } catch (error) {
                 throw error;
