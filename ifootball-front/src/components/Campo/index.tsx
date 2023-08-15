@@ -4,6 +4,7 @@ import { useState } from 'react';
 import PopUp from '../PopUp';
 import ListPlayers from '../../app/squad/components/ListGoalkeepers';
 import ListGoalkeepers from '../../app/squad/components/ListGoalkeepers';
+import ListLinePlayers from '@/app/squad/components/ListLinePlayers';
 
 type listPlayers = {
     list: boolean,
@@ -85,6 +86,24 @@ export default function Campo({
                         });
                         return false;
                     }} addPlayerAction={(id: number) => setGkId(id)} dispensePlayerAction={(id: number) => unsetGkId(0)} gkId={gkId} squad={squad} />
+                </PopUp>
+            )}
+            {listPlayers.list && listPlayers.type === 'player' && (
+                <PopUp
+                    cancelcallback={() => {
+                        setListPlayers({
+                            ...listPlayers,
+                            list: false
+                        });
+                    }}
+                >
+                    <ListLinePlayers linePlayers={players} callbackAction={() => {
+                        setListPlayers({
+                            ...listPlayers,
+                            list: false
+                        });
+                        return false;
+                    }} addPlayerAction={(id: number) => setGkId(id)} dispensePlayerAction={(id: number) => unsetGkId(0)} lpId={gkId} squad={squad} />
                 </PopUp>
             )}
         </>
