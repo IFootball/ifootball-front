@@ -51,6 +51,11 @@ export default function Male() {
             <Header />
             <h2>MONTE SEU TIME!</h2>
             <Campo goalkeepers={goalkeepers} players={players} />
+            <div className={styles.bottomPart}>
+                <div className={styles.reserves}>
+                    
+                </div>
+            </div>
         </div>
     )
 }

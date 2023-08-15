@@ -48,6 +48,9 @@ export default function Campo({
 
     const removeLinePlayer = (id: number) => {
         setLinePlayers((prevState) => prevState.filter((playerId) => playerId !== id));
+        if (captain === id) {
+            unsetAsCaptain();
+        }
     };
 
     const handleListPlayersClick = (type: 'player' | 'goalkeeper') => {

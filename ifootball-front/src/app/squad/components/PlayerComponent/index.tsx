@@ -2,6 +2,8 @@ import { playerType } from '@/api/types';
 import style from '../../../../../styles/playercomponent.module.scss';
 import DefaultButton from '@/components/DefaultButton';
 import CONSTS from '../../../../api/constants.json';
+import userIcon from './user_456212.png';
+import Image from 'next/image';
 interface playerProps {
     player: playerType,
     isCaptain?: boolean,
@@ -17,7 +19,12 @@ export default function PlayerComponent({ player, isCaptain = false, addPlayer, 
         <div className={style.playerCard}>
             {/* <Image src={goalkeeper.image} alt={`${goalkeeper.name}-image`} quality={100} width={85} height={70} placeholder='blur' /> */}
             <div className={style.leftPart}>
-                <img src={player.image} alt={`${player.name}-image`} />
+                <Image src={userIcon} alt='userIcon' height={65} placeholder='blur' quality={100} />
+                {/* {
+                    player.image !== 'string' || player.image ?
+                    :
+                    <img src={player.image} alt={`${player.name}-image`} />
+                } */}
                 <div className={style.playerInfos}>
                     <span>{player.name}</span>
                     <span>{player.className}</span>
@@ -25,14 +32,21 @@ export default function PlayerComponent({ player, isCaptain = false, addPlayer, 
             </div>
             <div className={style.playerConfigs}>
                 {
-                    isCaptain ?
-                        <div className={`${style.captainButton} ${style.active}`} onClick={() => unsetAsCaptain}>
-                            C
-                        </div>
+                    squad.includes(player.id) || (gkId === player.id) ?
+                        <>
+                            {
+                                isCaptain ?
+                                    <div className={`${style.captainButton} ${style.active}`} onClick={() => unsetAsCaptain(player.id)}>
+                                        C
+                                    </div>
+                                    :
+                                    <div className={style.captainButton} onClick={() => setAsCaptain(player.id)}>
+                                        C
+                                    </div>
+                            }
+                        </>
                         :
-                        <div className={style.captainButton} onClick={() => setAsCaptain}>
-                            C
-                        </div>
+                        <div />
                 }
                 {
                     ((player.playerType === CONSTS.playerTypes.lineplayer) && squad.includes(player.id)) || ((player.playerType === CONSTS.playerTypes.goalkeeper) && (gkId === player.id)) ?
