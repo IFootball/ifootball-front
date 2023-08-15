@@ -1,6 +1,6 @@
 import axios from "axios";
 import { classes_type, error_type, user_type } from "./types";
-import { setUser } from "./functions";
+
 
 
 let axiosConfig = {
@@ -9,7 +9,7 @@ let axiosConfig = {
 };
 
 const api = axios.create({
-  baseURL: "https://localhost:7063/api/",
+  baseURL: "https://localhost:7067/api/",
   headers: axiosConfig,
 });
 
@@ -34,7 +34,8 @@ export default {
     },
 
     login: async (email: string, password: string): Promise<{error?: {message: string, statusCode: number}, user: {id: number, role: number}, token: string}> => {
-      return await api.post('/users/login', {email, password});
+      return await api.post('/users/login', {email, password}).then((response) => 
+      {return response.data;});
     }
   },
   classes: {
