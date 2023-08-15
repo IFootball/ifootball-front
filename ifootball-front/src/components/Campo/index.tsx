@@ -2,7 +2,6 @@ import { playerType } from '@/api/types';
 import style from '../../../styles/campo.module.scss';
 import { useState } from 'react';
 import PopUp from '../PopUp';
-import ListPlayers from '../../app/squad/components/ListGoalkeepers';
 import ListGoalkeepers from '../../app/squad/components/ListGoalkeepers';
 import ListLinePlayers from '@/app/squad/components/ListLinePlayers';
 
@@ -18,6 +17,7 @@ export default function Campo({
     players: playerType[],
     goalkeepers: playerType[],
 }) {
+    const [captain, setCaptain] = useState<number>(0);
     const [listPlayers, setListPlayers] = useState<listPlayers>({
         list: false,
         type: 'goalkeeper'
@@ -85,7 +85,7 @@ export default function Campo({
                             list: false
                         });
                         return false;
-                    }} addPlayerAction={(id: number) => setGkId(id)} dispensePlayerAction={(id: number) => unsetGkId(0)} gkId={gkId} squad={squad} />
+                    }} addPlayerAction={(id: number) => addGkId(id)} dispensePlayerAction={(id: number) => unsetGkId(0)} gkId={gkId} squad={squad} setAsCaptainAction={(id: number) => setCaptain(id)} unsetAsCaptainAction={() => setCaptain(0)} />
                 </PopUp>
             )}
             {listPlayers.list && listPlayers.type === 'player' && (

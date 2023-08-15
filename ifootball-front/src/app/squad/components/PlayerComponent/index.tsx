@@ -26,11 +26,11 @@ export default function PlayerComponent({ player, isCaptain = false, addPlayer, 
             <div className={style.playerConfigs}>
                 {
                     isCaptain ?
-                        <div className={`${style.captainButton} ${style.active}`} onClick={() => unsetAsCaptain(player.id)}>
+                        <div className={`${style.captainButton} ${style.active}`} onClick={() => unsetAsCaptain}>
                             C
                         </div>
                         :
-                        <div className={style.captainButton} onClick={() => setAsCaptain(player.id)}>
+                        <div className={style.captainButton} onClick={() => setAsCaptain}>
                             C
                         </div>
                 }
