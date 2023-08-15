@@ -8,13 +8,16 @@ interface listPlayersProps {
     addPlayerAction: (id: number) => void,
     dispensePlayerAction: (id: number) => void,
     squad: number[],
-    lpId: number
+    gkId: number,
+    setAsCaptainAction: (id: number) => void,
+    unsetAsCaptainAction: (id: number) => void,
+    captainId: number
 }
-export default function ListLinePlayers({linePlayers, callbackAction, addPlayerAction, dispensePlayerAction, lpId, squad}: listPlayersProps) {
+export default function ListLinePlayers({linePlayers, callbackAction, addPlayerAction, dispensePlayerAction, gkId, squad, setAsCaptainAction, unsetAsCaptainAction, captainId}: listPlayersProps) {
     return (
         <div className={style.squadPopUp}>
             {linePlayers.map((linePlayer) => (
-                <PlayerComponent player={linePlayer} key={linePlayer.id} addPlayer={() => addPlayerAction(linePlayer.id)} gkId={lpId} squad={squad} dispensePlayer={() => dispensePlayerAction(linePlayer.id)} setAsCaptain={() => {}} unsetAsCaptain={() => {}} />
+                <PlayerComponent player={linePlayer}  key={linePlayer.id} addPlayer={() => addPlayerAction(linePlayer.id)} gkId={gkId} squad={squad} isCaptain={captainId === linePlayer.id} dispensePlayer={() => dispensePlayerAction(linePlayer.id)} setAsCaptain={() => setAsCaptainAction(linePlayer.id)} unsetAsCaptain={() => unsetAsCaptainAction(linePlayer.id)} />
             ))}
             <DefaultButton
                 text='VOLTAR'

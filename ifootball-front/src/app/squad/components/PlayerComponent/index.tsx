@@ -38,7 +38,7 @@ export default function PlayerComponent({ player, isCaptain = false, addPlayer, 
                     ((player.playerType === CONSTS.playerTypes.lineplayer) && squad.includes(player.id)) || ((player.playerType === CONSTS.playerTypes.goalkeeper) && (gkId === player.id)) ?
                         <DefaultButton small dispensed text='DISPENSAR' action={dispensePlayer} />
                         :
-                        ((player.playerType === CONSTS.playerTypes.lineplayer && squad.length <= 4) || ((player.playerType === CONSTS.playerTypes.goalkeeper) && gkId === 0) ? <DefaultButton small text='ESCALAR' action={addPlayer} /> : <DefaultButton small text='ESCALAR' unactive />)
+                        ((player.playerType === CONSTS.playerTypes.lineplayer && squad.length < 4) || ((player.playerType === CONSTS.playerTypes.goalkeeper) && gkId === 0) ? <DefaultButton small text='ESCALAR' action={addPlayer} /> : <DefaultButton small text='ESCALAR' unactive />)
                 }
             </div>
         </div>

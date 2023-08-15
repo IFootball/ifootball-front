@@ -11,12 +11,13 @@ interface listPlayersProps {
     gkId: number,
     setAsCaptainAction: (id: number) => void,
     unsetAsCaptainAction: (id: number) => void,
+    captainId: number
 }
-export default function ListGoalkeepers({goalkeepers, callbackAction, addPlayerAction, dispensePlayerAction, gkId, squad, setAsCaptainAction, unsetAsCaptainAction}: listPlayersProps) {
+export default function ListGoalkeepers({goalkeepers, callbackAction, addPlayerAction, dispensePlayerAction, gkId, squad, setAsCaptainAction, unsetAsCaptainAction, captainId}: listPlayersProps) {
     return (
         <div className={style.squadPopUp}>
             {goalkeepers.map((goalkeeper) => (
-                <PlayerComponent player={goalkeeper} key={goalkeeper.id} addPlayer={() => addPlayerAction(goalkeeper.id)} gkId={gkId} squad={squad} dispensePlayer={() => dispensePlayerAction(goalkeeper.id)} setAsCaptain={() => setAsCaptainAction(goalkeeper.id)} unsetAsCaptain={() => unsetAsCaptainAction} />
+                <PlayerComponent player={goalkeeper} isCaptain={captainId === goalkeeper.id} key={goalkeeper.id} addPlayer={() => addPlayerAction(goalkeeper.id)} gkId={gkId} squad={squad} dispensePlayer={() => dispensePlayerAction(goalkeeper.id)} setAsCaptain={() => setAsCaptainAction(goalkeeper.id)} unsetAsCaptain={() => unsetAsCaptainAction} />
             ))}
             <DefaultButton
                 text='VOLTAR'
