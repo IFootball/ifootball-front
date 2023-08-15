@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../../../styles/pontuacaoJogador.module.scss";
 import pontuacaoStyles from "./pontuacaoJogador.module.scss";
+import Image from 'next/image';
+import voltar from '../imagens/voltar.png';
 
 export default function PontuacaoJogador() {
     const numRows = 5;
@@ -10,8 +12,12 @@ export default function PontuacaoJogador() {
         <div className={styles.container}>
             <div className={styles.pontuacaoJog}>
                 <div className={styles.pontuacaoJogUtil}>
+
+                    <div className={styles.voltar}>
+                        <a href=""><Image src={voltar} alt='voltar' /></a>
+                    </div>
                     <div className={styles.posicao}>
-                        <h3>LINHA</h3>
+                        <h6>LINHA</h6>
                     </div>
                     <div className={styles.nomeJog}>
                         <h1>NOME</h1>
@@ -22,7 +28,7 @@ export default function PontuacaoJogador() {
 
                 <div className={styles.tabelaPontuacao}>
                 <div className={styles.pontuacaoTotal}>
-                    <h5>TOTAL:</h5>
+                    <h4>TOTAL: 00.00</h4>
                 </div>
                     <table>
                         <thead>
