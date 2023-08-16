@@ -33,32 +33,32 @@ export default function PontuacaoJogador() {
                     <table>
                         <thead>
                             <tr className={styles.gol}>
-                                <th>GOL</th>
-                                <th>00.00</th>
+                                <th className={styles.thValores}>GOL</th>
+                                <th className={styles.thPontuacao}>00.00</th>
                                 <th><button className={styles.somar}>+</button></th>
                                 <th><button className={styles.subtrair}>-</button></th>
                             </tr>
                             <tr className={styles.assistencia}>
-                                <th>ASSISTÊNCIA</th>
-                                <th>00.00</th>
+                                <th className={styles.thValores}>ASSISTÊNCIA</th>
+                                <th className={styles.thPontuacao}>00.00</th>
                                 <th><button className={styles.somar}>+</button></th>
                                 <th><button className={styles.subtrair}>-</button></th>
                             </tr>
                             <tr className={styles.falta}>
-                                <th>FALTA</th>
-                                <th>00.00</th>
+                                <th className={styles.thValores}>FALTA</th>
+                                <th className={styles.thPontuacao}>00.00</th>
                                 <th><button className={styles.subtrair}>-</button></th>
                                 <th><button className={styles.somar}>+</button></th>
                             </tr>
                             <tr className={styles.amarelo}>
-                                <th>AMARELO</th>
-                                <th>00.00</th>
+                                <th className={styles.thValores}>AMARELO</th>
+                                <th className={styles.thPontuacao}>00.00</th>
                                 <th><button className={styles.subtrair}>-</button></th>
                                 <th><button className={styles.somar}>+</button></th>
                             </tr>
                             <tr className={styles.vermelho}>
-                                <th>VERMELHO</th>
-                                <th>00.00</th>
+                                <th className={styles.thValores}>VERMELHO</th>
+                                <th className={styles.thPontuacao}>00.00</th>
                                 <th><button className={styles.subtrair}>-</button></th>
                                 <th><button className={styles.somar}>+</button></th>
                             </tr>

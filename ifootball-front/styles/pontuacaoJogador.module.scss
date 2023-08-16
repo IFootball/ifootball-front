@@ -11,7 +11,6 @@
 }
 
 .pontuacaoJog {
-    padding: 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -21,9 +20,7 @@
 
 .pontuacaoJogUtil {
     display: grid;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
 }
@@ -34,22 +31,14 @@
     text-align: center;
 }
 
+.nomeJog {
+    text-align: center;
+    border-radius: 5px;
+}
+
 .fotoJog img {
     max-width: 100px;
     max-height: 100px;
-}
-
-.nomeJog {
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    margin: 10px;
-}
-
-.tabelaPontuacao {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .tabelaPontuacao th,
@@ -77,8 +66,8 @@
 }
 
 .somar {
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 8px 18px;
+    font-size: 25px;
     background-color: #50883B;
     color: #fff;
     border: none;
@@ -90,8 +79,8 @@
 }
 
 .subtrair {
-    padding: 5px 12px;
-    font-size: 14px;
+    padding: 8px 21px;
+    font-size: 25px;
     background-color: #D13939;
     color: #fff;
     border: none;
@@ -112,7 +101,7 @@
     font-size: 18px;
     text-transform: uppercase;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: 100%;
+    width: 91%;
     text-align: center;
     margin-top: 30px;
 
@@ -123,4 +112,95 @@
 
 .bordaPreta {
     border: 1px solid black;
+}
+
+.tabelaPontuacao .thPontuacao,
+.tabelaPontuacao .thValores{
+    padding: 8px 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-top: 10px;
+    }
+
+    .pontuacaoJog {
+        margin-top: 10px;
+    }
+
+    .pontuacaoJogUtil {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+    }
+
+    .posicao {
+        font-size: 16px;
+    }
+
+    .nomeJog {
+        font-size: 14px;
+    }
+
+    .fotoJog img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .somar,
+    .subtrair {
+        font-size: 20px;
+    }
+
+    .confirmar {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        margin-top: 5px;
+    }
+
+    .pontuacaoJog {
+        margin-top: 5px;
+    }
+
+    .pontuacaoJogUtil {
+        grid-template-columns: 1fr;
+        row-gap: 5px;
+    }
+
+    .posicao {
+        font-size: 14px;
+    }
+
+    .nomeJog {
+        font-size: 12px;
+    }
+
+    .fotoJog img {
+        max-width: 60px;
+        max-height: 60px;
+    }
+
+    .tabelaPontuacao th,
+    .tabelaPontuacao td {
+        padding: 0;
+        font-size: 10px;
+    }
+
+    .somar{
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    .subtrair {
+        font-size: 14px;
+        padding: 5px 11px;
+    }
+
+    .confirmar {
+        font-size: 12px;
+        padding: 10px;
+    }
 }
