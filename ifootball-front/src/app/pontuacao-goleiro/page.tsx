@@ -1,18 +1,17 @@
 import React from "react";
-import styles from "../../../styles/pontuacaoJogador.module.scss";
-import pontuacaoStyles from "./pontuacaoJogador.module.scss";
+import styles from "../../../styles/pontuacaoGoleiro.module.scss";
+import pontuacaoStyles from "./pontuacaoGoleiro.module.scss";
 import Image from 'next/image';
-import imagemJogador from '../imagens/imagemJogador.png';
 import voltar from '../imagens/voltar.png';
 
-export default function PontuacaoJogador() {
-    const numRows = 8;
+export default function PontuacaoGoleiro() {
+    const numRows = 5;
     const numCols = 4;
 
     return (
         <div className={styles.container}>
-            <div className={styles.pontuacao}>
-                <div className={styles.pontuacaoUtil}>
+            <div className={styles.pontuacaoGol}>
+                <div className={styles.pontuacaoGolUtil}>
 
                     <div className={styles.voltar}>
                         <a href=""><Image src={voltar} alt='voltar' /></a>
@@ -23,8 +22,7 @@ export default function PontuacaoJogador() {
                     <div className={styles.nome}>
                         <h1>NOME</h1>
                     </div>
-                    <div>
-                        <Image src={imagemJogador} alt='Imagem Jogador' />
+                        <div className={styles.foto}>
                     </div>
                 </div>
 
@@ -34,6 +32,24 @@ export default function PontuacaoJogador() {
                     </div>
                     <table>
                         <thead>
+                            <tr className={styles.golSofrido}>
+                                <th className={styles.thValores}>GOL SOFRIDO</th>
+                                <th className={styles.thPontuacao}>00.00</th>
+                                <th><button className={styles.subtrair}>-</button></th>
+                                <th><button className={styles.somar}>+</button></th>
+                            </tr>
+                            <tr className={styles.defesa}>
+                                <th className={styles.thValores}>DEFESA</th>
+                                <th className={styles.thPontuacao}>00.00</th>
+                                <th><button className={styles.somar}>+</button></th>
+                                <th><button className={styles.subtrair}>-</button></th>
+                            </tr>
+                            <tr className={styles.defesaPenalti}>
+                                <th className={styles.thValores}>DEFESA PÊNALTI</th>
+                                <th className={styles.thPontuacao}>00.00</th>
+                                <th><button className={styles.somar}>+</button></th>
+                                <th><button className={styles.subtrair}>-</button></th>
+                            </tr>
                             <tr className={styles.gol}>
                                 <th className={styles.thValores}>GOL</th>
                                 <th className={styles.thPontuacao}>00.00</th>
