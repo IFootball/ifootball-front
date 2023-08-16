@@ -2,10 +2,11 @@ import React from "react";
 import styles from "../../../styles/pontuacaoGoleiro.module.scss";
 import pontuacaoStyles from "./pontuacaoGoleiro.module.scss";
 import Image from 'next/image';
+import imagemGoleiro from '../imagens/imagemJogador.png';
 import voltar from '../imagens/voltar.png';
 
 export default function PontuacaoGoleiro() {
-    const numRows = 5;
+    const numRows = 8;
     const numCols = 4;
 
     return (
@@ -23,6 +24,9 @@ export default function PontuacaoGoleiro() {
                         <h1>NOME</h1>
                     </div>
                         <div className={styles.foto}>
+                    </div>
+                    <div className={styles.imagem}>
+                        <Image className={styles.imagemGoleiro} src={imagemGoleiro} alt='Imagem Goleiro' />
                     </div>
                 </div>
 

@@ -6,7 +6,7 @@ import imagemJogador from '../imagens/imagemJogador.png';
 import voltar from '../imagens/voltar.png';
 
 export default function PontuacaoJogador() {
-    const numRows = 8;
+    const numRows = 5;
     const numCols = 4;
 
     return (
@@ -23,8 +23,8 @@ export default function PontuacaoJogador() {
                     <div className={styles.nome}>
                         <h1>NOME</h1>
                     </div>
-                    <div>
-                        <Image src={imagemJogador} alt='Imagem Jogador' />
+                    <div className={styles.imagem}>
+                        <Image className={styles.imagemJogador} src={imagemJogador} alt='Imagem Jogador' />
                     </div>
                 </div>
 
