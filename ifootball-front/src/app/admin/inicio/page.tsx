@@ -41,32 +41,45 @@ const Scoreboard: React.FC = () => {
       <div className={styles.container_2}>
       
       <div className={styles.table}>
+
       <table className={styles.table_score}>
+
         <thead>
           <tr className={styles.tr_score}>
             <th>Jogador</th>
             <th>Pontuação</th>
           </tr>
         </thead>
+
         <tbody>
           {players.map((player, index) => (
             <tr key={index}>
-              <td className={styles.jogadores_name}>{player.name}</td>
+
+              <Link className={styles.Link_jogador_name} href={''}>
+                <td className={styles.jogadores_name}>
+                  <div className={styles.jogador_div}>
+                    <h4>▶</h4>
+                    {player.name}
+                  </div>
+                </td>
+              </Link>
+
               <td>{player.score}</td>
             </tr>
           ))}
         </tbody>
       </table>
       </div>
+
       <div className={styles.botoes}>
-        <div>
-          <button className={styles.escolher_time} onClick={handleChooseTeam}>Escolher Time</button>
+        <div className={styles.div_escolher_time}>
+          <button className={styles.escolher_time} onClick={handleChooseTeam}>ESCOLHER TIME</button>
         </div>
-        <div>
-          <button onClick={handleConfirm}>Confirmar</button>
+        <div className={styles.div_confirmar}>
+          <button className={styles.confirmar} onClick={handleConfirm}>CONFIRMAR</button>
         </div>
-        <div>
-          <button onClick={handleExit}>Sair</button>
+        <div className={styles.div_sair}>
+          <button className={styles.sair} onClick={handleExit}>Sair</button>
         </div>
       </div>
       </div>

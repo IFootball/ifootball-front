@@ -19,6 +19,18 @@
     justify-content: right;
 }
 
+.botoes{
+    width: 100%;
+    
+}
+
+.table{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    
+}
 
 
 
@@ -29,10 +41,13 @@
 .table_score{
     border-collapse: collapse;
     font-family: 'Roboto', sans-serif;
+    align-items: center;
+    max-width: 80vh;
+    
+    
 }
 
 .table_score td {
-
     text-align: center;
     border: 1px solid #000000;
     padding: 8px 4em;
@@ -50,7 +65,8 @@
 }
 
 .container_2{
-    max-width: 80vh;
+    width: 100%;
+    height: 60vh;
     flex-direction: row;
     display: flex;
     align-items: center;
@@ -63,20 +79,73 @@
 }
 .botoes{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.div_escolher_time{
+    width: 100%;
 }
 
 .escolher_time{
-    max-width: 20vh;
-    width: 93%;
+    width: 100%;
+    max-width: 40vh;
     border: 0px solid black;
     background-color: #285430;
     color: white;
     padding: 8px 1em;
-    margin: 1.5em 0em;
+    margin-top: 2em;
+}
+
+.div_confirmar{
+    width: 100%;
+}
+
+.confirmar{
+    width: 100%;
+    max-width: 40vh;
+    border: 0px solid black;
+    background-color: #50883B;
+    color: white;
+    padding: 8px 1em;
+    margin: 1em 0em;
+}
+
+.div_sair{
+    width: 100%;
+}
+
+.sair{
+    width: 100%;
+    max-width: 40vh;
+    border: 0px solid black;
+    background-color: #D13939
+    ;
+    color: white;
+    padding: 8px 1em;
+    margin: 2em 0em;
 }
 
 .jogadores_name{
-    color: #50883B;
+    color: black;
+}
+
+.jogador_div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.jogador_div h4{
+    width: 10%;
+}
+
+.jogador_div 
+
+.Link_jogador_name{
+    text-decoration: none;
 }
 
 
