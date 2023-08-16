@@ -3,13 +3,14 @@ import Link from 'next/link'
 import styles from "../../../../styles/inicio.module.scss";
 import Header from "@/components/Header";
 import { useState } from 'react'
+import { ModalChoseTeam } from '@/app/admin/inicio/modalChoseTeam';
 
 interface Player {
   name: string;
   score: number;
 }
 
-const Scoreboard: React.FC = () => {
+const Scoreboard = () => {
   const [players, setPlayers] = useState<Player[]>([
     { name: 'Jogador 1', score: 0 },
     { name: 'Jogador 2', score: 150 },
@@ -18,8 +19,11 @@ const Scoreboard: React.FC = () => {
     { name: 'Jogador 5', score: 25 }
   ]);
 
+  const [modalChoseTeam, setModalChoseTeam] = useState<boolean>(false);
+
   const handleChooseTeam = () => {
-    // Lógica para escolher o time
+    setModalChoseTeam(oldModal => !oldModal)
+
   };
 
   const handleConfirm = () => {
@@ -32,6 +36,8 @@ const Scoreboard: React.FC = () => {
 
   return (
     <main>
+
+    {modalChoseTeam && <ModalChoseTeam></ModalChoseTeam>}
 
     <div className={styles.divlogoadm}>
       <div className={styles.logo}><Link href={''}><img src="/images/logoFootCurtoDireita.png" title="ifootballLogo" placeholder='blur' /></Link><h1>ADM</h1></div>
