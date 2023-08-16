@@ -1,5 +1,18 @@
 @import './globals.scss';
 
+.choosePlayer {
+    position: absolute;
+    border: solid 1px black;
+    background-color: #285430;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: $defaultFont;
+}
 .field {
     background-color: #97BB87;
     width: 670px;
@@ -48,19 +61,6 @@
         border-left: none;
     }
 
-    .choosePlayer {
-        position: absolute;
-        border: solid 1px black;
-        background-color: #285430;
-        border-radius: 100%;
-        width: 35px;
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-family: $defaultFont;
-    }
 
     .b1,
     .b4,

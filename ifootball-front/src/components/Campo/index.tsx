@@ -7,7 +7,7 @@ import ListLinePlayers from '@/app/squad/components/ListLinePlayers';
 
 type ListPlayersType = {
     list: boolean;
-    type: 'player' | 'goalkeeper';
+    type: 'player' | 'goalkeeper' | 'reserve';
 };
 
 export default function Campo({
@@ -25,6 +25,7 @@ export default function Campo({
 
     const [gkId, setGkId] = useState<number>(0);
     const [linePlayers, setLinePlayers] = useState<number[]>([]);
+    const [reservePlayers, setReservePlayers] = useState<number[]>([]);
 
     const addGkId = (id: number) => {
         setGkId(id);
@@ -42,8 +43,12 @@ export default function Campo({
         setCaptain(0);
     };
 
-    const addPlayer = (id: number) => {
-        setLinePlayers((prevState) => [...prevState, id]);
+    const addPlayer = (id: number, isReserve: boolean) => {
+        if (isReserve) {
+            addReservePlayer(id);
+        } else {
+            setLinePlayers((prevState) => [...prevState, id]);
+        }
     };
 
     const removeLinePlayer = (id: number) => {
@@ -53,7 +58,21 @@ export default function Campo({
         }
     };
 
-    const handleListPlayersClick = (type: 'player' | 'goalkeeper') => {
+    const addReservePlayer = (id: number) => {
+        if (!reservePlayers.includes(id)) {
+            if (reservePlayers.length < 2) {
+                setReservePlayers((prevReserves) => [...prevReserves, id]);
+            } else {
+                console.log('Você já adicionou o máximo de jogadores reservas.');
+            }
+        }
+    };
+
+    const removeReservePlayer = (id: number) => {
+        setReservePlayers((prevReserves) => prevReserves.filter((playerId) => playerId !== id));
+    };
+
+    const handleListPlayersClick = (type: 'player' | 'goalkeeper' | 'reserve') => {
         setListPlayers({
             list: true,
             type,
@@ -82,22 +101,40 @@ export default function Campo({
                 <div className={`${style.choosePlayer} ${style.b4}`} onClick={() => handleListPlayersClick('player')}>J4</div>
                 <div className={`${style.choosePlayer} ${style.b5}`} onClick={() => handleListPlayersClick('player')}>J5</div>
             </div>
+            <div className={style.reserves}>
+                <h4>RESERVAS</h4>
+                <div className={style.reservesArea}>
+                    <div className={`${style.choosePlayer} ${style.r1}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
+                    <div className={`${style.choosePlayer} ${style.r2}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
+                </div>
+
+            </div>
             {listPlayers.list && listPlayers.type === 'goalkeeper' && (
                 <PopUp
                     cancelcallback={() => {
                         setListPlayers({
                             ...listPlayers,
-                            list: false
+                            list: false,
                         });
                     }}
                 >
-                    <ListGoalkeepers captainId={captain} goalkeepers={goalkeepers} callbackAction={() => {
-                        setListPlayers({
-                            ...listPlayers,
-                            list: false
-                        });
-                        return false;
-                    }} addPlayerAction={(id: number) => addGkId(id)} dispensePlayerAction={(id: number) => unsetGkId()} gkId={gkId} squad={linePlayers} setAsCaptainAction={(id: number) => setCaptain(id)} unsetAsCaptainAction={() => setCaptain(0)} />
+                    <ListGoalkeepers
+                        captainId={captain}
+                        goalkeepers={goalkeepers}
+                        callbackAction={() => {
+                            setListPlayers({
+                                ...listPlayers,
+                                list: false,
+                            });
+                            return false;
+                        }}
+                        addPlayerAction={(id: number) => addGkId(id)}
+                        dispensePlayerAction={() => unsetGkId()}
+                        gkId={gkId}
+                        squad={linePlayers}
+                        setAsCaptainAction={(id: number) => setCaptain(id)}
+                        unsetAsCaptainAction={() => unsetAsCaptain()}
+                    />
                 </PopUp>
             )}
             {listPlayers.list && listPlayers.type === 'player' && (
@@ -105,17 +142,55 @@ export default function Campo({
                     cancelcallback={() => {
                         setListPlayers({
                             ...listPlayers,
-                            list: false
+                            list: false,
                         });
                     }}
                 >
-                    <ListLinePlayers captainId={captain} setAsCaptainAction={(id: number) => setAsCaptain(id)} unsetAsCaptainAction={(id: number) => unsetAsCaptain()} linePlayers={players} callbackAction={() => {
+                    <ListLinePlayers
+                        captainId={captain}
+                        setAsCaptainAction={(id: number) => setAsCaptain(id)}
+                        unsetAsCaptainAction={(id: number) => unsetAsCaptain()}
+                        linePlayers={players}
+                        callbackAction={() => {
+                            setListPlayers({
+                                ...listPlayers,
+                                list: false,
+                            });
+                            return false;
+                        }}
+                        addPlayerAction={(id: number) => addPlayer(id, false)}
+                        dispensePlayerAction={(id: number) => removeLinePlayer(id)}
+                        gkId={gkId}
+                        squad={linePlayers}
+                    />
+                </PopUp>
+            )}
+            {listPlayers.list && listPlayers.type === 'reserve' && (
+                <PopUp
+                    cancelcallback={() => {
                         setListPlayers({
                             ...listPlayers,
-                            list: false
+                            list: false,
                         });
-                        return false;
-                    }} addPlayerAction={(id: number) => addPlayer(id)} dispensePlayerAction={(id: number) => removeLinePlayer(id)} gkId={gkId} squad={linePlayers} />
+                    }}
+                >
+                    <ListLinePlayers
+                        captainId={captain}
+                        setAsCaptainAction={(id: number) => setAsCaptain(id)}
+                        unsetAsCaptainAction={(id: number) => unsetAsCaptain()}
+                        linePlayers={players}
+                        callbackAction={() => {
+                            setListPlayers({
+                                ...listPlayers,
+                                list: false,
+                            });
+                            return false;
+                        }}
+                        addPlayerAction={(id: number) => addPlayer(id, true)}
+                        dispensePlayerAction={(id: number) => removeReservePlayer(id)}
+                        gkId={gkId}
+                        squad={reservePlayers}
+                    />
                 </PopUp>
             )}
         </>
