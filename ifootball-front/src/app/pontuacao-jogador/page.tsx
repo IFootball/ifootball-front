@@ -27,9 +27,9 @@ export default function PontuacaoJogador() {
                 </div>
 
                 <div className={styles.tabelaPontuacao}>
-                <div className={styles.pontuacaoTotal}>
-                    <h4>TOTAL: 00.00</h4>
-                </div>
+                    <div className={styles.pontuacaoTotal}>
+                        <h4>TOTAL: 00.00</h4>
+                    </div>
                     <table>
                         <thead>
                             <tr className={styles.gol}>
