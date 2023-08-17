@@ -19,11 +19,11 @@ const Scoreboard = () => {
     { name: 'Jogador 5', score: 25 }
   ]);
 
+  const [idTeam, setIdTeam] = useState<number>();
   const [modalChoseTeam, setModalChoseTeam] = useState<boolean>(false);
-
+  
   const handleChooseTeam = () => {
     setModalChoseTeam(oldModal => !oldModal)
-
   };
 
   const handleConfirm = () => {
@@ -34,10 +34,28 @@ const Scoreboard = () => {
     // Lógica para sair
   };
 
+  function renderPlayers(){
+    return players.map((player, index) => (
+      <tr key={index}>
+
+        <Link className={styles.Link_jogador_name} href={''}>
+          <td className={styles.jogadores_name}>
+            <div className={styles.jogador_div}>
+              <h4>▶</h4>
+              {player.name}
+            </div>
+          </td>
+        </Link>
+
+        <td>{player.score}</td>
+      </tr>
+    ))
+  }
+
   return (
     <main>
 
-    {modalChoseTeam && <ModalChoseTeam></ModalChoseTeam>}
+    {modalChoseTeam && <ModalChoseTeam closeModal={handleChooseTeam} setChoseTeam={setIdTeam}></ModalChoseTeam>}
 
     <div className={styles.divlogoadm}>
       <div className={styles.logo}><Link href={''}><img src="/images/logoFootCurtoDireita.png" title="ifootballLogo" placeholder='blur' /></Link><h1>ADM</h1></div>
@@ -58,21 +76,7 @@ const Scoreboard = () => {
         </thead>
 
         <tbody>
-          {players.map((player, index) => (
-            <tr key={index}>
-
-              <Link className={styles.Link_jogador_name} href={''}>
-                <td className={styles.jogadores_name}>
-                  <div className={styles.jogador_div}>
-                    <h4>▶</h4>
-                    {player.name}
-                  </div>
-                </td>
-              </Link>
-
-              <td>{player.score}</td>
-            </tr>
-          ))}
+          {renderPlayers()}
         </tbody>
       </table>
       </div>

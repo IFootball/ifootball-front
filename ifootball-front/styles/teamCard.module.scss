@@ -1,13 +1,22 @@
 @import 'globals.scss';
 .teamCard {
     width: 90%;
-    background-color: $quinaryGreen;
+    height: 80px;
+    background-color: $terciaryGreen;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 10px;
+    color: white;
 
-    button{
-
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    p{
+        margin-left: 2em;
+    }
+    .choseButton{
+        background-color: $quinaryGreen;
+        border: none;
+        padding: 0 20px;
+        height: 100%;
+        color: white;
     }
 }
