@@ -129,19 +129,27 @@
 
 .jogadores_name {
   color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
 }
 
 .jogador_div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
 }
 
 .jogador_div h4 {
   width: 10%;
+  margin-right: 0;
+  text-align: left;
 }
 
-.jogador_div .Link_jogador_name {
+.jogador_div Link{
+  width: 90%;
   text-decoration: none;
 }
 

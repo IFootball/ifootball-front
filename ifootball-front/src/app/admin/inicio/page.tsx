@@ -40,8 +40,8 @@ const Scoreboard = () => {
 
         <Link className={styles.Link_jogador_name} href={''}>
           <td className={styles.jogadores_name}>
-            <div className={styles.jogador_div}>
-              <h4>▶</h4>
+            <div><h4>▶</h4></div>
+            <div>
               {player.name}
             </div>
           </td>
@@ -89,7 +89,7 @@ const Scoreboard = () => {
           <button className={styles.confirmar} onClick={handleConfirm}>CONFIRMAR</button>
         </div>
         <div className={styles.div_sair}>
-          <button className={styles.sair} onClick={handleExit}>Sair</button>
+          <button className={styles.sair} onClick={handleExit}>SAIR</button>
         </div>
       </div>
       </div>
