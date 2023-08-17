@@ -17,7 +17,6 @@ export default function Home() {
     const token = verifyToken();
   
     if (token) {
-      console.log('Resposta: ', token)
       return true;
     } else {
       router.push('/');
@@ -49,10 +48,10 @@ export default function Home() {
                 </div>
 
                 <div className={styles.buttons}>
-                  <Link href={'homepage/squad/male'}>
+                  <Link href={'squad/male'}>
                     <DefaultButton text="Time Masculino" />
                   </Link> 
-                  <Link href={'homepage/squad/female'}>
+                  <Link href={'squad/female'}>
                     <DefaultButton text="Time Feminino" />
                   </Link>
                 </div>

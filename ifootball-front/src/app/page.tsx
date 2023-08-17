@@ -4,9 +4,9 @@ import styles from '../../styles/page.module.scss';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from './imagens/logo.png';
+import logo from '../../public/images/logoFoot.png';
 import theme from '../../styles/globals.module.scss';
-import quadra from './imagens/quadra.png';
+import quadra from '../../public/images/quadra.png';
 import api from '@/api';
 import { salvarTokenNoCookie } from '@/api/functions';
 export default function Home() {
