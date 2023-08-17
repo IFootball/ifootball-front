@@ -38,7 +38,7 @@ export default {
             }
         },
 
-        login: async (email: string, password: string): Promise<{ error?: { message: string, statusCode: number }, user: { id: number, role: number }, token: string }> => {
+        login: async (email: string, password: string): Promise<{ error?: { message: string, statusCode: number }, user: { id: number, role: 0 | 1 }, token: string }> => {
             try {
                 const response = await api.post('/users/login', { email, password });
                 return response.data;
