@@ -40,8 +40,8 @@ const Scoreboard = () => {
 
         <Link className={styles.Link_jogador_name} href={''}>
           <td className={styles.jogadores_name}>
-            <div><h4>▶</h4></div>
-            <div>
+            <div className={styles.h4link}><h4>▶</h4></div>
+            <div className={styles.playername}>
               {player.name}
             </div>
           </td>

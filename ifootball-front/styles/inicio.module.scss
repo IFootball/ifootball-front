@@ -48,7 +48,6 @@
 .table_score td {
   text-align: center;
   border: 1px solid #000000;
-  padding: 8px 4em;
 }
 
 .table_score tr:nth-child(even) {
@@ -162,4 +161,19 @@
     display: flex;
     flex-direction: column;
   }
+}
+
+
+.Link_jogador_name{
+  text-decoration: none;
+  width: 100%;
+}
+
+.h4link{
+  width: 10%;
+}
+
+.playername{
+  width: 90%;
+  padding: 8px 4em;
 }
