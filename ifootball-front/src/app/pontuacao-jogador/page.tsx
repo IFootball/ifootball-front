@@ -2,8 +2,8 @@ import React from "react";
 import styles from "../../../styles/pontuacaoJogador.module.scss";
 import pontuacaoStyles from "./pontuacaoJogador.module.scss";
 import Image from 'next/image';
-import imagemJogador from '../imagens/imagemJogador.png';
-import voltar from '../imagens/voltar.png';
+import imagemJogador from '../../../public/images/imagemJogador.png';
+import voltar from '../../../public/images/voltar.png';
 
 export default function PontuacaoJogador() {
     const numRows = 5;
