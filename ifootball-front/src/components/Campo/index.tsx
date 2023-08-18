@@ -86,6 +86,13 @@ export default function Campo({
         });
     };
 
+    const getPossibleReserves = () => {
+        let reserves: playerType[] = []
+        players.forEach((player) => {
+            if (!linePlayers.includes(player.id)) reserves.push(player);
+        })
+        return reserves;
+    }
     return (
         <>
             <div className={style.field}>
@@ -162,6 +169,7 @@ export default function Campo({
                         dispensePlayerAction={(id: number) => removeLinePlayer(id)}
                         gkId={gkId}
                         squad={linePlayers}
+                        isReserve={false}
                     />
                 </PopUp>
             )}
@@ -178,7 +186,7 @@ export default function Campo({
                         captainId={captain}
                         setAsCaptainAction={(id: number) => setAsCaptain(id)}
                         unsetAsCaptainAction={(id: number) => unsetAsCaptain()}
-                        linePlayers={players}
+                        linePlayers={getPossibleReserves()}
                         callbackAction={() => {
                             setListPlayers({
                                 ...listPlayers,
@@ -190,6 +198,7 @@ export default function Campo({
                         dispensePlayerAction={(id: number) => removeReservePlayer(id)}
                         gkId={gkId}
                         squad={reservePlayers}
+                        isReserve
                     />
                 </PopUp>
             )}
