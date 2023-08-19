@@ -5,24 +5,16 @@ import Image from "next/image";
 import imagemJogador from "../../../public/images/imagemJogador.png";
 import voltar from "../../../public/images/voltar.png";
 import api from "../../api/index";
-import { completePlayerScout, playerTypeEnum } from "@/api/types";
+import { completePlayerScout, playerTypeEnum, ScoutTypeEnum } from "@/api/types";
 import { useRouter } from "next/router";
 import { CarregandoCard } from "@/components/carregandoCard";
 import { ErroCard } from "@/components/erroCard";
 import PopUp from "@/components/PopUp";
 
 export default function PontuacaoJogador() {
-  enum ScoutTypeEnum {
-    Goals = "goals",
-    Assists = "assists",
-    Fouls = "fouls",
-    RedCard = "redCard",
-    Wins = "wins",
-    YellowCard = "yellowCard",
-    TakenGols = "takenGols",
-    Saves = "saves",
-    PenaltySaves = "penaltySaves",
-  }
+  const router = useRouter();
+  const id = Number(router.query.id);
+
 
   const playerNull: completePlayerScout = {
     assists: 0,
@@ -43,8 +35,6 @@ export default function PontuacaoJogador() {
     penaltySaves: 0,
   };
 
-  //const router = useRouter();
-  const id = 1; //Number(router.query.id);
 
   const [loading, setLoading] = useState<boolean>(true);
   const [errorGet, setErrorGet] = useState<boolean | string>(false);
@@ -56,7 +46,7 @@ export default function PontuacaoJogador() {
     let valueScout = scout[scoutType] + value;
 
     if (valueScout >= 0) {
-      setScout((oldScout) => ({
+      setScout(oldScout => ({
         ...oldScout,
         [scoutType]: valueScout,
       }));
@@ -66,7 +56,7 @@ export default function PontuacaoJogador() {
   async function confirmScout() {
     try {
       await api.players.setScout(
-        5452165,
+        scout.id,
         scout.goals,
         scout.assists,
         scout.yellowCard,
@@ -80,15 +70,14 @@ export default function PontuacaoJogador() {
       setErrorScout(false);
       setSucessoScout(true);
     } catch (error) {
-      setErrorScout(error.response.data);
+      setErrorScout(error.response?.data);
     }
   }
 
-  async function getPlayer(id: number) {
+  async function getPlayer() {
     try {
       var player = await api.players.getScout(id);
       setScout(player.completePlayerDto);
-      console.log(player);
       setErrorGet(false);
     } catch (error) {
       setErrorGet(error.response.data);
@@ -97,12 +86,21 @@ export default function PontuacaoJogador() {
     }
   }
   useEffect(() => {
-    getPlayer(id);
+    getPlayer();
   }, []);
 
   function renderContent() {
     if (loading) return <CarregandoCard />;
-    if (errorGet) return <ErroCard>{errorGet}</ErroCard>;
+    if (errorGet)
+      return (
+        <>
+          <a href="">
+              <Image src={voltar} alt="voltar" />
+          </a>
+          <ErroCard>{errorGet}</ErroCard>
+          <button className={styles.confirmar} onClick={getPlayer}>Tentar novamente</button>
+        </>
+      );
 
     return (
       <div className={styles.pontuacao}>
@@ -304,7 +302,7 @@ export default function PontuacaoJogador() {
             </thead>
           </table>
         </div>
-        
+
         {errorScout && <ErroCard>{errorScout}</ErroCard>}
 
         <div className={styles.confirmar} onClick={confirmScout}>
@@ -317,7 +315,7 @@ export default function PontuacaoJogador() {
   return (
     <div className={styles.container}>
       {renderContent()}
-      {/*sucessoScout && <PopUp>Atributos atualizados!</PopUp>*/}
+      {sucessoScout && <PopUp>Atributos atualizados!</PopUp>}
     </div>
   );
 }

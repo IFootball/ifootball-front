@@ -54,6 +54,18 @@ export type completePlayerScout = {
   saves: number;
 };
 
+export enum ScoutTypeEnum {
+    Goals = "goals",
+    Assists = "assists",
+    Fouls = "fouls",
+    RedCard = "redCard",
+    Wins = "wins",
+    YellowCard = "yellowCard",
+    TakenGols = "takenGols",
+    Saves = "saves",
+    PenaltySaves = "penaltySaves",
+  }
+
 export enum playerTypeEnum {
   Linha = 0,
   Goleiro = 1,

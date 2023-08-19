@@ -29,7 +29,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/pontuacao-goleiro/page.js",
-    "src/app/pontuacao-jogador/page.tsx"
+    "src/app/pontuacao-jogador/[id].tsx"
   ],
   "exclude": ["node_modules"]
 }
