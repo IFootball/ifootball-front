@@ -1,20 +1,28 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "../../../styles/pontuacaoJogador.module.scss";
+import styles from "../../../../styles/pontuacaoJogador.module.scss";
 import Image from "next/image";
-import imagemJogador from "../../../public/images/imagemJogador.png";
-import voltar from "../../../public/images/voltar.png";
-import api from "../../api/index";
-import { completePlayerScout, playerTypeEnum, ScoutTypeEnum } from "@/api/types";
+import imagemJogador from "../../../../public/images/imagemJogador.png";
+import voltar from "../../../../public/images/voltar.png";
+import api from "../../../api/index";
+import {
+  completePlayerScout,
+  playerTypeEnum,
+  ScoutTypeEnum,
+} from "@/api/types";
 import { useRouter } from "next/router";
 import { CarregandoCard } from "@/components/carregandoCard";
 import { ErroCard } from "@/components/erroCard";
 import PopUp from "@/components/PopUp";
 
-export default function PontuacaoJogador() {
-  const router = useRouter();
-  const id = Number(router.query.id);
+interface PontuacaoJogadorProps {
+  params : {
+    id: number
+  }
+}
 
+export default function PontuacaoJogador({params} : PontuacaoJogadorProps) {
+  const id = params.id;
 
   const playerNull: completePlayerScout = {
     assists: 0,
@@ -35,7 +43,6 @@ export default function PontuacaoJogador() {
     penaltySaves: 0,
   };
 
-
   const [loading, setLoading] = useState<boolean>(true);
   const [errorGet, setErrorGet] = useState<boolean | string>(false);
   const [sucessoScout, setSucessoScout] = useState<boolean>(false);
@@ -46,7 +53,7 @@ export default function PontuacaoJogador() {
     let valueScout = scout[scoutType] + value;
 
     if (valueScout >= 0) {
-      setScout(oldScout => ({
+      setScout((oldScout) => ({
         ...oldScout,
         [scoutType]: valueScout,
       }));
@@ -95,10 +102,12 @@ export default function PontuacaoJogador() {
       return (
         <>
           <a href="">
-              <Image src={voltar} alt="voltar" />
+            <Image src={voltar} alt="voltar" />
           </a>
           <ErroCard>{errorGet}</ErroCard>
-          <button className={styles.confirmar} onClick={getPlayer}>Tentar novamente</button>
+          <button className={styles.confirmar} onClick={getPlayer}>
+            Tentar novamente
+          </button>
         </>
       );
 
