@@ -74,6 +74,28 @@ export default {
             } catch (error) {
                 throw error;
             }
+        },
+        getScout: async(idPlayer: number): Promise<{ completePlayerDto: completePlayerScout}> => {
+            setAuthorizationHeader();
+                const response = await api.get('/players/'+idPlayer);
+        
+                return response.data;
+        },
+        setScout: async(idPlayer: number, goals: number,assists: number,yellowCard: number,redCard: number,fouls: number,wins: number,takenGols: number | null, penaltySaves: number | null, saves: number | null ): Promise<{ completePlayerDto: completePlayerScout}> => {
+            setAuthorizationHeader();
+                const response = await api.patch('/players/'+idPlayer, {
+                        goals: goals,
+                        assists: assists,
+                        yellowCard: yellowCard,
+                        redCard: redCard,
+                        fouls: fouls,
+                        wins: wins,
+                        takenGols:takenGols,
+                        penaltySaves: penaltySaves,
+                        saves: saves
+                  });
+        
+                return response.data;
         }
     },
     teamClass: {
