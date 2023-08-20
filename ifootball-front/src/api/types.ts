@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type ErrorResponse = {
     error?: {
         message: string;
@@ -33,7 +35,7 @@ export type JWTToken = {
 export type playerType = {
     id: number,
     name: string,
-    image: string,
+    image: string | StaticImageData,
     className: string,
     idTeamClass: number,
     idGender: number,

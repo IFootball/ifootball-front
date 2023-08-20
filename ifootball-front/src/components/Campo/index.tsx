@@ -6,6 +6,9 @@ import ListGoalkeepers from '../../app/squad/components/ListGoalkeepers';
 import ListLinePlayers from '@/app/squad/components/ListLinePlayers';
 import DefaultButton from '../DefaultButton';
 import api from '@/api';
+import ResumedPlayerCard from '../ResumedPlayerComponent';
+import user from '../../app/squad/components/PlayerComponent/user_456212.png';
+
 
 type ListPlayersType = {
     list: boolean;
@@ -83,6 +86,18 @@ export default function Campo({
         });
     };
 
+    const getPlayer = (playerId: number): playerType => {
+        const player = players.find(player => playerId === player.id);
+        const defaultPlayer: playerType = {id: 0, idGender: genderId, idTeamClass: 0, image: user, name: "Jogador", playerType: 1, className: 'Classe'}
+        return player || defaultPlayer;
+    }
+
+    const getGoalkeeper = (gkId: number): playerType => {
+        const gk = goalkeepers.find(g => g.id === gkId );
+        const defaultGoalkeeper: playerType = {id: 0, idGender: genderId, idTeamClass: 0, image: user, name: "Jogador", playerType: 0, className: 'Classe'}
+        return gk || defaultGoalkeeper
+    }
+
     const getPossiblePlayers = () => {
         let pPlayers: playerType[] = []
         players.forEach((player) => {
@@ -152,11 +167,36 @@ export default function Campo({
                     <div className={`${style.linha} ${style.centro}`}></div>
                     <div className={`${style.linha} ${style.area} ${style.right}`}></div>
                 </div>
-                <div className={`${style.choosePlayer} ${style.b1}`} onClick={() => handleListPlayersClick('goalkeeper')}>J1</div>
-                <div className={`${style.choosePlayer} ${style.b2}`} onClick={() => handleListPlayersClick('player')}>J2</div>
-                <div className={`${style.choosePlayer} ${style.b3}`} onClick={() => handleListPlayersClick('player')}>J3</div>
-                <div className={`${style.choosePlayer} ${style.b4}`} onClick={() => handleListPlayersClick('player')}>J4</div>
-                <div className={`${style.choosePlayer} ${style.b5}`} onClick={() => handleListPlayersClick('player')}>J5</div>
+                {
+                    gkId > 0 ?
+                    <ResumedPlayerCard className={style.b1} player={getGoalkeeper(gkId)} />
+                    :
+                    <div className={`${style.choosePlayer} ${style.b1}`} onClick={() => handleListPlayersClick('goalkeeper')}>J1</div>
+                }
+                {
+                    linePlayers[0] ?
+                    <ResumedPlayerCard className={style.b2} player={getPlayer(linePlayers[0])} />
+                    :
+                    <div className={`${style.choosePlayer} ${style.b2}`} onClick={() => handleListPlayersClick('player')}>J2</div>
+                }
+                {
+                    linePlayers[1] ?
+                    <ResumedPlayerCard className={style.b3} player={getPlayer(linePlayers[1])} />
+                    :
+                    <div className={`${style.choosePlayer} ${style.b3}`} onClick={() => handleListPlayersClick('player')}>J3</div>
+                }
+                {
+                    linePlayers[2] ?
+                    <ResumedPlayerCard className={style.b4} player={getPlayer(linePlayers[2])} />
+                    :
+                    <div className={`${style.choosePlayer} ${style.b4}`} onClick={() => handleListPlayersClick('player')}>J4</div>
+                }
+                {
+                    linePlayers[3] ?
+                    <ResumedPlayerCard className={style.b5} player={getPlayer(linePlayers[3])} />
+                    :
+                    <div className={`${style.choosePlayer} ${style.b5}`} onClick={() => handleListPlayersClick('player')}>J5</div>
+                }
             </div>
 
             <div className={style.teamActions}>
