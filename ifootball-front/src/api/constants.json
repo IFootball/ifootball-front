@@ -1,0 +1,10 @@
+{
+    "genderIds" : {
+        "male": 1,
+        "female": 2
+    },
+    "playerTypes": {
+        "lineplayer": 0,
+        "goalkeeper": 1
+    }
+}

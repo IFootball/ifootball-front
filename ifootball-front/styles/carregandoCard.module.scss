@@ -1,0 +1,11 @@
+.carregandoLoop{
+    animation: loop 1s infinite;
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes loop {
+    to{
+        transform: rotate(360deg);
+    }
+}

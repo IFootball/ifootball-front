@@ -23,6 +23,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/pontuacao-goleiro/page.js",
+    "src/app/pontuacao-jogador/[id]/page.tsx"
+  ],
   "exclude": ["node_modules"]
 }
