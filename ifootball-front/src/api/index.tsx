@@ -1,5 +1,5 @@
 import axios from "axios";
-import { classes_type, playerType, user_type } from "./types";
+import { classes_type, completePlayerScout, playerType, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -38,7 +38,7 @@ export default {
             }
         },
 
-        login: async (email: string, password: string): Promise<{ error?: { message: string, statusCode: number }, user: { id: number, role: number }, token: string }> => {
+        login: async (email: string, password: string): Promise<{ error?: { message: string, statusCode: number }, user: { id: number, role: 0 | 1 }, token: string }> => {
             try {
                 const response = await api.post('/users/login', { email, password });
                 return response.data;
@@ -97,8 +97,37 @@ export default {
         
                 return response.data;
         }
-
-
-
-    }
+    },
+    teamClass: {
+        list: async (page: number, take: number): Promise<{ data: classes_type[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get('/team-classes', {
+                    params: {
+                        Take: take,
+                        Page: page,
+                    }
+                });
+        
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        listPlayers: async (idTeamClass: number,take: number, page: number): Promise<{ data: playerType[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get('/team-classes/list-player/'+idTeamClass, {
+                    params: {
+                        Take: take,
+                        Page: page
+                    }
+                });
+        
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+    },
 };
