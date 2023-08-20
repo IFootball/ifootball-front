@@ -17,7 +17,7 @@ export default function ListGoalkeepers({goalkeepers, callbackAction, addPlayerA
     return (
         <div className={style.squadPopUp}>
             {goalkeepers.map((goalkeeper) => (
-                <PlayerComponent player={goalkeeper} isCaptain={captainId === goalkeeper.id} key={goalkeeper.id} addPlayer={() => addPlayerAction(goalkeeper.id)} gkId={gkId} squad={squad} dispensePlayer={() => dispensePlayerAction(goalkeeper.id)} setAsCaptain={() => setAsCaptainAction(goalkeeper.id)} unsetAsCaptain={() => unsetAsCaptainAction} />
+                <PlayerComponent player={goalkeeper} isCaptain={captainId === goalkeeper.id} key={goalkeeper.id} addPlayer={() => addPlayerAction(goalkeeper.id)} gkId={gkId} squad={squad} isReserveChoose={false} dispensePlayer={() => dispensePlayerAction(goalkeeper.id)} setAsCaptain={() => setAsCaptainAction(goalkeeper.id)} unsetAsCaptain={() => unsetAsCaptainAction} />
             ))}
             <DefaultButton
                 text='VOLTAR'
