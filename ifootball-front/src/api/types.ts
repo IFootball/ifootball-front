@@ -57,3 +57,17 @@ export type TeamUserResponse = ErrorResponse & {
     idReservePlayerTwo: number;
   };
 };
+
+export type user_team_type = ErrorResponse & {
+    completeTeamUser: {
+        gender: 1 | 2,
+        idCaptain: number,
+        goalkeeper: playerType,
+        linePlayerOne: playerType,
+        linePlayerTwo: playerType,
+        linePlayerThree: playerType,
+        linePlayerFour: playerType,
+        reservePlayerOne: playerType,
+        reservePlayerTwo: playerType
+    }
+} 

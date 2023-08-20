@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import logo from '../../../public/images/logoFoot.png';
 import out from '../../../public/images/out.png'
+import { deleteCookie } from '@/api/functions'
 
 export default function Navbar() {
 
@@ -60,7 +61,7 @@ export default function Navbar() {
                 </ul>
 
                 <div className={styles.outDiv}>
-                    <Link className={styles.outA} href="/"><Image className={styles.outImg} src={out} alt="outLogo" width={32} height={32} /><h4 className={styles.outH4}>SAIR</h4></Link>
+                    <Link className={styles.outA} href="/" onClick={() => deleteCookie('user_token')}><Image className={styles.outImg} src={out} alt="outLogo" width={32} height={32} /><h4 className={styles.outH4}>SAIR</h4></Link>
                 </div>
             </div>
 

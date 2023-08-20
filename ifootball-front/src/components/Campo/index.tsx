@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from '../../../styles/campo.module.scss';
 import { playerType } from '@/api/types';
 import PopUp from '../PopUp';
@@ -19,10 +19,18 @@ export default function Campo({
     players,
     goalkeepers,
     genderId,
+    squad,
+    goalkeeperId,
+    captainId,
+    userReserves
 }: {
     players: playerType[];
     goalkeepers: playerType[];
-    genderId: number
+    genderId: number,
+    squad: number[],
+    goalkeeperId: number,
+    captainId: number,
+    userReserves: number[]
 }) {
     const [captain, setCaptain] = useState<number>(0);
     const [listPlayers, setListPlayers] = useState<ListPlayersType>({
@@ -88,13 +96,13 @@ export default function Campo({
 
     const getPlayer = (playerId: number): playerType => {
         const player = players.find(player => playerId === player.id);
-        const defaultPlayer: playerType = {id: 0, idGender: genderId, idTeamClass: 0, image: user, name: "Jogador", playerType: 1, className: 'Classe'}
+        const defaultPlayer: playerType = { id: 0, idGender: genderId, idTeamClass: 0, image: user, name: "Jogador", playerType: 1, className: 'Classe' }
         return player || defaultPlayer;
     }
 
     const getGoalkeeper = (gkId: number): playerType => {
-        const gk = goalkeepers.find(g => g.id === gkId );
-        const defaultGoalkeeper: playerType = {id: 0, idGender: genderId, idTeamClass: 0, image: user, name: "Jogador", playerType: 0, className: 'Classe'}
+        const gk = goalkeepers.find(g => g.id === gkId);
+        const defaultGoalkeeper: playerType = { id: 0, idGender: genderId, idTeamClass: 0, image: user, name: "Jogador", playerType: 0, className: 'Classe' }
         return gk || defaultGoalkeeper
     }
 
@@ -158,6 +166,13 @@ export default function Campo({
         return false;
     };
 
+    useEffect(() => {
+        setCaptain(captainId);
+        setLinePlayers(squad);
+        setReservePlayers(userReserves);
+        setGkId(goalkeeperId)
+    }, [])
+
     return (
         <>
             <div className={style.field}>
@@ -169,33 +184,33 @@ export default function Campo({
                 </div>
                 {
                     gkId > 0 ?
-                    <ResumedPlayerCard className={style.b1} player={getGoalkeeper(gkId)} />
-                    :
-                    <div className={`${style.choosePlayer} ${style.b1}`} onClick={() => handleListPlayersClick('goalkeeper')}>J1</div>
+                        <ResumedPlayerCard isCaptain={captain === gkId} dispensePlayer={unsetGkId} setAsCaptain={() => setAsCaptain(gkId)} unsetAsCaptain={() => unsetAsCaptain()} className={style.b1} player={getGoalkeeper(gkId)} />
+                        :
+                        <div className={`${style.choosePlayer} ${style.b1}`} onClick={() => handleListPlayersClick('goalkeeper')}>J1</div>
                 }
                 {
                     linePlayers[0] ?
-                    <ResumedPlayerCard className={style.b2} player={getPlayer(linePlayers[0])} />
-                    :
-                    <div className={`${style.choosePlayer} ${style.b2}`} onClick={() => handleListPlayersClick('player')}>J2</div>
+                        <ResumedPlayerCard isCaptain={captain === linePlayers[0]} setAsCaptain={() => setAsCaptain(linePlayers[0])} unsetAsCaptain={() => unsetAsCaptain()} dispensePlayer={() => removeLinePlayer(linePlayers[0])} className={style.b2} player={getPlayer(linePlayers[0])} />
+                        :
+                        <div className={`${style.choosePlayer} ${style.b2}`} onClick={() => handleListPlayersClick('player')}>J2</div>
                 }
                 {
                     linePlayers[1] ?
-                    <ResumedPlayerCard className={style.b3} player={getPlayer(linePlayers[1])} />
-                    :
-                    <div className={`${style.choosePlayer} ${style.b3}`} onClick={() => handleListPlayersClick('player')}>J3</div>
+                        <ResumedPlayerCard isCaptain={captain === linePlayers[1]} setAsCaptain={() => setAsCaptain(linePlayers[1])} unsetAsCaptain={() => unsetAsCaptain()} dispensePlayer={() => removeLinePlayer(linePlayers[1])} className={style.b3} player={getPlayer(linePlayers[1])} />
+                        :
+                        <div className={`${style.choosePlayer} ${style.b3}`} onClick={() => handleListPlayersClick('player')}>J3</div>
                 }
                 {
                     linePlayers[2] ?
-                    <ResumedPlayerCard className={style.b4} player={getPlayer(linePlayers[2])} />
-                    :
-                    <div className={`${style.choosePlayer} ${style.b4}`} onClick={() => handleListPlayersClick('player')}>J4</div>
+                        <ResumedPlayerCard isCaptain={captain === linePlayers[2]} setAsCaptain={() => setAsCaptain(linePlayers[2])} unsetAsCaptain={() => unsetAsCaptain()} dispensePlayer={() => removeLinePlayer(linePlayers[2])} className={style.b4} player={getPlayer(linePlayers[2])} />
+                        :
+                        <div className={`${style.choosePlayer} ${style.b4}`} onClick={() => handleListPlayersClick('player')}>J4</div>
                 }
                 {
                     linePlayers[3] ?
-                    <ResumedPlayerCard className={style.b5} player={getPlayer(linePlayers[3])} />
-                    :
-                    <div className={`${style.choosePlayer} ${style.b5}`} onClick={() => handleListPlayersClick('player')}>J5</div>
+                        <ResumedPlayerCard isCaptain={captain === linePlayers[3]} setAsCaptain={() => setAsCaptain(linePlayers[3])} unsetAsCaptain={() => unsetAsCaptain()} dispensePlayer={() => removeLinePlayer(linePlayers[3])} className={style.b5} player={getPlayer(linePlayers[3])} />
+                        :
+                        <div className={`${style.choosePlayer} ${style.b5}`} onClick={() => handleListPlayersClick('player')}>J5</div>
                 }
             </div>
 
@@ -203,8 +218,18 @@ export default function Campo({
                 <div className={style.reserves}>
                     <h4>RESERVAS</h4>
                     <div className={style.reservesArea}>
-                        <div className={`${style.choosePlayer} ${style.r1}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
-                        <div className={`${style.choosePlayer} ${style.r2}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
+                        {
+                            reservePlayers[0] ?
+                                <ResumedPlayerCard isCaptain={captain === reservePlayers[0]} isReserve unsetAsCaptain={() => unsetAsCaptain()} dispensePlayer={() => removeReservePlayer(reservePlayers[0])} className={style.r1} player={getPlayer(reservePlayers[0])} />
+                                :
+                                <div className={`${style.choosePlayer} ${style.r1}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
+                        }
+                        {
+                            reservePlayers[1] ?
+                                <ResumedPlayerCard isCaptain={captain === reservePlayers[1]} isReserve unsetAsCaptain={() => unsetAsCaptain()} dispensePlayer={() => removeReservePlayer(reservePlayers[1])} className={style.r2} player={getPlayer(reservePlayers[1])} />
+                                :
+                                <div className={`${style.choosePlayer} ${style.r2}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
+                        }
                     </div>
                 </div>
                 <div className={style.buttons}>

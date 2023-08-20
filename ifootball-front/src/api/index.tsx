@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TeamUserResponse, classes_type, playerType, user_type } from "./types";
+import { TeamUserResponse, classes_type, playerType, user_team_type, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -89,6 +89,15 @@ export default {
                     idCaptain
                 });
                 console.log(response.config)
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        get: async (idGender: number): Promise<user_team_type> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/team-users/${idGender}`);
                 return response.data;
             } catch (error) {
                 throw error;

@@ -12,6 +12,7 @@
     justify-content: center;
     color: white;
     font-family: $defaultFont;
+    cursor: pointer;
     // transform: rotate(90deg);
 }
 .field {
@@ -125,7 +126,7 @@
             height: 100px;
     
             .r1 {
-                margin-left: 43px;
+                margin-left: 55px;
             }
         }
     }
