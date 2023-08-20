@@ -10,7 +10,8 @@ export type error_type = {
 
 export type classes_type = {
     id: number,
-    name: string
+    idGender: string,
+    className: string
 }
 
 export type JWTToken = {
@@ -33,4 +34,9 @@ export type playerType = {
     idGender: number,
     playerType: number,
     inSquad?: boolean
+}
+export type teamClassPlayer = {
+    id: number,
+    name: string,
+    score: number,
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { classes_type, playerType, user_type } from "./types";
+import { classes_type, playerType, user_type, teamClassPlayer } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -75,5 +75,37 @@ export default {
                 throw error;
             }
         }
-    }
+    },
+    teamClass: {
+        list: async (page: number, take: number): Promise<{ data: classes_type[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get('/team-classes', {
+                    params: {
+                        Take: take,
+                        Page: page,
+                    }
+                });
+        
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        listPlayers: async (idTeamClass: number,take: number, page: number): Promise<{ data: teamClassPlayer[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get('/team-classes/list-player/'+idTeamClass, {
+                    params: {
+                        Take: take,
+                        Page: page
+                    }
+                });
+        
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+    },
 };

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../../../../styles/modalChoseTeam.module.scss";
 import { TeamCard } from "@/components/teamCard";
+import axios from "../../../../api/index"
+import { classes_type } from "@/api/types";
 
 interface ModalChoseTeamProps {
   closeModal: () => void;
@@ -11,21 +13,22 @@ export function ModalChoseTeam({
   closeModal,
   setChoseTeam,
 }: ModalChoseTeamProps) {
-  interface Team {
-    name: string;
-    id: number;
+
+
+  const [page, setPage] = useState<number>(1)
+  const [teams, setTeams] = useState<classes_type[]>([]);
+
+  async function getTeamsClasses(){    
+      var response = await axios.teamClass.list(page, 35)
+      setTeams(response.data)
   }
 
-  const [teams, setTeams] = useState<Team[]>([
-    { name: "Jogador 1", id: 1 },
-    { name: "Jogador 2", id: 2 },
-    { name: "Jogador 3", id: 3 },
-    { name: "Jogador 4", id: 4 },
-    { name: "Jogador 5", id: 5 },
-  ]);
+  useEffect(() => {
+    getTeamsClasses()
+  },[])
 
   function renderTeam() {
-    return teams.map((x, index) => <TeamCard onClick={() => setChoseTeam(x.id)} key={index}>{x.name}</TeamCard>);
+    return teams.map((x, index) => <TeamCard onClick={() => setChoseTeam(x.id)} key={index} idGender={x.idGender}>{x.className}</TeamCard>);
   }
 
   return (

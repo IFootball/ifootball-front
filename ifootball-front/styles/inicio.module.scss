@@ -2,57 +2,64 @@
 
 .divlogoadm {
   width: 100%;
-}
-
-.divlogoadm h1 {
-  margin: 0;
-  align-items: end;
-  font-family: "Inter", sans-serif;
-  font-size: 2em;
-}
-
-.logo {
-  margin: 1em;
   display: flex;
-  flex-direction: row;
-  align-items: end;
-  justify-content: right;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+
+  .logo {
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: right;
+
+    & h1 {
+      margin: 0;
+      align-items: end;
+      font-family: "Inter", sans-serif;
+      font-size: 2em;
+    }
+  }
+
+  .logoSair{
+    width: 50px;
+    height: 40px;
+  }
 }
 
-.botoes {
-  width: 100%;
 
-  button {
-    cursor: pointer;
-    transition: all 0.5s ease;
-  }
-  button:hover {
-    background-color: rgba(128, 128, 128, 0.711);
-  }
-}
 
 .table {
   width: 100%;
   justify-content: center;
   display: flex;
   text-align: center;
+  overflow-y: auto;
+  max-height: 70vh;
+
+  .table_score {
+    border-collapse: collapse;
+    font-family: "Roboto", sans-serif;
+    align-items: center;
+    max-width: 80vh;
+  
+    & td{
+      text-align: center;
+      border: 1px solid #000000;
+      &:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    }
+  
+    & th {
+      width: 100%;
+    }
+  
+  }
 }
 
-.table_score {
-  border-collapse: collapse;
-  font-family: "Roboto", sans-serif;
-  align-items: center;
-  max-width: 80vh;
-}
 
-.table_score td {
-  text-align: center;
-  border: 1px solid #000000;
-}
-
-.table_score tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
 
 .div_container {
   width: 100%;
@@ -73,9 +80,6 @@
   text-align: center;
 }
 
-.table_score th {
-  width: 100%;
-}
 .botoes {
   width: 100%;
   display: flex;
@@ -84,8 +88,20 @@
   text-align: center;
   justify-content: center;
 }
+
 .div_escolher_time {
   width: 100%;
+  
+  & button {
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.711);
+      transform: scale(1.1);
+    }
+  }
+  
 }
 
 .escolher_time {
@@ -139,22 +155,23 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+
+  & h4 {
+    width: 10%;
+    margin-right: 0;
+    text-align: left;
+  }
+  & Link{
+    width: 90%;
+    text-decoration: none;
+  }
+
 }
 
-.jogador_div h4 {
-  width: 10%;
-  margin-right: 0;
-  text-align: left;
-}
-
-.jogador_div Link{
-  width: 90%;
-  text-decoration: none;
-}
 
 @media screen and (max-width: 767px) {
-  .logo {
-    justify-content: left;
+  .divlogoadm{
+    flex-direction: row;
   }
 
   .container_2 {

@@ -2,43 +2,47 @@
 import Link from 'next/link'
 import styles from "../../../../styles/inicio.module.scss";
 import Header from "@/components/Header";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ModalChoseTeam } from '@/app/admin/inicio/modalChoseTeam';
-
-interface Player {
-  name: string;
-  score: number;
-}
+import axios from "../../../api/index"
+import { teamClassPlayer } from '@/api/types';
+import exit from "../../../../public/images/porta.png"
+import Image from 'next/image';
+import logoIfootbal from "../../../../public/images/logoFootCurtoDireita.png"
 
 const Scoreboard = () => {
-  const [players, setPlayers] = useState<Player[]>([
-    { name: 'Jogador 1', score: 0 },
-    { name: 'Jogador 2', score: 150 },
-    { name: 'Jogador 3', score: 75 },
-    { name: 'Jogador 4', score: 50 },
-    { name: 'Jogador 5', score: 25 }
-  ]);
 
-  const [idTeam, setIdTeam] = useState<number>();
+  const [players, setPlayers] = useState<teamClassPlayer[]>([]);
+  const [idTeam, setIdTeam] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
   const [modalChoseTeam, setModalChoseTeam] = useState<boolean>(false);
   
-  const handleChooseTeam = () => {
+  function handleChooseTeam(){
     setModalChoseTeam(oldModal => !oldModal)
   };
 
-  const handleConfirm = () => {
-    // Lógica para confirmar a seleção
+  function handleSetIdTeam(id: number){
+    setIdTeam(id)
+    handleChooseTeam()
   };
 
-  const handleExit = () => {
-    // Lógica para sair
-  };
+  useEffect(() => {
+    async function getPlayers(){
+      var players = await axios.teamClass.listPlayers(idTeam, 20, page);
+      setPlayers(players.data)
+    }
+
+    getPlayers()
+  },[idTeam])
 
   function renderPlayers(){
+    if(idTeam == 0) return <p>Escolha um time</p>
+    if(players.length == 0) return <p>Não há jogadores nesse time</p>
+
     return players.map((player, index) => (
       <tr key={index}>
 
-        <Link className={styles.Link_jogador_name} href={''}>
+        <Link className={styles.Link_jogador_name} href={'admin/pontuacao-jogador/'+ player.id}>
           <td className={styles.jogadores_name}>
             <div className={styles.h4link}><h4>▶</h4></div>
             <div className={styles.playername}>
@@ -55,43 +59,39 @@ const Scoreboard = () => {
   return (
     <main>
 
-    {modalChoseTeam && <ModalChoseTeam closeModal={handleChooseTeam} setChoseTeam={setIdTeam}></ModalChoseTeam>}
+    {modalChoseTeam && <ModalChoseTeam closeModal={handleChooseTeam} setChoseTeam={handleSetIdTeam}></ModalChoseTeam>}
 
     <div className={styles.divlogoadm}>
-      <div className={styles.logo}><Link href={''}><img src="/images/logoFootCurtoDireita.png" title="ifootballLogo" placeholder='blur' /></Link><h1>ADM</h1></div>
+      <div className={styles.logo}>
+        <Link href={''}><Image src={logoIfootbal} title="ifootballLogo" placeholder='blur' alt="logo ifootbal"/></Link>
+        <h1>ADM</h1>
+      </div>
+        <Image className={styles.logoSair} src={exit} alt="simbolo sair"/>
     </div>
 
     <div className={styles.div_container}>  
       <div className={styles.container_2}>
       
-      <div className={styles.table}>
+        <div className={styles.table}>
+          <table className={styles.table_score}>
 
-      <table className={styles.table_score}>
+            <thead>
+              <tr className={styles.tr_score}>
+                <th>Jogador</th>
+                <th>Pontuação</th>
+              </tr>
+            </thead>
 
-        <thead>
-          <tr className={styles.tr_score}>
-            <th>Jogador</th>
-            <th>Pontuação</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {renderPlayers()}
-        </tbody>
-      </table>
-      </div>
-
-      <div className={styles.botoes}>
-        <div className={styles.div_escolher_time}>
-          <button className={styles.escolher_time} onClick={handleChooseTeam}>ESCOLHER TIME</button>
+            <tbody>
+              {renderPlayers()}
+            </tbody>
+            
+          </table>
         </div>
-        <div className={styles.div_confirmar}>
-          <button className={styles.confirmar} onClick={handleConfirm}>CONFIRMAR</button>
-        </div>
-        <div className={styles.div_sair}>
-          <button className={styles.sair} onClick={handleExit}>SAIR</button>
-        </div>
-      </div>
+
+          <div className={styles.div_escolher_time}>
+            <button className={styles.escolher_time} onClick={handleChooseTeam}>ESCOLHER TIME</button>
+          </div>
       </div>
     </div>
     </main>
