@@ -4,6 +4,8 @@ import { playerType } from '@/api/types';
 import PopUp from '../PopUp';
 import ListGoalkeepers from '../../app/squad/components/ListGoalkeepers';
 import ListLinePlayers from '@/app/squad/components/ListLinePlayers';
+import DefaultButton from '../DefaultButton';
+import api from '@/api';
 
 type ListPlayersType = {
     list: boolean;
@@ -13,9 +15,11 @@ type ListPlayersType = {
 export default function Campo({
     players,
     goalkeepers,
+    genderId,
 }: {
     players: playerType[];
     goalkeepers: playerType[];
+    genderId: number
 }) {
     const [captain, setCaptain] = useState<number>(0);
     const [listPlayers, setListPlayers] = useState<ListPlayersType>({
@@ -79,16 +83,9 @@ export default function Campo({
         });
     };
 
-    const handlePopupCancel = () => {
-        setListPlayers({
-            ...listPlayers,
-            list: false,
-        });
-    };
-
-    const getPossiblePlayers = () => { 
+    const getPossiblePlayers = () => {
         let pPlayers: playerType[] = []
-        players.forEach((player) => { 
+        players.forEach((player) => {
             if (!reservePlayers.includes(player.id)) pPlayers.push(player);
         })
         return pPlayers;
@@ -102,6 +99,50 @@ export default function Campo({
         return reserves;
 
     }
+
+    const isValidTeam = () => gkId > 0 && linePlayers.length === 4 && reservePlayers.length === 2;
+
+    const sendTeam = async (genderId: number): Promise<boolean> => {
+        if (isValidTeam()) {
+            const response = await api.team.save(
+                gkId,
+                linePlayers[3], linePlayers[2], linePlayers[1], linePlayers[0],
+                reservePlayers[1], reservePlayers[0],
+                captain,
+                genderId
+            );
+            const { error, simpleTeamUser } = response;
+            if (error?.statusCode === 200 || error?.statusCode === 201) {
+                const {
+                    idPlayerOne,
+                    idPlayerTwo,
+                    idPlayerThree,
+                    idPlayerFour,
+                    idCaptain,
+                    idReservePlayerOne,
+                    idReservePlayerTwo,
+                } = simpleTeamUser;
+                setLinePlayers([
+                    idPlayerOne,
+                    idPlayerTwo,
+                    idPlayerThree,
+                    idPlayerFour,
+                ]);
+                setCaptain(idCaptain);
+                setReservePlayers([idReservePlayerOne, idReservePlayerTwo]);
+                return true;
+            } else {
+                alert(error?.message);
+            }
+        } else {
+            alert(
+                "Você deve escalar o time completo, definindo um capitão e dois reservas para escalar o time!"
+            );
+            return false;
+        }
+        return false;
+    };
+
     return (
         <>
             <div className={style.field}>
@@ -117,13 +158,24 @@ export default function Campo({
                 <div className={`${style.choosePlayer} ${style.b4}`} onClick={() => handleListPlayersClick('player')}>J4</div>
                 <div className={`${style.choosePlayer} ${style.b5}`} onClick={() => handleListPlayersClick('player')}>J5</div>
             </div>
-            <div className={style.reserves}>
-                <h4>RESERVAS</h4>
-                <div className={style.reservesArea}>
-                    <div className={`${style.choosePlayer} ${style.r1}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
-                    <div className={`${style.choosePlayer} ${style.r2}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
-                </div>
 
+            <div className={style.teamActions}>
+                <div className={style.reserves}>
+                    <h4>RESERVAS</h4>
+                    <div className={style.reservesArea}>
+                        <div className={`${style.choosePlayer} ${style.r1}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
+                        <div className={`${style.choosePlayer} ${style.r2}`} onClick={() => handleListPlayersClick('reserve')}>R</div>
+                    </div>
+                </div>
+                <div className={style.buttons}>
+                    <DefaultButton text='CONFIRMAR' action={() => { sendTeam(genderId) }} />
+                    <DefaultButton text='CANCELAR' dispensed action={() => {
+                        unsetAsCaptain();
+                        setLinePlayers([]);
+                        setReservePlayers([]);
+                        unsetGkId()
+                    }} />
+                </div>
             </div>
             {listPlayers.list && listPlayers.type === 'goalkeeper' && (
                 <PopUp
@@ -179,6 +231,7 @@ export default function Campo({
                         gkId={gkId}
                         squad={linePlayers}
                         isReserve={false}
+                        reserves={reservePlayers}
                     />
                 </PopUp>
             )}
@@ -208,6 +261,7 @@ export default function Campo({
                         gkId={gkId}
                         squad={reservePlayers}
                         isReserve
+                        reserves={reservePlayers}
                     />
                 </PopUp>
             )}

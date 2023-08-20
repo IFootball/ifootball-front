@@ -1,5 +1,5 @@
 import axios from "axios";
-import { classes_type, playerType, user_type } from "./types";
+import { TeamUserResponse, classes_type, playerType, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -68,8 +68,29 @@ export default {
                         playerType: playerType,
                     }
                 });
-        
-                console.log(response.data);
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        }
+    },
+    team: {
+        save: async (gkId: number, idLinePlayerFour: number, idLinePlayerThree: number, idLinePlayerTwo: number, idLinePlayerOne: number, idReservePlayerTwo: number, idReservePlayerOne: number, idCaptain: number, idGender: number): Promise<TeamUserResponse> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.post(`/team-user/${idGender}`, {
+                    params: {
+                        idGoalkeeper: gkId,
+                        idLinePlayerFour,
+                        idLinePlayerThree,
+                        idLinePlayerOne,
+                        idLinePlayerTwo,
+                        idReservePlayerOne,
+                        idReservePlayerTwo,
+                        idCaptain
+                    }
+                });
+                console.log(response.config)
                 return response.data;
             } catch (error) {
                 throw error;

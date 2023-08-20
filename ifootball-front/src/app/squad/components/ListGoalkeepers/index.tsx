@@ -11,7 +11,7 @@ interface listPlayersProps {
     gkId: number,
     setAsCaptainAction: (id: number) => void,
     unsetAsCaptainAction: (id: number) => void,
-    captainId: number,
+    captainId: number
 }
 export default function ListGoalkeepers({goalkeepers, callbackAction, addPlayerAction, dispensePlayerAction, gkId, squad, setAsCaptainAction, unsetAsCaptainAction, captainId}: listPlayersProps) {
     return (

@@ -1,4 +1,4 @@
-@import './globals.scss';
+@import "./globals.scss";
 
 .choosePlayer {
     position: absolute;
@@ -12,12 +12,14 @@
     justify-content: center;
     color: white;
     font-family: $defaultFont;
+    // transform: rotate(90deg);
 }
 .field {
-    background-color: #97BB87;
+    background-color: #97bb87;
     width: 670px;
     height: 334px;
     position: relative;
+    // transform: rotate(-90deg);
 
     .lateral {
         margin: 10px;
@@ -61,7 +63,6 @@
         border-left: none;
     }
 
-
     .b1,
     .b4,
     .b5 {
@@ -102,5 +103,35 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
+    }
+}
+
+.teamActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 670px;
+    .reserves {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 79px;
+        height: 100px;
+        .reservesArea {
+            display: flex;
+            gap: 10px;
+            width: 79px;
+            height: 100px;
+    
+            .r1 {
+                margin-left: 43px;
+            }
+        }
+    }
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 30px;
     }
 }

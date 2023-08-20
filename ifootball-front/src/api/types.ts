@@ -1,3 +1,9 @@
+export type ErrorResponse = {
+    error?: {
+        message: string;
+        statusCode: number;
+    };
+};
 export type user_type = {
     idClass: number,
     name: string,
@@ -34,3 +40,18 @@ export type playerType = {
     playerType: number,
     inSquad?: boolean
 }
+
+export type TeamUserResponse = ErrorResponse & {
+  simpleTeamUser: {
+    idUser: number;
+    idCaptain: number;
+    idGender: number;
+    idGoalkeeper: number;
+    idPlayerOne: number;
+    idPlayerTwo: number;
+    idPlayerThree: number;
+    idPlayerFour: number;
+    idReservePlayerOne: number;
+    idReservePlayerTwo: number;
+  };
+};

@@ -13,9 +13,10 @@ interface playerProps {
     unsetAsCaptain: (id: number) => void,
     squad: number[],
     gkId: number,
-    isReserveChoose: boolean
+    isReserveChoose: boolean,
+    reserves?: number[]
 }
-export default function PlayerComponent({ player, isCaptain = false, addPlayer, dispensePlayer, setAsCaptain, unsetAsCaptain, squad, gkId, isReserveChoose }: playerProps) {
+export default function PlayerComponent({ player, isCaptain = false, addPlayer, dispensePlayer, setAsCaptain, unsetAsCaptain, squad, gkId, isReserveChoose, reserves }: playerProps) {
     return (
         <>
             {
@@ -80,10 +81,10 @@ export default function PlayerComponent({ player, isCaptain = false, addPlayer, 
                     <div className={style.playerConfigs}>
                         <div />
                         {
-                            ((player.playerType === CONSTS.playerTypes.lineplayer) && squad.includes(player.id)) || ((player.playerType === CONSTS.playerTypes.goalkeeper) && (gkId === player.id)) ?
+                            reserves && ((player.playerType === CONSTS.playerTypes.lineplayer) && reserves.includes(player.id)) ?
                                 <DefaultButton small dispensed text='DISPENSAR' action={dispensePlayer} />
                                 :
-                                ((player.playerType === CONSTS.playerTypes.lineplayer && squad.length < 4) || ((player.playerType === CONSTS.playerTypes.goalkeeper) && gkId === 0) ? <DefaultButton small text='ESCALAR' action={addPlayer} /> : <DefaultButton small text='ESCALAR' unactive />)
+                                reserves && ((player.playerType === CONSTS.playerTypes.lineplayer && reserves.length < 2) ? <DefaultButton small text='ESCALAR' action={addPlayer} /> : <DefaultButton small text='ESCALAR' unactive />)
                         }
                     </div>
                 </div>
