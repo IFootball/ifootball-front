@@ -1,5 +1,5 @@
 import axios from "axios";
-import { classes_type, playerType, user_type, teamClassPlayer } from "./types";
+import { classes_type, completePlayerScout, playerType, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -114,7 +114,7 @@ export default {
                 throw error;
             }
         },
-        listPlayers: async (idTeamClass: number,take: number, page: number): Promise<{ data: teamClassPlayer[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
+        listPlayers: async (idTeamClass: number,take: number, page: number): Promise<{ data: playerType[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
                 const response = await api.get('/team-classes/list-player/'+idTeamClass, {
