@@ -1,0 +1,29 @@
+@import 'globals.scss';
+.teamCard {
+    width: 90%;
+    height: 80px;
+    background-color: $terciaryGreen;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    & div{
+        margin-left: 2em;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        & p{
+            margin: 0;
+        }
+    }
+
+    .choseButton{
+        background-color: $quinaryGreen;
+        border: none;
+        padding: 0 20px;
+        height: 100%;
+        color: white;
+    }
+}

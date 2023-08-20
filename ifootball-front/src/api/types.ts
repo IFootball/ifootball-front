@@ -7,18 +7,19 @@ export type ErrorResponse = {
     };
 };
 export type user_type = {
-    idClass: number,
-    name: string,
-    email: string
-}
+  idClass: number;
+  name: string;
+  email: string;
+};
 export type error_type = {
-    message: string,
-    statusCode: number
-}
+  message: string;
+  statusCode: number;
+};
 
 export type classes_type = {
     id: number,
-    name: string
+    idGender: string,
+    className: string
 }
 
 export type JWTToken = {
@@ -71,3 +72,43 @@ export type user_team_type = ErrorResponse & {
         reservePlayerTwo: playerType
     }
 } 
+export type teamClassPlayer = {
+    id: number,
+    name: string,
+    score: number,
+}
+export type completePlayerScout = {
+    id: number;
+    name: string;
+    image: string;
+    className: string;
+    idTeamClass: number;
+    idGender: number;
+    playerType: number;
+    assists: number;
+    fouls: number;
+    goals: number;
+    redCard: number;
+    wins: number;
+    yellowCard: number;
+    takenGols: number;
+    penaltySaves: number;
+    saves: number;
+  };
+  
+  export enum ScoutTypeEnum {
+      Goals = "goals",
+      Assists = "assists",
+      Fouls = "fouls",
+      RedCard = "redCard",
+      Wins = "wins",
+      YellowCard = "yellowCard",
+      TakenGols = "takenGols",
+      Saves = "saves",
+      PenaltySaves = "penaltySaves",
+    }
+  
+  export enum playerTypeEnum {
+    Linha = 0,
+    Goleiro = 1,
+  }
