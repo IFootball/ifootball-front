@@ -78,17 +78,15 @@ export default {
         save: async (gkId: number, idLinePlayerFour: number, idLinePlayerThree: number, idLinePlayerTwo: number, idLinePlayerOne: number, idReservePlayerTwo: number, idReservePlayerOne: number, idCaptain: number, idGender: number): Promise<TeamUserResponse> => {
             setAuthorizationHeader();
             try {
-                const response = await api.post(`/team-user/${idGender}`, {
-                    params: {
-                        idGoalkeeper: gkId,
-                        idLinePlayerFour,
-                        idLinePlayerThree,
-                        idLinePlayerOne,
-                        idLinePlayerTwo,
-                        idReservePlayerOne,
-                        idReservePlayerTwo,
-                        idCaptain
-                    }
+                const response = await api.post(`/team-users/${idGender}`, {
+                    idGoalkeeper: gkId,
+                    idLinePlayerFour,
+                    idLinePlayerThree,
+                    idLinePlayerOne,
+                    idLinePlayerTwo,
+                    idReservePlayerOne,
+                    idReservePlayerTwo,
+                    idCaptain
                 });
                 console.log(response.config)
                 return response.data;
