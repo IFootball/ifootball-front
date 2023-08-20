@@ -86,12 +86,21 @@ export default function Campo({
         });
     };
 
+    const getPossiblePlayers = () => { 
+        let pPlayers: playerType[] = []
+        players.forEach((player) => { 
+            if (!reservePlayers.includes(player.id)) pPlayers.push(player);
+        })
+        return pPlayers;
+    }
     const getPossibleReserves = () => {
         let reserves: playerType[] = []
         players.forEach((player) => {
             if (!linePlayers.includes(player.id)) reserves.push(player);
         })
+        console.log(reservePlayers)
         return reserves;
+
     }
     return (
         <>
@@ -157,7 +166,7 @@ export default function Campo({
                         captainId={captain}
                         setAsCaptainAction={(id: number) => setAsCaptain(id)}
                         unsetAsCaptainAction={(id: number) => unsetAsCaptain()}
-                        linePlayers={players}
+                        linePlayers={getPossiblePlayers()}
                         callbackAction={() => {
                             setListPlayers({
                                 ...listPlayers,
