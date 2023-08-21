@@ -15,6 +15,8 @@ import { CarregandoCard } from "@/components/carregandoCard";
 import { ErroCard } from "@/components/erroCard";
 import PopUp from "@/components/PopUp";
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface PontuacaoJogadorProps {
     params: {
@@ -24,6 +26,7 @@ interface PontuacaoJogadorProps {
 
 export default function PontuacaoJogador({ params }: PontuacaoJogadorProps) {
     const id = params.id;
+
 
     const playerNull: completePlayerScout = {
         assists: 0,
@@ -46,7 +49,6 @@ export default function PontuacaoJogador({ params }: PontuacaoJogadorProps) {
 
     const [loading, setLoading] = useState<boolean>(true);
     const [errorGet, setErrorGet] = useState<boolean | string>(false);
-    const [sucessoScout, setSucessoScout] = useState<boolean>(false);
     const [errorScout, setErrorScout] = useState<boolean | string>(false);
     const [scout, setScout] = useState<completePlayerScout>(playerNull);
 
@@ -77,7 +79,7 @@ export default function PontuacaoJogador({ params }: PontuacaoJogadorProps) {
                 scout.saves
             );
             setErrorScout(false);
-            setSucessoScout(true);
+            toast.success("Pontuação salva com sucesso!")
         } catch (error) {
             setErrorScout(error.response?.data);
         }
@@ -326,7 +328,9 @@ export default function PontuacaoJogador({ params }: PontuacaoJogadorProps) {
     return (
         <div className={styles.container}>
             {renderContent()}
-            {sucessoScout && <PopUp>Atributos atualizados!</PopUp>}
+            <ToastContainer
+            theme="colored"
+            />
         </div>
     );
 }
