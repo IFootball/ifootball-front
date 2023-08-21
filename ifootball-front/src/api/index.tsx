@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TeamUserResponse, classes_type, completePlayerScout, playerType, user_team_type, user_type } from "./types";
+import { TeamUserResponse, classes_type, completePlayerScout, playerType, teamClassPlayer, user_team_type, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -72,6 +72,28 @@ export default {
             } catch (error) {
                 throw error;
             }
+        },
+        getScout: async(idPlayer: number): Promise<{ completePlayerDto: completePlayerScout}> => {
+            setAuthorizationHeader();
+                const response = await api.get('/players/'+idPlayer);
+        
+                return response.data;
+        },
+        setScout: async(idPlayer: number, goals: number,assists: number,yellowCard: number,redCard: number,fouls: number,wins: number,takenGols: number | null, penaltySaves: number | null, saves: number | null ): Promise<{ completePlayerDto: completePlayerScout}> => {
+            setAuthorizationHeader();
+                const response = await api.patch('/players/'+idPlayer, {
+                        goals: goals,
+                        assists: assists,
+                        yellowCard: yellowCard,
+                        redCard: redCard,
+                        fouls: fouls,
+                        wins: wins,
+                        takenGols:takenGols,
+                        penaltySaves: penaltySaves,
+                        saves: saves
+                  });
+        
+                return response.data;
         }
     },
     team: {
@@ -102,28 +124,6 @@ export default {
             } catch (error) {
                 throw error;
             }
-        },
-        getScout: async(idPlayer: number): Promise<{ completePlayerDto: completePlayerScout}> => {
-            setAuthorizationHeader();
-                const response = await api.get('/players/'+idPlayer);
-        
-                return response.data;
-        },
-        setScout: async(idPlayer: number, goals: number,assists: number,yellowCard: number,redCard: number,fouls: number,wins: number,takenGols: number | null, penaltySaves: number | null, saves: number | null ): Promise<{ completePlayerDto: completePlayerScout}> => {
-            setAuthorizationHeader();
-                const response = await api.patch('/players/'+idPlayer, {
-                        goals: goals,
-                        assists: assists,
-                        yellowCard: yellowCard,
-                        redCard: redCard,
-                        fouls: fouls,
-                        wins: wins,
-                        takenGols:takenGols,
-                        penaltySaves: penaltySaves,
-                        saves: saves
-                  });
-        
-                return response.data;
         }
     },
     teamClass: {
@@ -142,16 +142,15 @@ export default {
                 throw error;
             }
         },
-        listPlayers: async (idTeamClass: number,take: number, page: number): Promise<{ data: playerType[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
+        listPlayers: async (idTeamClass: number,take: number, page: number): Promise<{ data: teamClassPlayer[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
-                const response = await api.get('/team-classes/list-player/'+idTeamClass, {
+                const response = await api.get(`/team-classes/list-player/${idTeamClass}`, {
                     params: {
                         Take: take,
                         Page: page
                     }
                 });
-        
                 return response.data;
             } catch (error) {
                 throw error;

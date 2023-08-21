@@ -60,7 +60,6 @@ export default function Male() {
                 
                 return true;
             } else {
-                alert(response.error?.message);
                 return false;
             }
         } catch (error) {

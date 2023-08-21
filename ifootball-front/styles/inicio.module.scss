@@ -1,196 +1,187 @@
 @import "./globals.scss";
 
 .divlogoadm {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-
-  .logo {
-    margin: 1em;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: end;
-    justify-content: right;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
 
-    & h1 {
-      margin: 0;
-      align-items: end;
-      font-family: "Inter", sans-serif;
-      font-size: 2em;
+    .logo {
+        margin: 1em;
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: right;
+
+        & h1 {
+            margin: 0;
+            align-items: end;
+            font-family: "Inter", sans-serif;
+            font-size: 2em;
+        }
     }
-  }
 
-  .logoSair{
-    width: 50px;
-    height: 40px;
-  }
+    .logoSair {
+        width: 50px;
+        height: 40px;
+        cursor: pointer;
+    }
 }
-
-
 
 .table {
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  text-align: center;
-  overflow-y: auto;
-  max-height: 70vh;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 70vh;
 
-  .table_score {
-    border-collapse: collapse;
-    font-family: "Roboto", sans-serif;
-    align-items: center;
-    max-width: 80vh;
-  
-    & td{
-      text-align: center;
-      border: 1px solid #000000;
-      &:nth-child(even) {
-        background-color: #f2f2f2;
-      }
+    .table_score {
+        border-collapse: collapse;
+        font-family: "Roboto", sans-serif;
+        align-items: center;
+        max-width: 80vh;
+
+        & td {
+            text-align: center;
+            border: 1px solid #000000;
+            &:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        }
+
+        & th {
+            width: 100%;
+        }
     }
-  
-    & th {
-      width: 100%;
-    }
-  
-  }
 }
 
-
-
 .div_container {
-  width: 100%;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .container_2 {
-  width: 100%;
-  height: 60vh;
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    width: 100%;
+    height: 60vh;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .botoes {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .div_escolher_time {
-  width: 100%;
-  
-  & button {
-    cursor: pointer;
-    transition: all 0.5s ease;
+    width: 100%;
 
-    &:hover {
-      background-color: rgba(128, 128, 128, 0.711);
-      transform: scale(1.1);
+    & button {
+        cursor: pointer;
+        transition: all 0.5s ease;
+
+        &:hover {
+            background-color: rgba(128, 128, 128, 0.711);
+            transform: scale(1.1);
+        }
     }
-  }
-  
 }
 
 .escolher_time {
-  width: 100%;
-  max-width: 40vh;
-  border: 0px solid black;
-  background-color: #285430;
-  color: white;
-  padding: 8px 1em;
-  margin-top: 2em;
+    width: 100%;
+    max-width: 40vh;
+    border: 0px solid black;
+    background-color: #285430;
+    color: white;
+    padding: 8px 1em;
+    margin-top: 2em;
 }
 
 .div_confirmar {
-  width: 100%;
+    width: 100%;
 }
 
 .confirmar {
-  width: 100%;
-  max-width: 40vh;
-  border: 0px solid black;
-  background-color: #50883b;
-  color: white;
-  padding: 8px 1em;
-  margin: 1em 0em;
+    width: 100%;
+    max-width: 40vh;
+    border: 0px solid black;
+    background-color: #50883b;
+    color: white;
+    padding: 8px 1em;
+    margin: 1em 0em;
 }
 
 .div_sair {
-  width: 100%;
+    width: 100%;
 }
 
 .sair {
-  width: 100%;
-  max-width: 40vh;
-  border: 0px solid black;
-  background-color: #d13939;
-  color: white;
-  padding: 8px 1em;
-  margin: 2em 0em;
+    width: 100%;
+    max-width: 40vh;
+    border: 0px solid black;
+    background-color: #d13939;
+    color: white;
+    padding: 8px 1em;
+    margin: 2em 0em;
 }
 
 .jogadores_name {
-  color: black;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .jogador_div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
 
-  & h4 {
-    width: 10%;
-    margin-right: 0;
-    text-align: left;
-  }
-  & Link{
-    width: 90%;
-    text-decoration: none;
-  }
-
+    & h4 {
+        width: 10%;
+        margin-right: 0;
+        text-align: left;
+    }
+    & Link {
+        width: 90%;
+        text-decoration: none;
+    }
 }
-
 
 @media screen and (max-width: 767px) {
-  .divlogoadm{
-    flex-direction: row;
-  }
+    .divlogoadm {
+        flex-direction: row;
+    }
 
-  .container_2 {
-    display: flex;
-    flex-direction: column;
-  }
+    .container_2 {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
-
-.Link_jogador_name{
-  text-decoration: none;
-  width: 100%;
+.Link_jogador_name {
+    text-decoration: none;
+    width: 100%;
 }
 
-.h4link{
-  width: 10%;
+.h4link {
+    width: 10%;
 }
 
-.playername{
-  width: 90%;
-  padding: 8px 4em;
+.playername {
+    width: 90%;
+    padding: 8px 4em;
 }

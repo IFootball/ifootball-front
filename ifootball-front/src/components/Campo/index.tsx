@@ -118,9 +118,7 @@ export default function Campo({
         players.forEach((player) => {
             if (!linePlayers.includes(player.id)) reserves.push(player);
         })
-        console.log(reservePlayers)
         return reserves;
-
     }
 
     const isValidTeam = () => gkId > 0 && linePlayers.length === 4 && reservePlayers.length === 2;
@@ -154,8 +152,6 @@ export default function Campo({
                 setCaptain(idCaptain);
                 setReservePlayers([idReservePlayerOne, idReservePlayerTwo]);
                 return true;
-            } else {
-                alert(error?.message);
             }
         } else {
             alert(
