@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../styles/rankingTimes.scss";
+import styles from "../../../styles/rankingTimes.module.scss";
 import Header from "@/components/Header";
 
 const mockRankingData = [
@@ -10,33 +10,36 @@ const mockRankingData = [
 
 export default function Home() {
   return (
-    <div className={styles.HomePage}>
-      <Header />
-      <div className={styles.homeUtil}>
-        <div className={styles.titulo}>
-          <h3>TOP PONTUAÇÃO POR TIME</h3>
-        </div>
-        <div className={styles.ranking}>
-          <table>
-            <thead>
-              <tr>
-                <th>Posição</th>
-                <th>Jogador</th>
-                <th>Pontuação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockRankingData.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.posição}</td>
-                  <td>{item.jogador}</td>
-                  <td>{item.pontuação}</td>
+    <div className={styles.container}>
+        <div className={styles.homePage}>
+        <Header />
+        <div className={styles.homeUtil}>
+            <div className={styles.titulo}>
+            <h3>TOP PONTUAÇÃO POR TIME</h3>
+            </div>
+            <div className={styles.ranking}>
+            <table>
+                <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Jogador</th>
+                    <th>Pontuação</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+                </thead>
+                <tbody>
+                {mockRankingData.map((item, index) => (
+                    <tr key={index}>
+                    <td>{item.posição}</td>
+                    <td>{item.jogador}</td>
+                    <td>{item.pontuação}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            </div>
         </div>
-      </div>
+        <div className={styles.voltar}>VOLTAR</div>
+        </div>
     </div>
   );
 }
