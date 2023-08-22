@@ -49,15 +49,13 @@ export default function Male() {
     const loadUserTeam = async (): Promise<boolean> => {
         try {
             const response = await api.team.get(CONSTS.genderIds.male);
-            if (response.error?.statusCode === 200 || response.error?.statusCode === 201) {
+            if (!response.error) {
                 const { completeTeamUser } = response;
                 const { idCaptain, goalkeeper, linePlayerOne, linePlayerTwo, linePlayerThree, linePlayerFour, reservePlayerOne, reservePlayerTwo } = completeTeamUser;
-                
                 setUserCaptain(idCaptain);
                 setUserGoalkeeper(goalkeeper.id);
                 setUserTeam([linePlayerOne.id, linePlayerTwo.id, linePlayerThree.id, linePlayerFour.id]);
-                setUserReserves([reservePlayerOne.id, reservePlayerTwo.id]);
-                
+                setUserReserves([reservePlayerOne.id, reservePlayerTwo.id]);   
                 return true;
             } else {
                 return false;

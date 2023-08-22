@@ -50,7 +50,7 @@ export default function Female() {
     const loadUserTeam = async (): Promise<boolean> => {
         try {
             const response = await api.team.get(CONSTS.genderIds.male);
-            if (response.error?.statusCode === 200 || response.error?.statusCode === 201) {
+            if (!response.error) {
                 const { completeTeamUser } = response;
                 const { idCaptain, goalkeeper, linePlayerOne, linePlayerTwo, linePlayerThree, linePlayerFour, reservePlayerOne, reservePlayerTwo } = completeTeamUser;
                 
