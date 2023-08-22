@@ -1,0 +1,66 @@
+@import './globals.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-top: 30px;
+}
+
+.homePage {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    .homeUtil {
+        display: grid;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+
+        .titulo {
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 50px;
+        }
+
+        .ranking {
+            margin-top: 20px;
+            width: 100%;
+
+            th, td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: center;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+        }
+
+    }
+    .voltar {
+        background-color: #D13939;
+        color: #ffffff;
+        border: none;
+        padding: 15px 15px;
+        cursor: pointer;
+        transition: all ease .2s;
+        font-size: 18px;
+        text-transform: uppercase;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        width: 91%;
+        text-align: center;
+        margin-top: 30px;
+    
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+}
