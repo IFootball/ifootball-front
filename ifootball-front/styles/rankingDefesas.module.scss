@@ -1,0 +1,122 @@
+@import './globals.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-top: 30px;
+}
+
+.homePage {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    .homeUtil {
+        display: grid;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+
+        .titulo {
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 50px;
+            font-size: 25px;
+        }
+
+        .ranking {
+            margin-top: 20px;
+            width: 100%;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px 50px;
+                text-align: center;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+        }
+
+    }
+    .voltar {
+        background-color: #D13939;
+        color: #ffffff;
+        border: none;
+        padding: 15px;
+        cursor: pointer;
+        transition: all ease .2s;
+        font-size: 18px;
+        text-transform: uppercase;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        width: 200px;
+        text-align: center;
+        margin-top: 30px;
+    
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .homePage{
+
+        .homeUtil{
+            
+            .titulo{
+                font-size: 20px;
+            }
+
+            .ranking{
+                
+                th, td {
+                    border: 1px solid black;
+                    padding: 10px 20px;
+                    text-align: center;
+                }
+            }
+
+            .voltar{
+                font-size: 15px;
+                padding: 12px;
+            }
+        }
+    }
+}
+
+@media (max-width: 320px){
+    .homePage{
+
+        .homeUtil{
+            
+            .titulo{
+                font-size: 15px;
+            }
+
+            .ranking{
+                
+                th, td {
+                    border: 1px solid black;
+                    padding: 10px 10px;
+                    text-align: center;
+                }
+            }
+
+            .voltar{
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+    }
+}

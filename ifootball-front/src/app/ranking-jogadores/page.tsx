@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../styles/rankingTimes.module.scss";
+import styles from "../../../styles/rankingJogadores.module.scss";
 import Header from "@/components/Header";
 import Image from "next/image";
 import primeiro from "../imagens/primeiro.png";
@@ -19,7 +19,7 @@ export default function Home() {
         <Header />
         <div className={styles.homeUtil}>
             <div className={styles.titulo}>
-            <h3>TOP PONTUAÇÃO POR TIMES</h3>
+            <h3>TOP PONTUAÇÃO POR JOGADORES</h3>
             </div>
             <div className={styles.ranking}>
               <table className={styles.tabela}>
