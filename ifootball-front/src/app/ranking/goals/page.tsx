@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from "../../../styles/rankingGols.module.scss";
+import styles from "../../../../styles/rankingGols.module.scss";
 import Header from "@/components/Header";
 import Image from "next/image";
-import primeiro from "../imagens/primeiro.png";
-import segundo from "../imagens/segundo.png";
-import terceiro from "../imagens/terceiro.png";
+import primeiro from "../../imagens/primeiro.png";
+import segundo from "../../imagens/segundo.png";
+import terceiro from "../../imagens/terceiro.png";
 
 const mockRankingData = [
   { posição: <Image src={primeiro} alt="primeiro" />, jogador: 'Jogador A', pontuação: 100 },
