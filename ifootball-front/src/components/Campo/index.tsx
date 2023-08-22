@@ -167,7 +167,7 @@ export default function Campo({
         setLinePlayers(squad);
         setReservePlayers(userReserves);
         setGkId(goalkeeperId)
-    }, [captainId, squad, ])
+    }, [captainId, squad, userReserves, goalkeeperId])
 
     return (
         <>
