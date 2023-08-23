@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../../styles/rankingAssistencias.module.scss";
+import styles from "../../../../styles/rankingAssists.module.scss";
 import Header from "@/components/Header";
 import Image from "next/image";
 import primeiro from "../../imagens/primeiro.png";

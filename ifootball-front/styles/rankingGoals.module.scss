@@ -35,7 +35,11 @@
             align-items: center;
             display: flex;
             flex-direction: column;
-
+            
+            table{
+                border-collapse: collapse;
+            }
+            
             th, td {
                 border: 1px solid black;
                 padding: 10px 50px;
