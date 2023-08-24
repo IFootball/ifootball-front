@@ -8,6 +8,9 @@ import DefaultButton from '../DefaultButton';
 import api from '@/api';
 import ResumedPlayerCard from '../ResumedPlayerComponent';
 import user from '../../app/squad/components/PlayerComponent/user_456212.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ErroCard } from '../erroCard';
 
 
 type ListPlayersType = {
@@ -38,6 +41,7 @@ export default function Campo({
         type: 'goalkeeper',
     });
 
+    const [error, setError] = useState<string | boolean>(false);
     const [gkId, setGkId] = useState<number>(0);
     const [linePlayers, setLinePlayers] = useState<number[]>([]);
     const [reservePlayers, setReservePlayers] = useState<number[]>([]);
@@ -125,41 +129,23 @@ export default function Campo({
 
     const sendTeam = async (genderId: number): Promise<boolean> => {
         if (isValidTeam()) {
-            const response = await api.team.save(
-                gkId,
-                linePlayers[3], linePlayers[2], linePlayers[1], linePlayers[0],
-                reservePlayers[1], reservePlayers[0],
-                captain,
-                genderId
-            );
-            const { error, simpleTeamUser } = response;
-            if (error?.statusCode === 200 || error?.statusCode === 201) {
-                const {
-                    idPlayerOne,
-                    idPlayerTwo,
-                    idPlayerThree,
-                    idPlayerFour,
-                    idCaptain,
-                    idReservePlayerOne,
-                    idReservePlayerTwo,
-                } = simpleTeamUser;
-                setLinePlayers([
-                    idPlayerOne,
-                    idPlayerTwo,
-                    idPlayerThree,
-                    idPlayerFour,
-                ]);
-                setCaptain(idCaptain);
-                setReservePlayers([idReservePlayerOne, idReservePlayerTwo]);
-                return true;
+
+            try{
+                await api.team.save(
+                    gkId,
+                    linePlayers[3], linePlayers[2], linePlayers[1], linePlayers[0],
+                    reservePlayers[1], reservePlayers[0],
+                    captain,
+                    genderId
+                );
+                toast.success("Time criado com sucesso!")
+                setError(false)
+            } catch(error){
+                setError(error.response?.data);
             }
         } else {
-            alert(
-                "Você deve escalar o time completo, definindo um capitão e dois reservas para escalar o time!"
-            );
-            return false;
+            setError("Você deve escalar o time completo, definindo um capitão e dois reservas para escalar o time!");
         }
-        return false;
     };
 
     useEffect(() => {
@@ -172,6 +158,9 @@ export default function Campo({
     return (
         <>
             <div className={style.field}>
+                <ToastContainer
+                theme="colored"
+                />
                 <div className={`${style.lateral} ${style.linha}`}>
                     <div className={`${style.linha} ${style.area} ${style.left}`}></div>
                     <div className={`${style.circulo} ${style.linha}`}></div>
@@ -230,7 +219,7 @@ export default function Campo({
                 </div>
                 <div className={style.buttons}>
                     <DefaultButton text='CONFIRMAR' action={() => { sendTeam(genderId) }} />
-                    <DefaultButton text='CANCELAR' dispensed action={() => {
+                    <DefaultButton text='LIMPAR' dispensed action={() => {
                         unsetAsCaptain();
                         setLinePlayers([]);
                         setReservePlayers([]);
@@ -238,6 +227,9 @@ export default function Campo({
                     }} />
                 </div>
             </div>
+
+            {/*<PopUp>{error}</PopUp>*/}
+
             {listPlayers.list && listPlayers.type === 'goalkeeper' && (
                 <PopUp
                     cancelcallback={() => {
