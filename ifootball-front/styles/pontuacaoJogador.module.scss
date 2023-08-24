@@ -42,24 +42,31 @@
     align-items: center;
 }
 
-.imagemJogador img {
-    max-width: 60px;
-    max-height: 60px;
+.imagemJogador {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
 }
 
-.tabelaPontuacao th,
-.tabelaPontuacao td {
+.tabelaPontuacao {
+    & th, & td {
     padding: 0px;
     text-align: center;
     margin: 0;
     border: solid #000;
-}
+    }
 
-.tabelaPontuacao th {
+    & th {
     background-color: #f5f5f5;
+    }
+    & tr.linha {
+        border: 1px solid black;
+    }
 }
 
-.tabelaPontuacao tr.linha {
+
+
+.bordasPretas {
     border: 1px solid black;
 }
 
@@ -74,11 +81,12 @@
     color: #fff;
     border: none;
     cursor: pointer;
+
+    &:hover {
+        background-color: #5C5C5C;
+    }
 }
 
-.somar:hover {
-    background-color: #5C5C5C;
-}
 
 .subtrair {
     padding: 8px 21px;
@@ -87,11 +95,12 @@
     color: #fff;
     border: none;
     cursor: pointer;
+
+    &:hover {
+        background-color: #5C5C5C;
+    }
 }
 
-.subtrair:hover {
-    background-color: #5C5C5C;
-}
 
 .confirmar {
     background-color: #50883B;

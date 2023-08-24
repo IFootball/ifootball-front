@@ -15,6 +15,8 @@ interface ResumedPlayerProps {
 }
 
 const ResumedPlayerCard = ({ player, className, isCaptain, dispensePlayer, setAsCaptain, unsetAsCaptain, isReserve }: ResumedPlayerProps) => {
+    const userImage = player.image || user
+
     const [showOptions, setShowOptions] = useState<boolean>(false);
     useEffect(() => {
         if (showOptions) {
@@ -29,8 +31,8 @@ const ResumedPlayerCard = ({ player, className, isCaptain, dispensePlayer, setAs
             <span>{player.name} {isCaptain && <div className={`${style.captainButton} ${style.active} ${style.small}`} onClick={() => unsetAsCaptain(player.id)}>
                 C
             </div>}</span>
-            <div className={style.playerImage} style={{ backgroundImage: `url('${user}')` }}>
-                <Image alt='Player' src={user} width={35} height={35} quality={100} placeholder='blur' style={{ borderRadius: '50%' }} />
+            <div className={style.playerImage}>
+                <Image alt='Player' src={userImage} width={35} height={35} quality={100} style={{ borderRadius: '50%' }} />
             </div>
             {
                 showOptions &&

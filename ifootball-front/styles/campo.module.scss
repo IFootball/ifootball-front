@@ -29,6 +29,7 @@
         // position: relative;
         top: 10px;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
@@ -136,3 +137,23 @@
         gap: 30px;
     }
 }
+
+
+@media screen and (max-width: 767px) {
+
+    .b1, .b2, .b3, .b4, .b5{
+        transform: rotate(90deg);
+    }
+    .field{
+        transform: rotate(-90deg);
+
+        .lateral{
+            position: relative;
+        }
+    }
+
+    .r1 .r2{
+        
+    }
+}
+
