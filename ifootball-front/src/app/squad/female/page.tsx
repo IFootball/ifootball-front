@@ -8,18 +8,19 @@ import Campo from '@/components/Campo';
 import { playerType } from '@/api/types';
 import api from '@/api';
 import CONSTS from '../../../api/constants.json';
-export default function Male() {
+export default function Female() {
     const [goalkeepers, setGoalkeepers] = useState<playerType[]>([]);
     const [players, setPlayers] = useState<playerType[]>([]);
+    const router = useRouter();
 
+    
     const [userGoalkeeper, setUserGoalkeeper] = useState<number>(0);
     const [userTeam, setUserTeam] = useState<number[]>([]);
     const [userReserves, setUserReserves] = useState<number[]>([]);
     const [userCaptain, setUserCaptain] = useState<number>(0);
-    const router = useRouter();
+
     const verifySession = (): boolean => {
         const token = verifyToken();
-
         if (token) {
             return true;
         } else {
@@ -29,7 +30,7 @@ export default function Male() {
     }
 
     const listGoalkeepers = async (): Promise<boolean> => {
-        const response = await api.players.list(50, CONSTS.genderIds.male, CONSTS.playerTypes.goalkeeper);
+        const response = await api.players.list(50, CONSTS.genderIds.female, CONSTS.playerTypes.goalkeeper);
         if (response) {
             setGoalkeepers(response.data);
             return true;
@@ -38,7 +39,7 @@ export default function Male() {
     }
 
     const listLinePlayers = async (): Promise<boolean> => {
-        const response = await api.players.list(200, CONSTS.genderIds.male, CONSTS.playerTypes.lineplayer);
+        const response = await api.players.list(200, CONSTS.genderIds.female, CONSTS.playerTypes.lineplayer);
         if (response) {
             setPlayers(response.data);
             return true;
@@ -52,10 +53,12 @@ export default function Male() {
             if (!response.error) {
                 const { completeTeamUser } = response;
                 const { idCaptain, goalkeeper, linePlayerOne, linePlayerTwo, linePlayerThree, linePlayerFour, reservePlayerOne, reservePlayerTwo } = completeTeamUser;
+                
                 setUserCaptain(idCaptain);
                 setUserGoalkeeper(goalkeeper.id);
                 setUserTeam([linePlayerOne.id, linePlayerTwo.id, linePlayerThree.id, linePlayerFour.id]);
-                setUserReserves([reservePlayerOne.id, reservePlayerTwo.id]);   
+                setUserReserves([reservePlayerOne.id, reservePlayerTwo.id]);
+                
                 return true;
             } else {
                 return false;
@@ -71,12 +74,13 @@ export default function Male() {
         listLinePlayers();
         verifySession();
         loadUserTeam();
+
     }, [])
     return (
         <div className={styles.maleSquadPage}>
             <Header />
             <h2>MONTE SEU TIME!</h2>
-            <Campo genderId={CONSTS.genderIds.male} goalkeepers={goalkeepers} players={players} captainId={userCaptain} goalkeeperId={userGoalkeeper} squad={userTeam} userReserves={userReserves} />
+            <Campo genderId={CONSTS.genderIds.female} goalkeepers={goalkeepers} players={players} captainId={userCaptain} goalkeeperId={userGoalkeeper} squad={userTeam} userReserves={userReserves} />
         </div>
     )
 }

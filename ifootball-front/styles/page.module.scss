@@ -75,6 +75,10 @@
     margin: 0;
     transition: all ease .2s;
   }
+  .registerLink:hover{
+    text-decoration: underline;
+    color: #50883B;
+  }
 
   .registerP,
   .adminP {
