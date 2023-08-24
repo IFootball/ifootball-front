@@ -1,13 +1,33 @@
-import React from "react";
+'use client'
+import React, { useEffect } from "react";
 import styles from "../../../styles/home.module.scss";
 import Header from "@/components/Header";
 import GlobalCard from "@/components/globalCard";
 import Link from "next/link";
 import DefaultButton from "@/components/DefaultButton";
+import { verifyToken } from "@/api/functions";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const now = new Date();
   const marketEnds = new Date('October 09, 2023 23:59:59')
+  const router = useRouter();
+
+  const verifySession = (): boolean => {
+    const token = verifyToken();
+  
+    if (token) {
+      return true;
+    } else {
+      router.push('/');
+      return false;
+    }
+  }
+
+  useEffect(() => {
+    verifySession();
+  }, [])
+
   return (
     <div className={styles.HomePage}>
       <Header />
@@ -28,10 +48,10 @@ export default function Home() {
                 </div>
 
                 <div className={styles.buttons}>
-                  <Link href={'homepage/squad/male'}>
+                  <Link href={'squad/male'}>
                     <DefaultButton text="Time Masculino" />
                   </Link> 
-                  <Link href={'homepage/squad/female'}>
+                  <Link href={'squad/female'}>
                     <DefaultButton text="Time Feminino" />
                   </Link>
                 </div>

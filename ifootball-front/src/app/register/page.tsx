@@ -6,8 +6,8 @@ import api from "@/api";
 import { classes_type } from "@/api/types";
 import Image from "next/image";
 import theme from '../../../styles/globals.module.scss';
-import logo from '../imagens/logo.png';
-import quadra from '../imagens/quadra.png';
+import logo from '../../../public/images/logoFoot.png';
+import quadra from '../../../public/images/quadra.png';
 import { useRouter } from "next/navigation";
 
 export default function Register() {

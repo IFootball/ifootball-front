@@ -4,10 +4,11 @@ import styles from '../../styles/page.module.scss';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from './imagens/logo.png';
+import logo from '../../public/images/logoFoot.png';
 import theme from '../../styles/globals.module.scss';
-import quadra from './imagens/quadra.png';
+import quadra from '../../public/images/quadra.png';
 import api from '@/api';
+import { salvarTokenNoCookie, verifyToken } from '@/api/functions';
 export default function Home() {
 
   const router = useRouter();
@@ -18,9 +19,18 @@ export default function Home() {
     const formData = new FormData(event.currentTarget);
     const response = await api.authentication.login(String(formData.get('user-input')), String(formData.get('password-input')));
     if (!response.error || response.error.statusCode === 200 ||response.error.statusCode === 201) {
-
-      router.push('/homepage')
-      return true;
+      if (salvarTokenNoCookie(response.token)) {
+        let token = verifyToken();
+        console.log(token);
+        if (token?.role === "Administrator") {
+          router.push('/admin/inicio');
+        } else if (token?.role === 'User') {
+          router.push('/homepage')
+        }
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false
     }
@@ -46,9 +56,9 @@ export default function Home() {
             <input className={styles.loginInput} type="password" name="password-input" id="password-input" />
           </div>
           <div className={styles.registerField}>
-            <p className={styles.registerP}>Não tem conta? <Link className={styles.registerLink} href={'/register'}>Clique aqui</Link></p>
+            <p className={styles.registerP}><Link className={styles.registerLink} href={'/register'}>Criar Usuário</Link></p>
           </div>
-          <button type='submit' className={styles.loginButton}>Logar</button>
+          <button type='submit' className={styles.loginButton}>ENTRAR</button>
         </form>
       </div>
     </main>

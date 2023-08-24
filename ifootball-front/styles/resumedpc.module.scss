@@ -1,0 +1,81 @@
+@import "./globals.scss";
+
+.playerCard {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    gap: 5px;
+    margin-top: -15px;
+
+    span {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border-radius: 5px;
+        padding: 3px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+    }
+    .playerImage {
+        border: solid 1px black;
+        background-color: white;
+        border-radius: 100%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: $defaultFont;
+        cursor: pointer;
+    }
+
+    .captainButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        background-color: #bebebe;
+        color: gray;
+        border-radius: 50%;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .active {
+        background-color: $quaternaryGreen;
+        color: white;
+    }
+    .small {
+        width: 15px;
+        height: 15px;
+        font-size: 10px;
+    }
+    .playerActions {
+        width: 50px;
+        display: flex;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        .dispenseButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    }
+}

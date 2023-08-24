@@ -1,0 +1,159 @@
+@import "./globals.scss";
+
+.choosePlayer {
+    position: absolute;
+    border: solid 1px black;
+    background-color: #285430;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: $defaultFont;
+    cursor: pointer;
+    // transform: rotate(90deg);
+}
+.field {
+    background-color: #97bb87;
+    width: 670px;
+    height: 334px;
+    position: relative;
+    // transform: rotate(-90deg);
+
+    .lateral {
+        margin: 10px;
+        width: 644px;
+        height: 308px;
+        // position: relative;
+        top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .linha {
+        border: solid 4px white;
+    }
+
+    .area {
+        width: 70px;
+        height: 140px;
+    }
+
+    .left {
+        border-left: 0;
+    }
+
+    .right {
+        border-right: 0;
+    }
+
+    .circulo {
+        width: 140px;
+        height: 140px;
+        border-radius: 100%;
+        position: relative;
+    }
+
+    .centro {
+        position: absolute;
+        height: calc(334px - 28px);
+        left: calc(50% - 2px);
+        border-left: none;
+    }
+
+    .b1,
+    .b4,
+    .b5 {
+        top: 152px;
+    }
+
+    .b1 {
+        left: 5%;
+    }
+
+    .b2,
+    .b3 {
+        left: 20%;
+    }
+
+    .b2 {
+        top: 23%;
+    }
+
+    .b3 {
+        top: 69%;
+    }
+
+    .b4 {
+        left: 40%;
+    }
+
+    .b5 {
+        left: 60%;
+    }
+
+    .squadPopUp {
+        background-color: white;
+        height: 100%;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+.teamActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 670px;
+    .reserves {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 79px;
+        height: 100px;
+        .reservesArea {
+            display: flex;
+            gap: 10px;
+            width: 79px;
+            height: 100px;
+    
+            .r1 {
+                margin-left: 55px;
+            }
+        }
+    }
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+
+    .b1, .b2, .b3, .b4, .b5{
+        transform: rotate(90deg);
+    }
+    .field{
+        transform: rotate(-90deg);
+
+        .lateral{
+            position: relative;
+        }
+    }
+
+    .r1 .r2{
+        
+    }
+}
+

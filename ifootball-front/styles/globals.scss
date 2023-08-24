@@ -1,11 +1,17 @@
 // FONTE ROBOTO (SERÁ TROCADA!)
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;0,900;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 // CORES:
 $backgroundColor: #f5f5f5;
+$blackDefault: #000000;
 $primaryGreen: #66a571;
 $secondaryGreen: #5f8d4e;
 $terciaryGreen: #285430;
 $quaternaryGreen: #359830;
+$quinaryGreen:  #50883B;
 $red: #d13939;
 $mainFontColor: #121212;
 
@@ -29,4 +35,3 @@ $defaultFont: 'Roboto', sans-serif;
 
 // GERAIS
 $headerWidth: 260px;
-
