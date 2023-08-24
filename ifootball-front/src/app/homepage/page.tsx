@@ -41,7 +41,7 @@ export default function Home() {
                 <div className={styles.homeCardsArea}>
                     <GlobalCard>
                         <div className={styles.time}>
-                            <h1 className={styles.titulo}>Nome do Time</h1>
+                            <h1 className={styles.titulo}>{verifyToken()?.name}</h1>
                             <div className={styles.pontuacaoUsuario}>
                                 <h5 className={styles.subtitulo}>Pontuação:</h5>
                                 <span className={styles.points}>XX.XX</span>
