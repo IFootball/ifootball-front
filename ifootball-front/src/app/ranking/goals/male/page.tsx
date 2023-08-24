@@ -22,7 +22,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        getGoals(CONSTS.genderIds.female);
+        getGoals(CONSTS.genderIds.male);
     }, [])
 
     return (
@@ -31,10 +31,10 @@ export default function Home() {
                 <Header />
                 <div className={styles.homeUtil}>
                     <div className={styles.titulo}>
-                        <h3>MAIORES ARTILHEIRAS</h3>
+                        <h3>MAIORES ARTILHEIROS</h3>
                     </div>
                     <div className={styles.ranking}>
-                        <Tabela genderId={CONSTS.genderIds.female} mockRankingData={ranking} />
+                        <Tabela genderId={CONSTS.genderIds.male} mockRankingData={ranking} />
                     </div>
                 </div>
                 <div className={styles.voltar}>VOLTAR</div>

@@ -186,5 +186,47 @@ export default {
                 throw error;
             }
         },
+        scores: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/player-general`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        saves: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/defenses`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        highestScores: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/user`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
     }
 };

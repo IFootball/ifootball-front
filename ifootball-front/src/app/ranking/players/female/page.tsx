@@ -11,8 +11,8 @@ export default function Home() {
 
     const [ranking, setRanking] = useState<point_fields_type[]>([]);
 
-    const getGoals = async (genderId: number): Promise<boolean> => {
-        const response = await api.ranking.goals(genderId);
+    const getScores = async (genderId: number): Promise<boolean> => {
+        const response = await api.ranking.scores(genderId);
         if (response) {
             setRanking(response.data);
             return true;
@@ -22,7 +22,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        getGoals(CONSTS.genderIds.female);
+        getScores(CONSTS.genderIds.female);
     }, [])
 
     return (
@@ -31,7 +31,7 @@ export default function Home() {
                 <Header />
                 <div className={styles.homeUtil}>
                     <div className={styles.titulo}>
-                        <h3>MAIORES ARTILHEIRAS</h3>
+                        <h3>MELHORES JOGADORAS</h3>
                     </div>
                     <div className={styles.ranking}>
                         <Tabela genderId={CONSTS.genderIds.female} mockRankingData={ranking} />
