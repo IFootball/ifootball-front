@@ -24,7 +24,7 @@ export default function PlayerComponent({ player, isCaptain = false, addPlayer, 
                 <div className={style.playerCard}>
                     {/* <Image src={goalkeeper.image} alt={`${goalkeeper.name}-image`} quality={100} width={85} height={70} placeholder='blur' /> */}
                     <div className={style.leftPart}>
-                        <Image src={userIcon} alt='userIcon' height={65} placeholder='blur' quality={100} />
+                        <Image style={{ borderRadius: '50%' }} src={player.image || userIcon} alt='userIcon' width={65} height={65} quality={100} />
                         {/* {
                             player.image !== 'string' || player.image ?
                             :

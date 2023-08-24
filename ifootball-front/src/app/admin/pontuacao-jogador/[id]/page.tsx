@@ -10,10 +10,8 @@ import {
     playerTypeEnum,
     ScoutTypeEnum,
 } from "@/api/types";
-import { useRouter } from "next/router";
 import { CarregandoCard } from "@/components/carregandoCard";
 import { ErroCard } from "@/components/erroCard";
-import PopUp from "@/components/PopUp";
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -131,8 +129,10 @@ export default function PontuacaoJogador({ params }: PontuacaoJogadorProps) {
                     </div>
                     <div className={styles.imagem}>
                         <Image
+                            width={200}
+                            height={200}
                             className={styles.imagemJogador}
-                            src={imagemJogador}
+                            src={scout.image || imagemJogador}
                             alt="Imagem Jogador"
                         />
                     </div>
