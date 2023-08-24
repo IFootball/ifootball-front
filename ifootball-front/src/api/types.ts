@@ -27,7 +27,8 @@ export type JWTToken = {
     exp: number,
     iat: number,
     nbf: number,
-    role: "User" | "Administrator"
+    role: "User" | "Administrator",
+    name: string
 }
 
 // 0 - Jogador normal | 1 - goleiro
