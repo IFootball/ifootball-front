@@ -119,9 +119,16 @@
 
                     tbody {
                         tr {
+
+                            .tableField {
+                                width: 125px;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                overflow: hidden;
+                            }
                             td {
                                 border: 1px solid black;
-
+                                // width: 125px;
                             }
                         }
                     }

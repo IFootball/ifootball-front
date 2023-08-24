@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../../styles/home.module.scss";
 import Header from "@/components/Header";
 import GlobalCard from "@/components/globalCard";
@@ -7,6 +7,9 @@ import Link from "next/link";
 import DefaultButton from "@/components/DefaultButton";
 import { verifyToken } from "@/api/functions";
 import { useRouter } from "next/navigation";
+import { point_fields_type } from "@/api/types";
+import api from "@/api";
+import CONSTS from '../../api/constants.json';
 
 export default function Home() {
     const now = new Date();
@@ -24,8 +27,21 @@ export default function Home() {
         }
     }
 
+    const [ranking, setRanking] = useState<point_fields_type[]>([]);
+
+    const loadTopThree = async (genderId: number): Promise<boolean> => {
+        const response = await api.ranking.highestScores(genderId, 1, 3);
+        if (response) {
+            setRanking(response.data);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     useEffect(() => {
         verifySession();
+        loadTopThree(CONSTS.genderIds.male);
     }, [])
 
     return (
@@ -64,18 +80,16 @@ export default function Home() {
                             <h5 className={styles.subtitulo}>Top 3 Times:</h5>
                             <table>
                                 <tbody>
-                                    <tr>
-                                        <td> </td>
-                                        <td> </td>
-                                    </tr>
-                                    <tr>
-                                        <td> </td>
-                                        <td> </td>
-                                    </tr>
-                                    <tr>
-                                        <td> </td>
-                                        <td> </td>
-                                    </tr>
+                                    {
+                                        ranking.map((user, index) => {
+                                            return (
+                                                <tr>
+                                                    <td className={styles.tableField}>{user.name}</td>
+                                                    <td>{user.score}</td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
                                 </tbody>
                             </table>
                             <div className={styles.buttons}>
