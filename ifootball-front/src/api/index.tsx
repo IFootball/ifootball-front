@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TeamUserResponse, classes_type, completePlayerScout, playerType, teamClassPlayer, user_team_type, user_type } from "./types";
+import { TeamUserResponse, classes_type, completePlayerScout, playerType, point_fields_type, teamClassPlayer, user_team_type, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -157,4 +157,76 @@ export default {
             }
         },
     },
+    ranking: {
+        assists: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/assists`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        goals: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/goal`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        scores: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/player-general`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        saves: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/defenses`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+        highestScores: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/rankings/${idGender}/user`, {
+                    params: {
+                        ...((Page) ? {Page} : {}),
+                        ...((Take) ? {Take} : {})
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+    }
 };

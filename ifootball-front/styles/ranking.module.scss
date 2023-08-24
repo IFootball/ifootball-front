@@ -1,0 +1,77 @@
+@import "./globals.scss";
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-top: 30px;
+}
+
+.homePage {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    font-family: $defaultFont;
+
+    .homeUtil {
+        display: grid;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+
+        .titulo {
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 50px;
+            font-size: 25px;
+
+            @media (max-width: 768px) {
+                font-size: 20px;
+            }
+
+            @media (max-width: 320px) {
+                font-size: 15px;
+            }
+        }
+
+        .ranking {
+            margin-top: 20px;
+            width: 100%;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .voltar {
+        background-color: #d13939;
+        color: #ffffff;
+        border: none;
+        padding: 15px;
+        cursor: pointer;
+        transition: all ease 0.2s;
+        font-size: 18px;
+        text-transform: uppercase;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        width: 200px;
+        text-align: center;
+        margin-top: 30px;
+
+        @media (max-width: 768px) {
+            font-size: 15px;
+            padding: 12px;
+        }
+
+        @media (max-width: 320px) {
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+}

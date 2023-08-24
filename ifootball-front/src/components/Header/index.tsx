@@ -48,11 +48,11 @@ export default function Navbar() {
                                 {
                                     openMenuBar &&
                                     <div className={styles.menu_in_menu_ops}>
-                                        <Link className={styles.ops} href={'/homepage'}>Time</Link>
-                                        <Link className={styles.ops} href={'/homepage'}>Jogador</Link>
-                                        <Link className={styles.ops} href={'/homepage'}>Gols</Link>
-                                        <Link className={styles.ops} href={'/homepage'}>Assistência</Link>
-                                        <Link className={styles.ops} href={'/homepage'}>Defesas</Link>
+                                        <Link className={styles.ops} href={'/ranking/teams'}>Time</Link>
+                                        <Link className={styles.ops} href={'/ranking/players'}>Jogador</Link>
+                                        <Link className={styles.ops} href={'/ranking/goals'}>Gols</Link>
+                                        <Link className={styles.ops} href={'/ranking/assists'}>Assistência</Link>
+                                        <Link className={styles.ops} href={'/ranking/saves'}>Defesas</Link>
                                     </div>
                                 }
                             </div>

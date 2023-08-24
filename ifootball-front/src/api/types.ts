@@ -113,3 +113,8 @@ export enum playerTypeEnum {
     Linha = 0,
     Goleiro = 1,
 }
+
+export type point_fields_type = {
+    name: string,
+    score: number
+}
