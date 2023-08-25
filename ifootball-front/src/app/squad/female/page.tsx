@@ -13,7 +13,6 @@ export default function Female() {
     const [players, setPlayers] = useState<playerType[]>([]);
     const router = useRouter();
 
-    
     const [userGoalkeeper, setUserGoalkeeper] = useState<number>(0);
     const [userTeam, setUserTeam] = useState<number[]>([]);
     const [userReserves, setUserReserves] = useState<number[]>([]);
@@ -49,7 +48,7 @@ export default function Female() {
 
     const loadUserTeam = async (): Promise<boolean> => {
         try {
-            const response = await api.team.get(CONSTS.genderIds.male);
+            const response = await api.team.get(CONSTS.genderIds.female);
             if (!response.error) {
                 const { completeTeamUser } = response;
                 const { idCaptain, goalkeeper, linePlayerOne, linePlayerTwo, linePlayerThree, linePlayerFour, reservePlayerOne, reservePlayerTwo } = completeTeamUser;
