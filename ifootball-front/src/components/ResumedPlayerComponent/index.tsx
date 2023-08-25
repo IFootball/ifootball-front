@@ -4,6 +4,7 @@ import style from '../../../styles/resumedpc.module.scss';
 import user from '../../app/squad/components/PlayerComponent/user_456212.png';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { splitName } from '@/api/functions';
 interface ResumedPlayerProps {
     player: playerType,
     className?: string,
@@ -27,16 +28,27 @@ const ResumedPlayerCard = ({ player, className, isCaptain, dispensePlayer, setAs
         }
     }, [showOptions]);
     return (
-        <div className={`${style.playerCard} ${className}`} style={isReserve ? {marginTop: '0'} : {}} onClick={() => setShowOptions(true)}>
-            <span>{player.name} {isCaptain && <div className={`${style.captainButton} ${style.active} ${style.small}`} onClick={() => unsetAsCaptain(player.id)}>
-                C
-            </div>}</span>
+        <div className={`${style.playerCard} ${className}`} style={isReserve ? { marginTop: '0' } : {}} onClick={() => setShowOptions(true)}>
+            {
+                !isReserve &&
+                <span>
+                    {splitName(player.name)}
+                    {isCaptain && (
+                        <div
+                            className={`${style.captainButton} ${style.active} ${style.small}`}
+                            onClick={() => unsetAsCaptain(player.id)}
+                        >
+                            C
+                        </div>
+                    )}
+                </span>
+            }
             <div className={style.playerImage}>
-                <Image alt='Player' src={userImage} width={35} height={35} quality={100} style={{ borderRadius: '50%' }} />
+                <Image alt='Player' src={userImage} width={35} height={35} quality={100} style={{ borderRadius: '50%', objectFit: 'cover' }} loading='lazy' />
             </div>
             {
                 showOptions &&
-                <div className={style.playerActions} style={isReserve ? {justifyContent: 'center', alignItems: 'center'} : {}}>
+                <div className={style.playerActions} style={isReserve ? { justifyContent: 'center', alignItems: 'center' } : {}}>
                     {
                         !isReserve && setAsCaptain &&
                         <>
@@ -46,7 +58,7 @@ const ResumedPlayerCard = ({ player, className, isCaptain, dispensePlayer, setAs
                                         C
                                     </div>
                                     :
-                                    <div className={style.captainButton} onClick={() => setAsCaptain(player.id) }>
+                                    <div className={style.captainButton} onClick={() => setAsCaptain(player.id)}>
                                         C
                                     </div>
                             }

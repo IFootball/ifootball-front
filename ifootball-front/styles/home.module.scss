@@ -21,6 +21,7 @@
         align-items: center;
         flex-direction: column;
         margin-top: 100px;
+        background-color: $backgroundColor;
         
         @media (max-width: $mediumSize) {
             margin-top: unset;
@@ -75,6 +76,7 @@
             // height: 100%;
             width: 100%;
             margin-top: 110px;
+            background-color: $backgroundColor;
             
             .time,
             .pontuacao {
@@ -125,8 +127,10 @@
                                 text-overflow: ellipsis;
                                 white-space: nowrap;
                                 overflow: hidden;
+                                font-weight: bold;
                             }
                             td {
+                                text-align: center;
                                 border: 1px solid black;
                                 // width: 125px;
                             }

@@ -81,8 +81,6 @@ export default function Campo({
         if (!reservePlayers.includes(id)) {
             if (reservePlayers.length < 2) {
                 setReservePlayers((prevReserves) => [...prevReserves, id]);
-            } else {
-                console.log('Você já adicionou o máximo de jogadores reservas.');
             }
         }
     };
@@ -100,7 +98,6 @@ export default function Campo({
 
     const getPlayer = (playerId: number): playerType => {
         const player = players.find(player => playerId === player.id);
-        console.log(player)
         const defaultPlayer: playerType = { id: 0, idGender: genderId, idTeamClass: 0, image: user, name: "Jogador", playerType: 1, className: 'Classe' }
         return player || defaultPlayer;
     }

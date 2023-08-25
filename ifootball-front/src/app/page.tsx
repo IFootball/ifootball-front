@@ -13,6 +13,16 @@ export default function Home() {
 
     const router = useRouter();
 
+    const verifySession = (): boolean => {
+        const token = verifyToken();
+
+        if (token) {
+            if (token.role === 'Administrator') router.push('/admin/inicio') ;
+            else router.push('/homepage');
+        }
+        return true;
+    }
+
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const login = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
         event.preventDefault();
@@ -21,7 +31,6 @@ export default function Home() {
         if (!response.error || response.error.statusCode === 200 || response.error.statusCode === 201) {
             if (salvarTokenNoCookie(response.token)) {
                 let token = verifyToken();
-                console.log(token);
                 if (token?.role === "Administrator") {
                     router.push('/admin/inicio');
                 } else if (token?.role === 'User') {
@@ -36,6 +45,7 @@ export default function Home() {
         }
     }
     useEffect(() => {
+        verifySession();
         if (window.screen.width < 700) {
             setIsMobile(true);
         } else {

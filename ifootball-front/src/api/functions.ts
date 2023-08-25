@@ -15,11 +15,9 @@ export function salvarTokenNoCookie(token: string): boolean {
         // document.cookie = cookieSerialized;
         const decodedToken: JWTToken = decode(token);
         const expires = new Date(decodedToken.exp * 1000).toString();
-        console.log(expires);
         document.cookie = `user_token=${token}; path=/; expires=${expires};`;
         return true;
     } catch (error) {
-        console.error('Erro ao salvar o token no cookie:', error);
         return false;
     }
 }
@@ -35,7 +33,6 @@ export function verifyToken(): JWTToken | null {
                     return decodedToken;
                 }
             } catch (error) {
-                console.error('Erro ao decodificar o token:', error);
                 return null;
             }
         }
@@ -56,4 +53,23 @@ export function getToken(): string | null {
 
 export function deleteCookie(name: string) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+export function splitName(name: string) {
+    const nameParts = name.split(' ');
+    
+    if (nameParts.length >= 2) {
+        const firstName = nameParts[0];
+        const lastName = nameParts[nameParts.length - 1];
+
+        const formattedFirstName = firstName[0].toUpperCase() + '.';
+        
+        if (name.length > 15) {
+            const formattedLastName = lastName.substring(0, 7) + '...';
+            return `${formattedFirstName} ${formattedLastName}`;
+        } else if (name.length > 11) {
+            return `${formattedFirstName} ${lastName}`;
+        }
+    }
+    
+    return name;
 }

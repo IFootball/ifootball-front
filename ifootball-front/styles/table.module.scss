@@ -1,5 +1,6 @@
 @import "./globals.scss";
 .tabela {
+    background-color: white;
     border-collapse: collapse;
     th,
     td {
@@ -21,6 +22,6 @@
     }
 
     th {
-        background-color: #f2f2f2;
+        background-color: $backgroundColor;
     }
 }

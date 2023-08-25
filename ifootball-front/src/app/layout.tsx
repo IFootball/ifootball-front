@@ -1,4 +1,5 @@
 import styles from '../../styles/layout.module.scss';
+import theme from '../../styles/globals.module.scss';
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{backgroundColor: theme.backgroundColor}}>
       <body className={styles.body}>{children}</body>
     </html>
   )

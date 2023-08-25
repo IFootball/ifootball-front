@@ -19,6 +19,10 @@
         align-items: center;
         justify-content: center;
         gap: 3px;
+        max-width: 100px;
+        white-space: nowrap;
+        // overflow-y: hidden;
+        text-overflow: ellipsis;
     }
     .playerImage {
         border: solid 1px black;

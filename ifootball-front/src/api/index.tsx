@@ -45,6 +45,35 @@ export default {
             } catch (error) {
                 throw error;
             }
+        },
+        editAccount: async (name: string, oldPassword: string, newPassword: string): Promise<{ error?: { message: string, statusCode: number }, user: { idClass: number, name: string, email: string } }> => {
+            setAuthorizationHeader()
+            try {
+                const response = await api.patch('/users', { name, oldPassword, newPassword });
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
+
+        },
+        getUserData: async (): Promise<{
+            error?: {
+                message: string,
+                statusCode: number
+            },
+            userLoged: {
+                name: string,
+                scoreMale: number,
+                scoreFemale: number
+            }
+        }> => {
+            try {
+                setAuthorizationHeader()
+                const response = await api.get('/users');
+                return response.data;
+            } catch (error) {
+                throw error;
+            }
         }
     },
     classes: {
@@ -73,27 +102,27 @@ export default {
                 throw error;
             }
         },
-        getScout: async(idPlayer: number): Promise<{ completePlayerDto: completePlayerScout}> => {
+        getScout: async (idPlayer: number): Promise<{ completePlayerDto: completePlayerScout }> => {
             setAuthorizationHeader();
-                const response = await api.get('/players/'+idPlayer);
-        
-                return response.data;
+            const response = await api.get('/players/' + idPlayer);
+
+            return response.data;
         },
-        setScout: async(idPlayer: number, goals: number,assists: number,yellowCard: number,redCard: number,fouls: number,wins: number,takenGols: number | null, penaltySaves: number | null, saves: number | null ): Promise<{ completePlayerDto: completePlayerScout}> => {
+        setScout: async (idPlayer: number, goals: number, assists: number, yellowCard: number, redCard: number, fouls: number, wins: number, takenGols: number | null, penaltySaves: number | null, saves: number | null): Promise<{ completePlayerDto: completePlayerScout }> => {
             setAuthorizationHeader();
-                const response = await api.patch('/players/'+idPlayer, {
-                        goals: goals,
-                        assists: assists,
-                        yellowCard: yellowCard,
-                        redCard: redCard,
-                        fouls: fouls,
-                        wins: wins,
-                        takenGols:takenGols,
-                        penaltySaves: penaltySaves,
-                        saves: saves
-                  });
-        
-                return response.data;
+            const response = await api.patch('/players/' + idPlayer, {
+                goals: goals,
+                assists: assists,
+                yellowCard: yellowCard,
+                redCard: redCard,
+                fouls: fouls,
+                wins: wins,
+                takenGols: takenGols,
+                penaltySaves: penaltySaves,
+                saves: saves
+            });
+
+            return response.data;
         }
     },
     team: {
@@ -110,7 +139,6 @@ export default {
                     idReservePlayerTwo,
                     idCaptain
                 });
-                console.log(response.config)
                 return response.data;
             } catch (error) {
                 throw error;
@@ -136,13 +164,13 @@ export default {
                         Page: page,
                     }
                 });
-        
+
                 return response.data;
             } catch (error) {
                 throw error;
             }
         },
-        listPlayers: async (idTeamClass: number,take: number, page: number): Promise<{ data: teamClassPlayer[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
+        listPlayers: async (idTeamClass: number, take: number, page: number): Promise<{ data: teamClassPlayer[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
                 const response = await api.get(`/team-classes/list-player/${idTeamClass}`, {
@@ -158,13 +186,13 @@ export default {
         },
     },
     ranking: {
-        assists: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+        assists: async (idGender: number, Page?: number, Take?: number): Promise<{ data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
                 const response = await api.get(`/rankings/${idGender}/assists`, {
                     params: {
-                        ...((Page) ? {Page} : {}),
-                        ...((Take) ? {Take} : {})
+                        ...((Page) ? { Page } : {}),
+                        ...((Take) ? { Take } : {})
                     }
                 });
                 return response.data;
@@ -172,13 +200,13 @@ export default {
                 throw error;
             }
         },
-        goals: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+        goals: async (idGender: number, Page?: number, Take?: number): Promise<{ data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
                 const response = await api.get(`/rankings/${idGender}/goal`, {
                     params: {
-                        ...((Page) ? {Page} : {}),
-                        ...((Take) ? {Take} : {})
+                        ...((Page) ? { Page } : {}),
+                        ...((Take) ? { Take } : {})
                     }
                 });
                 return response.data;
@@ -186,13 +214,13 @@ export default {
                 throw error;
             }
         },
-        scores: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+        scores: async (idGender: number, Page?: number, Take?: number): Promise<{ data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
                 const response = await api.get(`/rankings/${idGender}/player-general`, {
                     params: {
-                        ...((Page) ? {Page} : {}),
-                        ...((Take) ? {Take} : {})
+                        ...((Page) ? { Page } : {}),
+                        ...((Take) ? { Take } : {})
                     }
                 });
                 return response.data;
@@ -200,13 +228,13 @@ export default {
                 throw error;
             }
         },
-        saves: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+        saves: async (idGender: number, Page?: number, Take?: number): Promise<{ data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
                 const response = await api.get(`/rankings/${idGender}/defenses`, {
                     params: {
-                        ...((Page) ? {Page} : {}),
-                        ...((Take) ? {Take} : {})
+                        ...((Page) ? { Page } : {}),
+                        ...((Take) ? { Take } : {})
                     }
                 });
                 return response.data;
@@ -214,13 +242,13 @@ export default {
                 throw error;
             }
         },
-        highestScores: async (idGender: number, Page?: number, Take?: number): Promise<{data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean}> => {
+        highestScores: async (idGender: number, Page?: number, Take?: number): Promise<{ data: point_fields_type[], totalPage: number, totalRegisters: number, lastPage: boolean }> => {
             setAuthorizationHeader();
             try {
                 const response = await api.get(`/rankings/${idGender}/user`, {
                     params: {
-                        ...((Page) ? {Page} : {}),
-                        ...((Take) ? {Take} : {})
+                        ...((Page) ? { Page } : {}),
+                        ...((Take) ? { Take } : {})
                     }
                 });
                 return response.data;

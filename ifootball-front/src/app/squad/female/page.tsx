@@ -63,7 +63,6 @@ export default function Female() {
                 return false;
             }
         } catch (error) {
-            console.error("An error occurred while loading user team: ", error);
             return false;
         }
     };

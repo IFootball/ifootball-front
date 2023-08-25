@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import GlobalCard from "@/components/globalCard";
 import Link from "next/link";
 import DefaultButton from "@/components/DefaultButton";
-import { verifyToken } from "@/api/functions";
+import { splitName, verifyToken } from "@/api/functions";
 import { useRouter } from "next/navigation";
 import { point_fields_type } from "@/api/types";
 import api from "@/api";
@@ -15,6 +15,16 @@ export default function Home() {
     const now = new Date();
     const marketEnds = new Date('October 09, 2023 23:59:59')
     const router = useRouter();
+
+    const [userData, setUserData] = useState<{
+        name: string,
+        scoreMale: number,
+        scoreFemale: number
+    }>({
+        name: verifyToken()?.name ?? '',
+        scoreFemale: 0,
+        scoreMale: 0
+    })
 
     const verifySession = (): boolean => {
         const token = verifyToken();
@@ -27,12 +37,24 @@ export default function Home() {
         }
     }
 
-    const [ranking, setRanking] = useState<point_fields_type[]>([]);
+    const getUserData = async (): Promise<boolean> => {
+        const response = await api.authentication.getUserData();
+        if (!response.error) {
+            setUserData(response.userLoged);
+            return true;
+        }
+        return false;
+    }
 
-    const loadTopThree = async (genderId: number): Promise<boolean> => {
-        const response = await api.ranking.highestScores(genderId, 1, 3);
-        if (response) {
-            setRanking(response.data);
+    const [rankingM, setRankingM] = useState<point_fields_type[]>([]);
+    const [rankingF, setRankingF] = useState<point_fields_type[]>([]);
+
+    const loadTopThree = async (): Promise<boolean> => {
+        const responseM = await api.ranking.highestScores(CONSTS.genderIds.male, 1, 3);
+        const responseF = await api.ranking.highestScores(CONSTS.genderIds.female, 1, 3);
+        if (responseM && responseF) {
+            setRankingM(responseM.data);
+            setRankingF(responseF.data);
             return true;
         } else {
             return false;
@@ -41,7 +63,8 @@ export default function Home() {
 
     useEffect(() => {
         verifySession();
-        loadTopThree(CONSTS.genderIds.male);
+        getUserData();
+        loadTopThree();
     }, [])
 
     return (
@@ -57,11 +80,19 @@ export default function Home() {
                 <div className={styles.homeCardsArea}>
                     <GlobalCard>
                         <div className={styles.time}>
-                            <h1 className={styles.titulo}>{verifyToken()?.name}</h1>
-                            <div className={styles.pontuacaoUsuario}>
-                                <h5 className={styles.subtitulo}>Pontuação:</h5>
-                                <span className={styles.points}>XX.XX</span>
+                            <h1 className={styles.titulo}>{userData.name}</h1>
+                            <div style={{display: 'flex'}}>
+                                <div className={styles.pontuacaoUsuario}>
+                                    <h5 className={styles.subtitulo}>Pontuação M:</h5>
+                                    <span className={styles.points}>{userData.scoreMale.toFixed(2)}</span>
+                                </div>
+
+                                <div className={styles.pontuacaoUsuario}>
+                                    <h5 className={styles.subtitulo}>Pontuação F:</h5>
+                                    <span className={styles.points}>{userData.scoreFemale.toFixed(2)}</span>
+                                </div>
                             </div>
+                            
 
                             <div className={styles.buttons}>
                                 <Link href={'squad/male'}>
@@ -76,16 +107,16 @@ export default function Home() {
 
                     <GlobalCard>
                         <div className={styles.pontuacao}>
-                            <h1 className={styles.titulo}>Pontuação</h1>
-                            <h5 className={styles.subtitulo}>Top 3 Times:</h5>
+                            <h1 className={styles.titulo}>PONTUAÇÃO F</h1>
+                            <h5 className={styles.subtitulo}>TOP 3 TIMES:</h5>
                             <table>
                                 <tbody>
                                     {
-                                        ranking.map((user, index) => {
+                                        rankingF.map((user, index) => {
                                             return (
                                                 <tr>
-                                                    <td className={styles.tableField}>{user.name}</td>
-                                                    <td>{user.score}</td>
+                                                    <td className={styles.tableField}>{splitName(user.name)}</td>
+                                                    <td>{user.score} pontos</td>
                                                 </tr>
                                             )
                                         })
@@ -93,10 +124,34 @@ export default function Home() {
                                 </tbody>
                             </table>
                             <div className={styles.buttons}>
-                                <DefaultButton text="Ver mais" />
+                                <Link href={'/ranking/teams/female'}><DefaultButton text="Ver mais" /></Link>
                             </div>
                         </div>
                     </GlobalCard>
+                    <GlobalCard>
+                        <div className={styles.pontuacao}>
+                            <h1 className={styles.titulo}>PONTUAÇÃO M</h1>
+                            <h5 className={styles.subtitulo}>TOP 3 TIMES:</h5>
+                            <table>
+                                <tbody>
+                                    {
+                                        rankingM.map((user, index) => {
+                                            return (
+                                                <tr>
+                                                    <td className={styles.tableField}>{splitName(user.name)}</td>
+                                                    <td>{user.score} pontos</td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                            <div className={styles.buttons}>
+                                <Link href={'/ranking/teams/male'}><DefaultButton text="Ver mais" /></Link>
+                            </div>
+                        </div>
+                    </GlobalCard>
+
                 </div>
             </div>
         </div>
