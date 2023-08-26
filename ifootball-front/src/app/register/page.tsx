@@ -58,7 +58,6 @@ export default function Register() {
                         <label htmlFor="name">Usuário</label>
                         <input
                             minLength={3}
-                            maxLength={30}
                             type="text"
                             name="name"
                             id="name"
