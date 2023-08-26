@@ -46,19 +46,18 @@ export default function Navbar() {
 
                     <li className={styles.titleOps}>
                         <div className={styles.menu_in_menu}>
-                            <input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops"
+                            <input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops_male"
                                 onClick={() => setOpenMenuBar({
                                     male: !openMenuBar.male,
                                     female: false
                                 })}></input>
-                            <label className={styles.mobile_icon_ops} htmlFor="mobile_btn_ops" >
+                            <label className={styles.mobile_icon_ops} htmlFor="mobile_btn_ops_male">
                                 <p className={`${styles.hamburguer_ops} ${openMenuBar.male && styles.menu_bar_open}`}>▶</p>
                                 PONTUAÇÃO M
                             </label>
 
                             <div>
-                                {
-                                    openMenuBar.male &&
+                                {openMenuBar.male &&
                                     <div className={styles.menu_in_menu_ops}>
                                         <Link className={styles.ops} href={'/ranking/teams/male'}>Time</Link>
                                         <Link className={styles.ops} href={'/ranking/players/male'}>Jogador</Link>
@@ -69,21 +68,20 @@ export default function Navbar() {
                                 }
                             </div>
                         </div>
-                        <div className={styles.menu_in_menu}>
 
-                            <input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops"
+                        <div className={styles.menu_in_menu}>
+                            <input className={styles.mobile_btn_ops} type="checkbox" id="mobile_btn_ops_female"
                                 onClick={() => setOpenMenuBar({
                                     male: false,
                                     female: !openMenuBar.female
                                 })}></input>
-                            <label className={styles.mobile_icon_ops} htmlFor="mobile_btn_ops" >
+                            <label className={styles.mobile_icon_ops} htmlFor="mobile_btn_ops_female">
                                 <p className={`${styles.hamburguer_ops} ${openMenuBar.female && styles.menu_bar_open}`}>▶</p>
                                 PONTUAÇÃO F
                             </label>
 
                             <div>
-                                {
-                                    openMenuBar.female &&
+                                {openMenuBar.female &&
                                     <div className={styles.menu_in_menu_ops}>
                                         <Link className={styles.ops} href={'/ranking/teams/female'}>Time</Link>
                                         <Link className={styles.ops} href={'/ranking/players/female'}>Jogador</Link>
@@ -94,6 +92,7 @@ export default function Navbar() {
                                 }
                             </div>
                         </div>
+
                     </li>
                 </ul>
 

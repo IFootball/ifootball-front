@@ -20,7 +20,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-top: 100px;
+        margin-top: 99px;
         background-color: $backgroundColor;
         
         @media (max-width: $mediumSize) {
@@ -33,7 +33,7 @@
         .relogioUtil {
             width: 100%;
             height: fit-content;
-            width: calc(100% - 2px);
+            // width: calc(100% - 2px);
             background-color: $secondaryGreen;
             position: fixed;
             @media (min-width: $mediumSize) {
@@ -77,6 +77,11 @@
             width: 100%;
             margin-top: 110px;
             background-color: $backgroundColor;
+
+            @media (max-width: 425px) {
+                gap: 15px;
+                padding-bottom: 67px;
+            }
             
             .time,
             .pontuacao {

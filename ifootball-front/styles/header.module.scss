@@ -1,8 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap");
 //FONTES DE TESTE!!
-@import './globals.scss';
+@import "./globals.scss";
 
 $mediumSize: 1550px;
 
@@ -12,11 +9,10 @@ $mediumSize: 1550px;
 	width: 100%;
 	// height: 5em;
 	float: left;
-	font-family: Open Sans, sans serif;
+	font-family: $secondaryFont;
 	// position: absolute;
 	top: 0;
 	z-index: 99;
-
 
 	.background {
 		display: flex;
@@ -25,9 +21,9 @@ $mediumSize: 1550px;
 		height: 4.2em;
 
 		@media (min-width: $mediumSize) {
-			background-color: $backgroundColor;
+			// background-color: $backgroundColor;
 			padding: 1em 1em;
-			width: 213px;
+			// width: 213px;
 		}
 	}
 
@@ -52,30 +48,29 @@ $mediumSize: 1550px;
 			display: none;
 		}
 
-		
 		.hamburguer {
 			background: #d1d1d1;
 			display: block;
 			height: 2px;
 			position: relative;
-			transition: background .2s ease-out;
+			transition: background 0.2s ease-out;
 			width: 18px;
-			
+
 			&:before,
 			&:after {
 				background: #d1d1d1;
-				content: '';
+				content: "";
 				display: block;
 				height: 100%;
 				position: absolute;
-				transition: all .2s ease-out;
+				transition: all 0.2s ease-out;
 				width: 100%;
 			}
-			
+
 			&:before {
 				top: 5px;
 			}
-			
+
 			&:after {
 				top: -5px;
 			}
@@ -85,8 +80,8 @@ $mediumSize: 1550px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		font-family: $secondaryFont;
 	}
-
 
 	.backgroundMenuClose {
 		transform: translateX(-20em);
@@ -103,7 +98,6 @@ $mediumSize: 1550px;
 		display: flex;
 		flex-direction: column;
 
-
 		border-right: solid 1px black;
 		border-bottom: solid 1px black;
 		background-color: rgb(250, 250, 250);
@@ -111,9 +105,9 @@ $mediumSize: 1550px;
 		height: 90vh;
 		padding: 1em 1em;
 
-		@media (min-width: $mediumSize) {
-			background-color: $quaternaryGreen;
-		}
+		// @media (min-width: $mediumSize) {
+		// 	background-color: $quaternaryGreen;
+		// }
 
 		.nav {
 			height: 80%;
@@ -122,6 +116,8 @@ $mediumSize: 1550px;
 			list-style: none;
 			background-color: #ffffff00;
 			text-align: center;
+	font-family: $secondaryFont;
+
 
 			@media (min-width: $mediumSize) {
 				text-align: left;
@@ -133,7 +129,7 @@ $mediumSize: 1550px;
 					display: block;
 					padding: 0.7em 0.5em;
 					text-decoration: none;
-					transition: .3s;
+					transition: 0.3s;
 					border-bottom: 1px #ffffff00 solid;
 					color: black;
 				}
@@ -143,7 +139,6 @@ $mediumSize: 1550px;
 				font-size: 1.3em;
 				color: black;
 				font-weight: bold;
-				font-family: 'Roboto';
 			}
 
 			.titleOps h3 {
@@ -158,10 +153,10 @@ $mediumSize: 1550px;
 
 			h4 {
 				margin: 0;
+				font-family: $secondaryFont;
 			}
 
 			.outA {
-				font-family: 'Roboto';
 				font-weight: bold;
 				text-decoration: none;
 				color: black;
@@ -169,12 +164,9 @@ $mediumSize: 1550px;
 				img {
 					width: 2em;
 				}
-
 			}
-
 		}
 	}
-
 }
 
 .menu_in_menu .ops {
@@ -190,27 +182,26 @@ $mediumSize: 1550px;
 	margin-bottom: 1em;
 }
 
-.header .mobile_btn:checked~.nav {
+.header .mobile_btn:checked ~ .nav {
 	max-height: 540px;
 }
 
-.header .mobile_btn:checked~.mobile_icon .hamburguer {
+.header .mobile_btn:checked ~ .mobile_icon .hamburguer {
 	background: transparent;
 }
 
-.header .mobile_btn:checked~.mobile_icon .hamburguer:before {
+.header .mobile_btn:checked ~ .mobile_icon .hamburguer:before {
 	transform: rotate(-45deg);
 }
 
-.header .mobile_btn:checked~.mobile_icon .hamburguer:after {
+.header .mobile_btn:checked ~ .mobile_icon .hamburguer:after {
 	transform: rotate(45deg);
 }
 
-.header .mobile_btn:checked~.mobile_icon:not(.steps) .hamburguer:before,
-.header .mobile_btn:checked~.mobile_icon:not(.steps) .hamburguer:after {
+.header .mobile_btn:checked ~ .mobile_icon:not(.steps) .hamburguer:before,
+.header .mobile_btn:checked ~ .mobile_icon:not(.steps) .hamburguer:after {
 	top: 0;
 }
-
 
 .nav .ops {
 	font-size: 1em;
@@ -223,7 +214,6 @@ $mediumSize: 1550px;
 	justify-content: center;
 	gap: 5px;
 
-
 	.hamburguer_ops {
 		font-size: 0.7em;
 		margin: 0 0 0 5px;
@@ -232,14 +222,13 @@ $mediumSize: 1550px;
 	}
 
 	.menu_bar_open {
-		transform: rotateZ(90deg)
+		transform: rotateZ(90deg);
 	}
 }
 
 .mobile_btn_ops {
 	display: none;
 }
-
 
 .menu_in_menu_ops {
 	text-align: left;
@@ -253,5 +242,4 @@ $mediumSize: 1550px;
 
 .menu_in_menu_ops .ops:hover {
 	background-color: rgb(230, 230, 230);
-
 }

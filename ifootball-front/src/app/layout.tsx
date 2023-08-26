@@ -1,8 +1,10 @@
 import styles from '../../styles/layout.module.scss';
 import theme from '../../styles/globals.module.scss';
-import { Inter } from 'next/font/google'
+import { Roboto_Flex as Roboto, Open_Sans, Poppins, Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({ subsets: ['latin'] })
+const opensans = Open_Sans({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'IFootball',
@@ -16,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" style={{backgroundColor: theme.backgroundColor}}>
-      <body className={styles.body}>{children}</body>
+      <body className={`${styles.body} ${roboto.className} ${opensans.className} ${inter.className}`}>{children}</body>
     </html>
   )
 }
