@@ -1,8 +1,7 @@
 'use client';
 import Link from 'next/link'
 import styles from "../../../../styles/inicio.module.scss";
-import Header from "@/components/Header";
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { ModalChoseTeam } from '@/app/admin/inicio/modalChoseTeam';
 import axios from "../../../api/index"
 import { teamClassPlayer } from '@/api/types';
@@ -11,13 +10,18 @@ import Image from 'next/image';
 import logoIfootbal from "../../../../public/images/logoFootCurtoDireita.png"
 import { useRouter } from 'next/navigation';
 import { deleteCookie } from '@/api/functions';
+import PopUp from '@/components/PopUp';
+import {FaCalendarAlt} from "react-icons/fa"
+import {IoMdCloseCircle} from "react-icons/io"
+import { ToastContainer, toast } from 'react-toastify';
+import DefaultButton from '@/components/DefaultButton';
 
 const Scoreboard = () => {
-
     const [players, setPlayers] = useState<teamClassPlayer[]>([]);
     const [idTeam, setIdTeam] = useState<number>(0);
     const [page, setPage] = useState<number>(1);
     const [modalChoseTeam, setModalChoseTeam] = useState<boolean>(false);
+    const [modalDate, setModalDate] = useState<boolean>(false);
 
     const router = useRouter();
 
@@ -32,6 +36,27 @@ const Scoreboard = () => {
     async function getPlayers() {
         var players = await axios.teamClass.listPlayers(idTeam, 20, page);
         setPlayers(players.data)
+    }
+
+
+    async function setStartDate(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+
+        let data: { [key: string]: string } = {};
+
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        console.log(data)
+        if(data.startDate == ''){
+            toast.error("Insira uma data válida!")
+        }else{
+            await axios.startDate.set(data.startDate)
+            toast.success("Data de início alterada com sucesso!")
+            setModalDate(false)
+        }
     }
 
     useEffect(() => {
@@ -62,13 +87,28 @@ const Scoreboard = () => {
 
     return (
         <main>
-
+            <ToastContainer
+                theme="colored"
+            />
             {modalChoseTeam && <ModalChoseTeam closeModal={handleChooseTeam} setChoseTeam={handleSetIdTeam}></ModalChoseTeam>}
 
+            {modalDate && (
+                <PopUp cancelcallback={() => setModalDate(false)} >
+                    <div className={styles.modalDate}>
+                        <button onClick={() => setModalDate(false)}><IoMdCloseCircle size="30" color="red" /></button>
+                        <form onSubmit={setStartDate}>                        
+                            <input type="datetime-local" name='startDate' />
+                            <button>Enviar</button>
+                        </form>
+                    </div>
+                </PopUp>)
+            }
+            
             <div className={styles.divlogoadm}>
                 <div className={styles.logo}>
-                    <Link href={''}><Image src={logoIfootbal} title="ifootballLogo" placeholder='blur' alt="logo ifootbal" /></Link>
-                    <h1>ADM</h1>
+                    <button className={styles.calendar} onClick={() => setModalDate(true)}><FaCalendarAlt color='black' size="50" /></button>
+                    <Link href={'/'}><Image src={logoIfootbal} title="ifootballLogo" placeholder='blur' alt="logo ifootbal" /></Link>
+                    <h1>ADM</h1>   
                 </div>
                 <Image className={styles.logoSair} src={exit} alt="simbolo sair" onClick={() => {
                     router.push('/');
@@ -99,8 +139,10 @@ const Scoreboard = () => {
                     <div className={styles.div_escolher_time}>
                         <button className={styles.escolher_time} onClick={handleChooseTeam}>ESCOLHER TIME</button>
                     </div>
+
                 </div>
             </div>
+        
         </main>
     );
 };

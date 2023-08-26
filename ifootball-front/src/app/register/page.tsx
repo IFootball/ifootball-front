@@ -19,7 +19,7 @@ export default function Register() {
 
     const register = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
         let data: { [key: string]: string } = {};
-
+        
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
 
@@ -57,7 +57,7 @@ export default function Register() {
                     <div className={styles.loginField}>
                         <label htmlFor="name">Usuário</label>
                         <input
-                            minLength={6}
+                            minLength={3}
                             maxLength={30}
                             type="text"
                             name="name"

@@ -54,6 +54,21 @@ export function getToken(): string | null {
 export function deleteCookie(name: string) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
+
+export function formatarDataEHora(dataString) {
+    var data = new Date(dataString);
+    
+    var dia = data.getDate().toString().padStart(2, '0');
+    var mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    var ano = data.getFullYear().toString();
+    
+    var hora = data.getHours().toString().padStart(2, '0');
+    var minutos = data.getMinutes().toString().padStart(2, '0');
+
+    return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
+}
+
+
 export function splitName(name: string) {
     const nameParts = name.split(' ');
     

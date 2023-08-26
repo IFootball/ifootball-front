@@ -11,7 +11,7 @@ import user from '../../app/squad/components/PlayerComponent/user_456212.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ErroCard } from '../erroCard';
-
+import {IoMdCloseCircle} from "react-icons/io"
 
 type ListPlayersType = {
     list: boolean;
@@ -41,7 +41,8 @@ export default function Campo({
         type: 'goalkeeper',
     });
 
-    const [error, setError] = useState<string | boolean>(false);
+    const [modalError, setModalError] = useState<boolean>(false);
+    const [error, setError] = useState<string>("false");
     const [gkId, setGkId] = useState<number>(0);
     const [linePlayers, setLinePlayers] = useState<number[]>([]);
     const [reservePlayers, setReservePlayers] = useState<number[]>([]);
@@ -137,11 +138,13 @@ export default function Campo({
                     genderId
                 );
                 toast.success("Time criado com sucesso!")
-                setError(false)
+                setError("")
             } catch(error){
+                setModalError(true);
                 setError(error.response?.data);
             }
         } else {
+            setModalError(true);
             setError("Você deve escalar o time completo, definindo um capitão e dois reservas para escalar o time!");
         }
     };
@@ -226,8 +229,19 @@ export default function Campo({
                 </div>
             </div>
 
-            {/*<PopUp>{error}</PopUp>*/}
-
+            {modalError && (
+                <PopUp cancelcallback={() => setModalError(false)} >
+                    <div className={style.modalError}>
+                        <div>                        
+                            <IoMdCloseCircle size="30" color="red" /><ErroCard>{error}</ErroCard>
+                        </div>
+                            <DefaultButton
+                                text='VOLTAR'
+                                bold
+                                action={() => setModalError(false)}
+    />                    </div>
+                </PopUp>)
+            }
             {listPlayers.list && listPlayers.type === 'goalkeeper' && (
                 <PopUp
                     cancelcallback={() => {
@@ -256,6 +270,7 @@ export default function Campo({
                     />
                 </PopUp>
             )}
+
             {listPlayers.list && listPlayers.type === 'player' && (
                 <PopUp
                     cancelcallback={() => {

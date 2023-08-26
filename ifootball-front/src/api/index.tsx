@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TeamUserResponse, classes_type, completePlayerScout, playerType, point_fields_type, teamClassPlayer, user_team_type, user_type } from "./types";
+import { startDateType, TeamUserResponse, classes_type, completePlayerScout, playerType, point_fields_type, teamClassPlayer, user_team_type, user_type } from "./types";
 import Config from '../../package.json';
 import { getToken } from "./functions";
 
@@ -252,6 +252,28 @@ export default {
                     }
                 });
                 return response.data;
+            } catch (error) {
+                throw error;
+            }
+        },
+    },
+    startDate: {
+        get: async (): Promise<startDateType> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.get(`/start-dates`);
+                return response.data.startDate;
+            } catch (error) {
+                throw error;
+            }
+        },
+        set: async (startDate: string): Promise<startDateType> => {
+            setAuthorizationHeader();
+            try {
+                const response = await api.put(`/start-dates`, {
+                    startDateOfMatches: startDate
+                });
+                return response.data.startDate;
             } catch (error) {
                 throw error;
             }

@@ -118,3 +118,6 @@ export type point_fields_type = {
     name: string,
     score: number
 }
+export type startDateType = {
+    startDateOfMatches: string
+}

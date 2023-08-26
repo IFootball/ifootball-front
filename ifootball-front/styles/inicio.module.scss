@@ -14,6 +14,16 @@
         align-items: end;
         justify-content: right;
 
+        .calendar{
+            background-color: transparent;
+            border: none;
+            transition: all 0.5s;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+
         & h1 {
             margin: 0;
             align-items: end;
@@ -64,6 +74,57 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.modalDate{
+    background-color: white;
+    border: black 1px solid;
+    max-width: 500px;
+    min-width: 200px;
+    min-height: 150px;
+    padding: 0.5em;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    & > button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        width: 25px;
+        padding: 0;
+    }
+
+    & > form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+
+        & > input{
+            padding: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        & > button{
+            transition: all ease .2s;
+            cursor: pointer;
+            color: white;
+            background-color: $secondaryGreen;
+            border: none;
+            height: 30px;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        
+        }
+    }
+    & > div{
+        display: flex;
+        align-items: center;
+    }
 }
 
 .container_2 {

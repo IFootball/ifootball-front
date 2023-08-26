@@ -5,15 +5,14 @@ import Header from "@/components/Header";
 import GlobalCard from "@/components/globalCard";
 import Link from "next/link";
 import DefaultButton from "@/components/DefaultButton";
-import { splitName, verifyToken } from "@/api/functions";
+import { formatarDataEHora, splitName, verifyToken } from "@/api/functions";
 import { useRouter } from "next/navigation";
 import { point_fields_type } from "@/api/types";
 import api from "@/api";
 import CONSTS from '../../api/constants.json';
 
 export default function Home() {
-    const now = new Date();
-    const marketEnds = new Date('October 09, 2023 23:59:59')
+    const [marketEnds, setMarketEnds] = useState<string>('October 09, 2023 23:59:59');
     const router = useRouter();
 
     const [userData, setUserData] = useState<{
@@ -35,6 +34,11 @@ export default function Home() {
             router.push('/');
             return false;
         }
+    }
+
+    async function getStartDate(){
+        const response = await api.startDate.get();
+        setMarketEnds(formatarDataEHora(response.startDateOfMatches));
     }
 
     const getUserData = async (): Promise<boolean> => {
@@ -64,6 +68,7 @@ export default function Home() {
     useEffect(() => {
         verifySession();
         getUserData();
+        getStartDate()
         loadTopThree();
     }, [])
 
@@ -74,7 +79,7 @@ export default function Home() {
                 <div className={styles.relogioUtil}>
                     <div className={styles.relogio}>
                         <h3>ESCALAÇÃO DE TIMES FECHA EM</h3>
-                        <span>{marketEnds.getDate()}/{marketEnds.getMonth() + 1} - {marketEnds.getHours()}:{marketEnds.getMinutes()}</span>
+                        <span>{marketEnds}</span>
                     </div>
                 </div>
                 <div className={styles.homeCardsArea}>
