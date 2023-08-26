@@ -119,9 +119,9 @@ export default function Home() {
                                     {
                                         rankingF.map((user, index) => {
                                             return (
-                                                <tr>
+                                                <tr key={user.name}>
                                                     <td className={styles.tableField}>{splitName(user.name)}</td>
-                                                    <td>{user.score} pontos</td>
+                                                    <td>{user.score} {user.score > 1 ? 'pontos' : 'ponto'}</td>
                                                 </tr>
                                             )
                                         })
@@ -142,9 +142,9 @@ export default function Home() {
                                     {
                                         rankingM.map((user, index) => {
                                             return (
-                                                <tr>
+                                                <tr key={user.name}>
                                                     <td className={styles.tableField}>{splitName(user.name)}</td>
-                                                    <td>{user.score} pontos</td>
+                                                    <td>{user.score} {user.score > 1 ? 'pontos' : 'ponto'}</td>
                                                 </tr>
                                             )
                                         })

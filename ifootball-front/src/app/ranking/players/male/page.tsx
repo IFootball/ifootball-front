@@ -6,10 +6,13 @@ import Tabela from '@/components/Tabela';
 import CONSTS from '../../../../api/constants.json';
 import api from '@/api';
 import { point_fields_type } from '@/api/types';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
 
     const [ranking, setRanking] = useState<point_fields_type[]>([]);
+
+    const router = useRouter();
 
     const getScores = async (genderId: number): Promise<boolean> => {
         const response = await api.ranking.scores(genderId);
@@ -37,7 +40,7 @@ export default function Home() {
                         <Tabela genderId={CONSTS.genderIds.male} mockRankingData={ranking} />
                     </div>
                 </div>
-                <div className={styles.voltar}>VOLTAR</div>
+                <div className={styles.voltar} onClick={() => router.back()}>VOLTAR</div>
             </div>
         </div>
     );
