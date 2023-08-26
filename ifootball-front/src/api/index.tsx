@@ -70,6 +70,8 @@ export default {
             try {
                 setAuthorizationHeader()
                 const response = await api.get('/users');
+                console.log(response);
+                
                 return response.data;
             } catch (error) {
                 throw error;

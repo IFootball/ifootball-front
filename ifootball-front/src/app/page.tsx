@@ -8,6 +8,7 @@ import logo from '../../public/images/logoFoot.png';
 import theme from '../../styles/globals.module.scss';
 import quadra from '../../public/images/quadra.png';
 import api from '@/api';
+import Input from '@/components/input/input';
 import { salvarTokenNoCookie, verifyToken } from '@/api/functions';
 export default function Home() {
 
@@ -57,14 +58,17 @@ export default function Home() {
             <div className={styles.loginUtilArea}>
                 <Image src={logo} alt='Logo IFootball' />
                 <form onSubmit={login} className={styles.loginForm}>
-                    <div className={styles.loginField}>
+                    <Input label='Email' type='email' name='user-input'/>
+                    <Input label='Senha' type='password' name='password-input'/>
+                    
+                    {/* <div className={styles.loginField}>
                         <label htmlFor="user-input" className={styles.loginLabel}>Email</label>
-                        <input className={styles.loginInput} type="text" name="user-input" id="user-input" />
-                    </div>
-                    <div className={styles.loginField}>
+                        <input className={styles.loginInput} type="text" name="user-input" />
+                    </div> */}
+                    {/* <div className={styles.loginField}>
                         <label htmlFor="password-input" className={styles.loginLabel}>Senha</label>
-                        <input className={styles.loginInput} type="password" name="password-input" id="password-input" />
-                    </div>
+                        <input className={styles.loginInput} type="password" name="password-input" />
+                    </div> */}
                     <div className={styles.registerField}>
                         <p className={styles.registerP}><Link className={styles.registerLink} href={'/register'}>Criar Usuário</Link></p>
                     </div>
