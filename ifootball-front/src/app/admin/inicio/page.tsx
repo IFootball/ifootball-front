@@ -14,7 +14,6 @@ import PopUp from '@/components/PopUp';
 import {FaCalendarAlt} from "react-icons/fa"
 import {IoMdCloseCircle} from "react-icons/io"
 import { ToastContainer, toast } from 'react-toastify';
-import DefaultButton from '@/components/DefaultButton';
 
 const Scoreboard = () => {
     const [players, setPlayers] = useState<teamClassPlayer[]>([]);
@@ -49,7 +48,6 @@ const Scoreboard = () => {
             data[key] = value;
         });
 
-        console.log(data)
         if(data.startDate == ''){
             toast.error("Insira uma data válida!")
         }else{
@@ -65,24 +63,34 @@ const Scoreboard = () => {
     }, [idTeam])
 
     function renderPlayers() {
-        if (idTeam == 0) return <p>Escolha um time</p>
-        if (players.length == 0) return <p>Não há jogadores nesse time</p>
+        if (idTeam == 0) return <h2>Escolha um time</h2>
+        if (players.length == 0) return <h2>Não há jogadores nesse time</h2>
 
-        return players.map((player, index) => (
-            <tr key={index}>
-
-                <Link className={styles.Link_jogador_name} href={`/admin/pontuacao-jogador/${player.id}`}>
-                    <td className={styles.jogadores_name}>
-                        <div className={styles.h4link}><h4>▶</h4></div>
-                        <div className={styles.playername}>
-                            {player.name}
-                        </div>
-                    </td>
-                </Link>
-
-                <td>{player.score}</td>
-            </tr>
-        ))
+        return (
+            <table className={styles.table_score}>
+                <thead>
+                    <tr className={styles.tr_score}>
+                        <th>Jogador</th>
+                        <th>Pontuação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {players.map((player, index) => (
+                    <tr key={index}>
+                        <Link className={styles.Link_jogador_name} href={`/admin/pontuacao-jogador/${player.id}`}>
+                            <td className={styles.jogadores_name}>
+                                <div className={styles.h4link}><h4>▶</h4></div>
+                                <div className={styles.playername}>
+                                    {player.name}
+                                </div>
+                            </td>
+                        </Link>
+                        <td>{player.score}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        );
     }
 
     return (
@@ -90,7 +98,7 @@ const Scoreboard = () => {
             <ToastContainer
                 theme="colored"
             />
-            {modalChoseTeam && <ModalChoseTeam closeModal={handleChooseTeam} setChoseTeam={handleSetIdTeam}></ModalChoseTeam>}
+            {modalChoseTeam && <ModalChoseTeam closeModal={handleChooseTeam} setChoseTeam={handleSetIdTeam} />}
 
             {modalDate && (
                 <PopUp cancelcallback={() => setModalDate(false)} >
@@ -120,20 +128,7 @@ const Scoreboard = () => {
                 <div className={styles.container_2}>
 
                     <div className={styles.table}>
-                        <table className={styles.table_score}>
-
-                            <thead>
-                                <tr className={styles.tr_score}>
-                                    <th>Jogador</th>
-                                    <th>Pontuação</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {renderPlayers()}
-                            </tbody>
-
-                        </table>
+                        {renderPlayers()}
                     </div>
 
                     <div className={styles.div_escolher_time}>

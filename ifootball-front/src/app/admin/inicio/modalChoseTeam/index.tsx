@@ -4,6 +4,8 @@ import { TeamCard } from "@/components/teamCard";
 import axios from "../../../../api/index"
 import { classes_type } from "@/api/types";
 import voltar from "../../../../../public/images/voltar.png";
+import Image from "next/image";
+
 interface ModalChoseTeamProps {
     closeModal: () => void;
     setChoseTeam: (id: number) => void;
@@ -36,7 +38,7 @@ export function ModalChoseTeam({
             <div onClick={closeModal} className={styles.blur}></div>
             <div className={styles.modalChoseTeam}>
                 <button onClick={closeModal}>
-                    <img src={voltar} alt="icone voltar" />
+                    <Image src={voltar} alt="icone voltar" />
                 </button>
                 <div className={styles.modalListTeam}>{renderTeam()}</div>
             </div>
