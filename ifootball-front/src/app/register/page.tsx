@@ -55,6 +55,7 @@ export default function Register() {
                 <Image src={logo} alt='Logo IFootball' />
                 <form onSubmit={register} className={styles.loginForm}>
                     <div className={styles.loginField}>
+                    <div className={styles.loginReturn}><p className={styles.loginP}><Link className={styles.loginLink} href={'../'}>Entrar</Link></p></div>
                         <label htmlFor="name">Usuário</label>
                         <input
                             minLength={3}
