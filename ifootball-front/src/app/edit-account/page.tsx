@@ -8,7 +8,7 @@ import logo from '../../../public/images/logoFoot.png';
 import theme from '../../../styles/globals.module.scss';
 import quadra from '../../../public/images/quadra.png';
 import api from '@/api';
-import { salvarTokenNoCookie, verifyToken } from '@/api/functions';
+import { salvarTokenNoCookie, verifySession, verifyToken } from '@/api/functions';
 export default function Home() {
 
     const router = useRouter();
@@ -41,6 +41,7 @@ export default function Home() {
         } else {
             setIsMobile(false)
         }
+        verifySession();
     }, [])
     return (
         <main className={styles.main} style={isMobile ? { backgroundColor: theme.backgroundColor, height: '100%', width: '100%' } : { backgroundImage: `url(${quadra.src})`, height: '100%', width: '100%' }}>

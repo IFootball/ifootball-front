@@ -7,6 +7,7 @@ import CONSTS from '../../../../api/constants.json';
 import api from '@/api';
 import { point_fields_type } from '@/api/types';
 import { useRouter } from 'next/navigation';
+import { verifySession } from '@/api/functions';
 
 export default function Home() {
 
@@ -25,6 +26,7 @@ export default function Home() {
     }
 
     useEffect(() => {
+        verifySession();
         getHighestScores(CONSTS.genderIds.female);
     }, [])
 

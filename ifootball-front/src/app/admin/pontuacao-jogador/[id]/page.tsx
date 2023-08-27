@@ -15,6 +15,7 @@ import { ErroCard } from "@/components/erroCard";
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { verifySession } from "@/api/functions";
 
 interface PontuacaoJogadorProps {
     params: {
@@ -96,6 +97,7 @@ export default function PontuacaoJogador({ params }: PontuacaoJogadorProps) {
     }
     useEffect(() => {
         getPlayer();
+        verifySession();
     }, []);
 
     function renderContent() {

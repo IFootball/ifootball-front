@@ -55,7 +55,7 @@ export function deleteCookie(name: string) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
-export function formatarDataEHora(dataString) {
+export function formatarDataEHora(dataString: string) {
     var data = new Date(dataString);
     
     var dia = data.getDate().toString().padStart(2, '0');
@@ -95,3 +95,15 @@ export function verifyEmail(email: string) {
     
     return regexClassmate.test(email) || regexTeacher.test(email)
   }
+export const verifySession = (): boolean => {
+    const router = useRouter()
+
+    const token = verifyToken();
+
+    if (token) {
+        return true;
+    } else {
+        router.push('/login');
+        return false;
+    }
+}

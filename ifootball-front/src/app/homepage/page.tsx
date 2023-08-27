@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import GlobalCard from "@/components/globalCard";
 import Link from "next/link";
 import DefaultButton from "@/components/DefaultButton";
-import { formatarDataEHora, splitName, verifyToken } from "@/api/functions";
+import { formatarDataEHora, splitName, verifySession, verifyToken } from "@/api/functions";
 import { useRouter } from "next/navigation";
 import { point_fields_type } from "@/api/types";
 import api from "@/api";
@@ -24,17 +24,6 @@ export default function Home() {
         scoreFemale: 0,
         scoreMale: 0
     })
-
-    const verifySession = (): boolean => {
-        const token = verifyToken();
-
-        if (token) {
-            return true;
-        } else {
-            router.push('/');
-            return false;
-        }
-    }
 
     async function getStartDate(){
         const response = await api.startDate.get();

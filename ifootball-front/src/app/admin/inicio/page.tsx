@@ -9,7 +9,7 @@ import exit from "../../../../public/images/porta.png"
 import Image from 'next/image';
 import logoIfootbal from "../../../../public/images/logoFootCurtoDireita.png"
 import { useRouter } from 'next/navigation';
-import { deleteCookie } from '@/api/functions';
+import { deleteCookie, verifySession } from '@/api/functions';
 import PopUp from '@/components/PopUp';
 import {FaCalendarAlt} from "react-icons/fa"
 import {IoMdCloseCircle} from "react-icons/io"
@@ -56,6 +56,10 @@ const Scoreboard = () => {
             setModalDate(false)
         }
     }
+
+    useEffect(() => {
+        verifySession();
+    }, [])
 
     useEffect(() => {
 
