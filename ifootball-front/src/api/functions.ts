@@ -88,3 +88,10 @@ export function splitName(name: string) {
     
     return name;
 }
+
+export function verifyEmail(email: string) {
+    const regexClassmate = /^(([a-z]+)\.([a-z]+))(@aluno\.feliz\.ifrs\.edu\.br)$/;
+    const regexTeacher = /^(([a-z]+)\.([a-z]+))(@feliz\.ifrs\.edu\.br)$/;
+    
+    return regexClassmate.test(email) || regexTeacher.test(email)
+  }

@@ -3,12 +3,14 @@ import { FormEvent, useEffect, useState } from "react";
 import styles from "../../../styles/page.module.scss";
 import Link from "next/link";
 import api from "@/api";
+import { verifyEmail, salvarTokenNoCookie, verifyToken } from "@/api/functions";
 import { classes_type } from "@/api/types";
 import Image from "next/image";
 import theme from '../../../styles/globals.module.scss';
 import logo from '../../../public/images/logoFoot.png';
 import quadra from '../../../public/images/quadra.png';
 import { useRouter } from "next/navigation";
+import { ErroCard } from "@/components/erroCard";
 
 export default function Register() {
 
@@ -17,7 +19,12 @@ export default function Register() {
 
     const [classes, setClasses] = useState<classes_type[] | undefined>(undefined)
 
-    const register = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
+    const [errorForm, setErrorForm] = useState<string | boolean>(false);
+    const [errorEmail, setErrorEmail] = useState<string | boolean>(false);
+    const [errorName, setErrorName] = useState<string | boolean>(false);
+    const [errorPassword, setErrorPassword] = useState<string | boolean>(false);
+
+    const register = async (event: FormEvent<HTMLFormElement>) => {
         let data: { [key: string]: string } = {};
         
         event.preventDefault();
@@ -26,17 +33,46 @@ export default function Register() {
         formData.forEach((value, key) => {
             data[key] = value;
         });
+        let hasError = false;
 
-        let response = await api.authentication.createAccount(data);
-        if (response) {
-            router.push('/')
-            return true;
-        } else {
-            return false;
+
+        if(!data.email) {
+            setErrorEmail("Preencha o email")
+            hasError = true;        
+        }else {
+            if(!verifyEmail(data.email)) 
+            {   
+                setErrorEmail("O email deve ser de domínio do IFRS")
+                hasError = true;
+            }else setErrorEmail(false)
         }
 
+        if(!data.name){
+            setErrorName("Preencha o nome do seu time")  
+            hasError = true;
+        }else setErrorName(false)
 
+        if(!data.password){
+            setErrorPassword("Preencha a senha")  
+            hasError = true;
+        }else setErrorPassword(false)
+
+        if(!hasError){
+            try{
+                await api.authentication.createAccount(data);
+                var response = await api.authentication.login(data.email, data.password);
+                setErrorForm(false);
+
+                if (salvarTokenNoCookie(response.token)) {
+                    let token = verifyToken();
+                    if (token?.role === 'User') router.push('/homepage')                
+                }
+            }catch(error) {
+                setErrorForm(error.response.data);
+            }
+        }
     };
+
     const listClasses = async (): Promise<boolean> => {
         const classes = await api.classes.list();
         if (classes) {
@@ -64,14 +100,17 @@ export default function Register() {
                             id="name"
                             className={styles.loginInput}
                         />
+                        {errorName && <ErroCard>{errorName}</ErroCard>}
                     </div>
                     <div className={styles.loginField}>
                         <label htmlFor="email">Email</label>
                         <input type="email" name="email" id="email" className={styles.loginInput} />
+                        {errorEmail && <ErroCard>{errorEmail}</ErroCard>}
                     </div>
                     <div className={styles.loginField}>
                         <label htmlFor="password">Senha</label>
                         <input type="password" name="password" className={styles.loginInput} id="password" />
+                        {errorPassword && <ErroCard>{errorPassword}</ErroCard>}
                     </div>
                     <div className={styles.loginField}>
                         <label htmlFor="idClass">Turma</label>
@@ -86,6 +125,7 @@ export default function Register() {
                             }
                         </select>
                     </div>
+                    {errorForm && <ErroCard>{errorForm}</ErroCard>}
                     <button type="submit" className={`${styles.loginButton} ${styles.registerPage}`}>Cadastrar</button>
                 </form>
             </div>
