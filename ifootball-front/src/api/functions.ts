@@ -4,15 +4,6 @@ import decode from 'jwt-decode';
 
 export function salvarTokenNoCookie(token: string): boolean {
     try {
-        // const cookieName = 'testeCookie';
-        // const cookieOptions: CookieSerializeOptions = {
-        //   maxAge: 60,
-        //   httpOnly: true,
-        //   secure: true,
-        //   sameSite: 'strict',
-        // };
-        // const cookieSerialized = serialize(cookieName, token, cookieOptions);
-        // document.cookie = cookieSerialized;
         const decodedToken: JWTToken = decode(token);
         const expires = new Date(decodedToken.exp * 1000).toString();
         document.cookie = `user_token=${token}; path=/; expires=${expires};`;
@@ -103,7 +94,22 @@ export const verifySession = (): boolean => {
     if (token) {
         return true;
     } else {
-        router.push('/login');
+        if (verifyTerms()) {
+            router.push('/login');
+        } else {
+            router.push('/')
+        }
         return false;
     }
+}
+
+const verifyTerms = (): boolean => {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'allow_terms') {
+            return true;
+        }
+    }
+    return false;
 }
