@@ -7,13 +7,29 @@ import CONSTS from '../../../../api/constants.json';
 import api from '@/api';
 import { point_fields_type } from '@/api/types';
 import { useRouter } from 'next/navigation';
-import { verifySession } from '@/api/functions';
+import { verifyTerms, verifyToken } from '@/api/functions';
 
 export default function Home() {
 
     const [ranking, setRanking] = useState<point_fields_type[]>([]);
 
     const router = useRouter();
+
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
 
     const getHighestScores = async (genderId: number): Promise<boolean> => {
         const response = await api.ranking.highestScores(genderId);

@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import GlobalCard from "@/components/globalCard";
 import Link from "next/link";
 import DefaultButton from "@/components/DefaultButton";
-import { formatarDataEHora, splitName, verifySession, verifyToken } from "@/api/functions";
+import { formatarDataEHora, splitName, verifyTerms, verifyToken } from "@/api/functions";
 import { useRouter } from "next/navigation";
 import { point_fields_type } from "@/api/types";
 import api from "@/api";
@@ -13,7 +13,6 @@ import CONSTS from '../../api/constants.json';
 
 export default function Home() {
     const [marketEnds, setMarketEnds] = useState<string>('October 09, 2023 23:59:59');
-    const router = useRouter();
 
     const [userData, setUserData] = useState<{
         name: string,
@@ -24,6 +23,23 @@ export default function Home() {
         scoreFemale: 0,
         scoreMale: 0
     })
+    const router = useRouter()
+
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
 
     async function getStartDate(){
         const response = await api.startDate.get();

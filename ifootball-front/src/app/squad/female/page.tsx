@@ -2,7 +2,7 @@
 import Header from '../../../components/Header';
 import styles from '../../../../styles/malepage.module.scss';
 import { useEffect, useState } from 'react';
-import { verifySession, verifyToken } from '@/api/functions';
+import { verifyTerms, verifyToken } from '@/api/functions';
 import { useRouter } from 'next/navigation';
 import Campo from '@/components/Campo';
 import { playerType } from '@/api/types';
@@ -12,6 +12,22 @@ export default function Female() {
     const [goalkeepers, setGoalkeepers] = useState<playerType[]>([]);
     const [players, setPlayers] = useState<playerType[]>([]);
     const router = useRouter();
+
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
 
     const [userGoalkeeper, setUserGoalkeeper] = useState<number>(0);
     const [userTeam, setUserTeam] = useState<number[]>([]);

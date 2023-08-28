@@ -9,7 +9,7 @@ import exit from "../../../../public/images/porta.png"
 import Image from 'next/image';
 import logoIfootbal from "../../../../public/images/logoFootCurtoDireita.png"
 import { useRouter } from 'next/navigation';
-import { deleteCookie, verifySession } from '@/api/functions';
+import { deleteCookie, verifyTerms, verifyToken } from '@/api/functions';
 import PopUp from '@/components/PopUp';
 import {FaCalendarAlt} from "react-icons/fa"
 import {IoMdCloseCircle} from "react-icons/io"
@@ -23,6 +23,22 @@ const Scoreboard = () => {
     const [modalDate, setModalDate] = useState<boolean>(false);
 
     const router = useRouter();
+
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
 
     function handleChooseTeam() {
         setModalChoseTeam(oldModal => !oldModal)

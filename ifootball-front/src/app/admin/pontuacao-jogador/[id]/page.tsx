@@ -15,7 +15,8 @@ import { ErroCard } from "@/components/erroCard";
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { verifySession } from "@/api/functions";
+import { useRouter } from "next/navigation";
+import { verifyTerms, verifyToken } from "@/api/functions";
 
 interface PontuacaoJogadorProps {
     params: {
@@ -25,7 +26,23 @@ interface PontuacaoJogadorProps {
 
 export default function PontuacaoJogador({ params }: PontuacaoJogadorProps) {
     const id = params.id;
+    const router = useRouter()
 
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
 
     const playerNull: completePlayerScout = {
         assists: 0,

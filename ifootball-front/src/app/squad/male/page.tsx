@@ -2,7 +2,7 @@
 import Header from '../../../components/Header';
 import styles from '../../../../styles/malepage.module.scss';
 import { useEffect, useState } from 'react';
-import { verifyToken, verifySession } from '@/api/functions';
+import { verifyTerms, verifyToken } from '@/api/functions';
 import { useRouter } from 'next/navigation';
 import Campo from '@/components/Campo';
 import { playerType } from '@/api/types';
@@ -17,6 +17,22 @@ export default function Male() {
     const [userReserves, setUserReserves] = useState<number[]>([]);
     const [userCaptain, setUserCaptain] = useState<number>(0);
     const router = useRouter();
+
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
     
 
     const listGoalkeepers = async (): Promise<boolean> => {

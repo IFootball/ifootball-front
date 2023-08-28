@@ -86,24 +86,24 @@ export function verifyEmail(email: string) {
     
     return regexClassmate.test(email) || regexTeacher.test(email)
   }
-export const verifySession = (): boolean => {
-    const router = useRouter()
+// export const verifySession = (): boolean => {
+//     const router = useRouter()
 
-    const token = verifyToken();
+//     const token = verifyToken();
 
-    if (token) {
-        return true;
-    } else {
-        if (verifyTerms()) {
-            router.push('/login');
-        } else {
-            router.push('/')
-        }
-        return false;
-    }
-}
+//     if (token) {
+//         return true;
+//     } else {
+//         if (verifyTerms()) {
+//             router.push('/login');
+//         } else {
+//             router.push('/')
+//         }
+//         return false;
+//     }
+// }
 
-const verifyTerms = (): boolean => {
+export const verifyTerms = (): boolean => {
     const cookies = document.cookie.split(';');
     for (const cookie of cookies) {
         const [name, value] = cookie.trim().split('=');
