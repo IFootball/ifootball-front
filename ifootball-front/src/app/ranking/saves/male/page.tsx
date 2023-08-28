@@ -8,6 +8,7 @@ import api from '@/api';
 import { point_fields_type } from '@/api/types';
 import { useRouter } from 'next/navigation';
 import { verifyTerms, verifyToken } from '@/api/functions';
+import TabelaSavesM from '@/components/TabelaSavesM';
 
 export default function Home() {
 
@@ -55,7 +56,7 @@ export default function Home() {
                         <h3>MELHORES GOLEIROS</h3>
                     </div>
                     <div className={styles.ranking}>
-                        <Tabela genderId={CONSTS.genderIds.male} mockRankingData={ranking} />
+                        <TabelaSavesM genderId={CONSTS.genderIds.male} mockRankingData={ranking} />
                     </div>
                 </div>
                 <div className={styles.voltar} onClick={() => router.back()}>VOLTAR</div>

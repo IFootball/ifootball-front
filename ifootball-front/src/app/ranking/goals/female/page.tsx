@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../../../../styles/ranking.module.scss';
 import Header from "@/components/Header";
-import Tabela from '@/components/Tabela';
+import TabelaGolsF from '@/components/TabelaGolsF';
 import CONSTS from '../../../../api/constants.json';
 import api from '@/api';
 import { point_fields_type } from '@/api/types';
@@ -55,7 +55,7 @@ export default function Home() {
                         <h3>MAIORES ARTILHEIRAS</h3>
                     </div>
                     <div className={styles.ranking}>
-                        <Tabela genderId={CONSTS.genderIds.female} mockRankingData={ranking} />
+                        <TabelaGolsF genderId={CONSTS.genderIds.female} mockRankingData={ranking} />
                     </div>
                 </div>
                 <div className={styles.voltar} onClick={() => router.back()}>VOLTAR</div>

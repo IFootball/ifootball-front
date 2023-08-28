@@ -8,6 +8,7 @@ import api from '@/api';
 import { point_fields_type } from '@/api/types';
 import { useRouter } from 'next/navigation';
 import { verifyTerms, verifyToken } from '@/api/functions';
+import TabelaAssistF from '@/components/TabelaAssistF';
 
 export default function Home() {
 
@@ -55,7 +56,7 @@ export default function Home() {
                         <h3>MELHORES ASSISTENTES</h3>
                     </div>
                     <div className={styles.ranking}>
-                        <Tabela genderId={CONSTS.genderIds.female} mockRankingData={ranking} />
+                        <TabelaAssistF genderId={CONSTS.genderIds.female} mockRankingData={ranking} />
                     </div>
                 </div>
                 <div className={styles.voltar} onClick={() => router.back()}>VOLTAR</div>
