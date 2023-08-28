@@ -24,7 +24,7 @@ const TabelaAssistM = ({mockRankingData, genderId}: tableProps) => {
                     <tr key={index}>
                         <td>{index === 0 ? <Image src={primeiro} alt='primeiro' /> : (index === 1 ? <Image src={segundo} alt='segundo' /> : (index === 2 ? <Image src={terceiro} alt='terceiro' /> : `${index + 1}${genderId === CONSTS.genderIds.male ? 'º' : 'ª'}`))}</td>
                         <td>{item.name}</td>
-                        <td>{item.score} {item.score > 1 || item.score == 0 ? 'Assistências' : 'Assistência'}</td>
+                        <td>{item.score} {item.score > 1 ? 'Assistências' : 'Assistência'}</td>
                     </tr>
                 ))}
             </tbody>

@@ -42,7 +42,6 @@ export default function Home() {
 
     const editAccountAction = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
         const response = await api.authentication.editAccount(editAccount.teamName, editAccount.password, editAccount.newPassword);
         if (!response.error || response.error.statusCode === 200 || response.error.statusCode === 201) {
             router.push('/homepage');

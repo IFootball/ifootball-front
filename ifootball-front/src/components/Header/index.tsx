@@ -84,7 +84,7 @@ export default function Navbar() {
                                 {openMenuBar.female &&
                                     <div className={styles.menu_in_menu_ops}>
                                         <Link className={styles.ops} href={'/ranking/teams/female'}>Time</Link>
-                                        <Link className={styles.ops} href={'/ranking/players/female'}>Jogador</Link>
+                                        <Link className={styles.ops} href={'/ranking/players/female'}>Jogadora</Link>
                                         <Link className={styles.ops} href={'/ranking/goals/female'}>Gols</Link>
                                         <Link className={styles.ops} href={'/ranking/assists/female'}>Assistência</Link>
                                         <Link className={styles.ops} href={'/ranking/saves/female'}>Defesas</Link>
