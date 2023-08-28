@@ -8,11 +8,27 @@ import logo from '../../../public/images/logoFoot.png';
 import theme from '../../../styles/globals.module.scss';
 import quadra from '../../../public/images/quadra.png';
 import api from '@/api';
-import { salvarTokenNoCookie, verifySession, verifyToken } from '@/api/functions';
+import { verifyTerms, verifyToken } from '@/api/functions';
 export default function Home() {
 
     const router = useRouter();
 
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
+    
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [editAccount, setEditAccount] = useState<{
         teamName: string,
