@@ -11,6 +11,7 @@ import logo from '../../../public/images/logoFoot.png';
 import quadra from '../../../public/images/quadra.png';
 import { useRouter } from "next/navigation";
 import { ErroCard } from "@/components/erroCard";
+import voltar from "../../../public/images/voltar.png"
 
 export default function Register() {
 
@@ -82,49 +83,53 @@ export default function Register() {
             return false;
         }
     }
+
     useEffect(() => {
         listClasses();
     }, [])
+
     return (
         <main className={styles.main} style={isMobile ? { backgroundColor: theme.backgroundColor, height: '100%', width: '100%' } : { backgroundImage: `url(${quadra.src})`, height: '100%', width: '100%' }}>
+            
             <div className={styles.loginUtilArea}>
-                <Image src={logo} alt='Logo IFootball' />
+
+                <div className={styles.header}>
+                    <Image src={logo} alt='Logo IFootball' />
+                    <Link className={styles.loginLink} href={'../login'}><Image src={voltar} alt="icone de voltar" /></Link>
+                </div>
+
                 <form onSubmit={register} className={styles.loginForm}>
+
                     <div className={styles.loginField}>
-                    <div className={styles.loginReturn}><p className={styles.loginP}><Link className={styles.loginLink} href={'../'}>Entrar</Link></p></div>
-                        <label htmlFor="name">Usuário</label>
-                        <input
-                            minLength={3}
-                            type="text"
-                            name="name"
-                            id="name"
-                            className={styles.loginInput}
-                        />
+                        <label htmlFor="name">Nome do time</label>
+                        <input minLength={3} type="text" name="name" id="name" className={styles.loginInput}/>
                         {errorName && <ErroCard>{errorName}</ErroCard>}
                     </div>
+
                     <div className={styles.loginField}>
                         <label htmlFor="email">Email</label>
                         <input type="email" name="email" id="email" className={styles.loginInput} />
                         {errorEmail && <ErroCard>{errorEmail}</ErroCard>}
                     </div>
+
                     <div className={styles.loginField}>
                         <label htmlFor="password">Senha</label>
                         <input type="password" name="password" className={styles.loginInput} id="password" />
                         {errorPassword && <ErroCard>{errorPassword}</ErroCard>}
                     </div>
+
                     <div className={styles.loginField}>
                         <label htmlFor="idClass">Turma</label>
                         <select className={styles.loginInput} name="idClass" id="idClass">
-                            {
-                                classes && classes.map((turma) => {
-                                    return (
-                                        <option key={turma.id} value={turma.id}>{turma.name}</option>
-                                    )
-                                })
-
-                            }
+                            {       
+                             classes && classes.map((turma) => {
+                                return (
+                                    <option key={turma.id} value={turma.id}>{turma.name}</option>
+                                )
+                            })}
                         </select>
                     </div>
+
                     {errorForm && <ErroCard>{errorForm}</ErroCard>}
                     <button type="submit" className={`${styles.loginButton} ${styles.registerPage}`}>Cadastrar</button>
                 </form>
