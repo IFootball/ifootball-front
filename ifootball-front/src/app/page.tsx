@@ -4,8 +4,32 @@ import style from '../../styles/intro.module.scss';
 import logo from '../../public/images/logoFoot.png'
 import DefaultButton from '@/components/DefaultButton';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { verifyTerms, verifyToken } from '@/api/functions';
 const Intro = () => {
     const router = useRouter();
+
+    const verifySession = (): boolean => {
+    
+        const token = verifyToken();
+    
+        if (token) {
+            router.push('/homepage');
+            return true;
+        } else {
+            if (verifyTerms()) {
+                router.push('/login');
+            } else {
+                router.push('/')
+            }
+            return false;
+        }
+    }
+    
+    useEffect(() => {
+        verifySession()
+    }, [])
+
     return (
         <div className={style.introPage}>
             <div className={style.introPageUtil}>
