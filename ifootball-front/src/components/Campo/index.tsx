@@ -202,7 +202,7 @@ export default function Campo({
 
             <div className={style.teamActions}>
                 <div className={style.reserves}>
-                    <h4>RESERVAS</h4>
+                    <h4 className={style.reservasBot}>RESERVAS</h4>
                     <div className={style.reservesArea}>
                         {
                             reservePlayers[0] ?

@@ -81,7 +81,7 @@ export default function Male() {
     return (
         <div className={styles.maleSquadPage}>
             <Header />
-            <h2>MONTE SEU TIME!</h2>
+            <h2 className={styles.monteTime}>MONTE SEU TIME!</h2>
             <Campo genderId={CONSTS.genderIds.male} goalkeepers={goalkeepers} players={players} captainId={userCaptain} goalkeeperId={userGoalkeeper} squad={userTeam} userReserves={userReserves} />
         </div>
     )
