@@ -4,11 +4,15 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    font-family: $defaultFont;
-}
+    margin-top: 55px;
+    gap: 26px;
+    overflow-y: hidden;
 
-.monteTime{
-    margin-top: 70px;
+    font-family: $defaultFont;
+    @media screen and (min-width: 767px) {
+        justify-content: center;
+        margin-top: 0;
+
+    }
 }

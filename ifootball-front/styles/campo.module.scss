@@ -14,6 +14,7 @@
     font-family: $defaultFont;
     cursor: pointer;
     // transform: rotate(90deg);
+    
 }
 .field {
     background-color: #97bb87;
@@ -132,28 +133,39 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 670px;
+    width: 90%;
+    gap: 30px;
+    max-width: 675px;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 767px) {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .reserves {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 79px;
+        gap: 30px;
+        width: 93px;
         height: 100px;
 
-        .reservasBot{
-            margin-left: 10px;
+        & > h4 {
+            margin: 0;
+            padding: 0;
+            
         }
 
         .reservesArea {
             display: flex;
-            gap: 10px;
-            width: 79px;
-            height: 100px;
-    
-            .r1, .r2{
-                font-size: 1.5vh;
-            }
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            
             .r1 {
                 margin-left: 55px;
             }
@@ -163,110 +175,22 @@
         display: flex;
         align-items: center;
         gap: 30px;
+        @media screen and (max-width: 767px) {
+            gap: 5px;
+        }
     }
 }
 
 
 @media screen and (max-width: 767px) {
 
-.field {
-    width: 336px;
-    height: 670px;
-
-    .lateral {
-        width: 308px;
-        height: 644px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+    .b1, .b2, .b3, .b4, .b5{
+        transform: rotate(90deg) scaleX(1) scaleY(1.43);
+    }
+    .field{
+        transform: rotate(-90deg) scaleX(0.70) scaleY(1);
     }
 
-    .area {
-        width: 140px;
-        height: 70px;
-    }
-
-    .left {
-        border-left: solid 4px white;
-        border-top: 0;
-    }
-
-    .right {
-        border-right: solid 4px white;
-        border-bottom: 0;
-    }
-
-    .centro {
-        width: calc(334px - 22px);
-        height: 48%;
-        left: calc(4% - 0px);
-        border-left: none;
-        border-right: none;
-        border-top: none;
-    }
-
-    .b1,
-    .b4,
-    .b5 {
-        top: 0;
-        right: 152px;
-    }
-
-    .b1 {
-        top: 5%;
-        left: 45%;
-    }
-
-    .b2,
-    .b3 {
-        left: 0%;
-    }
-
-    .b2 {
-        left: 67%;
-    }
-
-    .b3 {
-        top: 23%;
-        left: 23%;
-        right: 0%;
-    }
-
-    .b4 {
-        top: 40%;
-        left: 45%;
-    }
-
-    .b5 {
-        top: 60%;
-        left: 45%;
-    }
-}
-.teamActions {
-    display: flex;
-    justify-content: center;
-
-    .reserves {
-        margin-right: 10px;
-        
-
-        .reservesArea {
-            display: flex;
-            gap: 10px;
-            width: 79px;
-            height: 100px;
-    
-            .r1 {
-                margin-left: 50px;
-            }
-        }
-    }
-    .buttons {
-        margin-left: 15px;
-        margin-top: 30px;
-        gap: 15px;
-    }
 }
 
 
@@ -274,5 +198,6 @@
 
 
 
-}
+
+
 
