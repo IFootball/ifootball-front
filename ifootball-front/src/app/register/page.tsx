@@ -9,6 +9,7 @@ import theme from '../../../styles/globals.module.scss';
 import logo from '../../../public/images/logoFoot.png';
 import quadra from '../../../public/images/quadra.png';
 import { useRouter } from "next/navigation";
+import Input from "@/components/input/input";
 
 export default function Register() {
 
@@ -19,7 +20,7 @@ export default function Register() {
 
     const register = async (event: FormEvent<HTMLFormElement>): Promise<boolean> => {
         let data: { [key: string]: string } = {};
-        
+
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
 
@@ -54,25 +55,26 @@ export default function Register() {
             <div className={styles.loginUtilArea}>
                 <Image src={logo} alt='Logo IFootball' />
                 <form onSubmit={register} className={styles.loginForm}>
-                    <div className={styles.loginField}>
-                        <label htmlFor="name">Usuário</label>
-                        <input
-                            minLength={3}
-                            maxLength={30}
-                            type="text"
-                            name="name"
-                            id="name"
-                            className={styles.loginInput}
-                        />
-                    </div>
-                    <div className={styles.loginField}>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email" className={styles.loginInput} />
-                    </div>
-                    <div className={styles.loginField}>
-                        <label htmlFor="password">Senha</label>
-                        <input type="password" name="password" className={styles.loginInput} id="password" />
-                    </div>
+                    <Input
+                        label="Usuário"
+                        minLength={3}
+                        maxLength={30}
+                        type="text"
+                        name="name"
+                        id="name" />
+
+                    <Input
+                        label="Email"
+                        type="email"
+                        name="email"
+                        id="email" />
+
+                    <Input
+                        label="Senha"
+                        type="password"
+                        name="password"
+                        id="password" />
+
                     <div className={styles.loginField}>
                         <label htmlFor="idClass">Turma</label>
                         <select className={styles.loginInput} name="idClass" id="idClass">
