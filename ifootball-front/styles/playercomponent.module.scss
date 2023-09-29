@@ -1,4 +1,4 @@
-@import './globals.scss';
+@import "./globals.scss";
 
 .playerCard {
     background-color: $primaryGreen;
@@ -10,7 +10,7 @@
     justify-content: space-between;
     padding: 5px;
     font-family: $defaultFont;
-    max-width: 290px;
+    max-width: 263px;
 
     .leftPart {
         display: flex;
@@ -47,5 +47,4 @@
             color: white;
         }
     }
-
 }

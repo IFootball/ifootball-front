@@ -1,4 +1,4 @@
-@import './globals.scss';
+@import "./globals.scss";
 .maleSquadPage {
     width: 100%;
     height: 100%;
@@ -7,12 +7,24 @@
     flex-direction: column;
     margin-top: 55px;
     gap: 26px;
-    overflow-y: hidden;
+    overflow: hidden;
+
+    .backToHome {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: $blackDefault;
+        margin: 25px;
+        text-decoration: none;
+    }
+
+    h2 {
+        text-align: center;
+    }
 
     font-family: $defaultFont;
     @media screen and (min-width: 767px) {
         justify-content: center;
         margin-top: 0;
-
     }
 }
